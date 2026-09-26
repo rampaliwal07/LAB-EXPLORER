@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENTC Machine &amp; Component Explorer</title>
+<meta name="description" content="A centralized platform to explore ENTC laboratory machines, electronic components, experiments and project resources.">
+<meta name="theme-color" content="#070d22">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body data-page="home">
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header id="site-nav"></header>
+
+<main id="main">
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="hero">
+    <div class="hero__grid-bg" aria-hidden="true"></div>
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="container hero__inner">
+
+      <div class="hero__copy">
+        <span class="pill"><span class="pill__dot"></span> SCAMPER-based ENTC resource platform</span>
+
+        <h1 class="hero__title">
+          ENTC MACHINE &amp;<br>
+          <span class="grad">COMPONENT EXPLORER</span>
+        </h1>
+
+        <p class="hero__tagline">Discover. Understand. Connect.</p>
+
+        <p class="hero__sub">
+          A centralized platform to explore ENTC laboratory machines, electronic
+          components, experiments and project resources.
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="machines.html">
+            Explore Machines
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="components.html">Explore Components</a>
+        </div>
+
+        <ul class="hero__facts">
+          <li><strong>8</strong> Laboratories</li>
+          <li><strong>25+</strong> Machines</li>
+          <li><strong>50+</strong> Components</li>
+          <li><strong>30+</strong> Experiments</li>
+        </ul>
+      </div>
+
+      <!-- CSS/SVG artwork — no external images -->
+      <div class="hero__art" aria-hidden="true">
+        <svg viewBox="0 0 520 430" class="hero-svg" role="img">
+          <defs>
+            <linearGradient id="gPanel" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0e1a3d"/>
+              <stop offset="100%" stop-color="#0a1228"/>
+            </linearGradient>
+            <linearGradient id="gWave" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#22d3ee"/>
+              <stop offset="60%" stop-color="#3b82f6"/>
+              <stop offset="100%" stop-color="#8b5cf6"/>
+            </linearGradient>
+            <linearGradient id="gBar" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stop-color="#1d4ed8" stop-opacity=".35"/>
+              <stop offset="100%" stop-color="#22d3ee"/>
+            </linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+
+          <!-- main panel -->
+          <rect x="40" y="34" width="440" height="300" rx="22" fill="url(#gPanel)" stroke="#1e2b55"/>
+          <!-- grid -->
+          <g stroke="#1b2649" stroke-width="1">
+            <path d="M40 94h440M40 154h440M40 214h440M40 274h440"/>
+            <path d="M130 34v300M220 34v300M310 34v300M400 34v300"/>
+          </g>
+
+          <!-- header dots -->
+          <circle cx="68" cy="62" r="5" fill="#22d3ee"/>
+          <circle cx="86" cy="62" r="5" fill="#3b82f6"/>
+          <circle cx="104" cy="62" r="5" fill="#8b5cf6"/>
+          <text x="132" y="67" fill="#7d8db8" font-family="monospace" font-size="12">entc_explorer.log</text>
+
+          <!-- waveform -->
+          <path d="M64 178c22-52 44-52 66 0s44 52 66 0 44-52 66 0 44 52 66 0 44-52 66 0"
+                fill="none" stroke="url(#gWave)" stroke-width="3.5" stroke-linecap="round" filter="url(#glow)"/>
+          <path d="M64 178h352" stroke="#22305c" stroke-width="1" stroke-dasharray="4 6"/>
+
+          <!-- chip -->
+          <g transform="translate(300,236)">
+            <rect x="0" y="0" width="96" height="66" rx="10" fill="#101c3e" stroke="#2b3d70"/>
+            <text x="48" y="40" text-anchor="middle" fill="#9fb2dd" font-family="monospace" font-size="15">74153</text>
+            <g stroke="#3b82f6" stroke-width="2" stroke-linecap="round">
+              <path d="M14 -8v10M34 -8v10M54 -8v10M74 -8v10"/>
+              <path d="M14 64v10M34 64v10M54 64v10M74 64v10"/>
+            </g>
+          </g>
+
+          <!-- bar chart -->
+          <g transform="translate(64,236)">
+            <rect x="0"   y="34" width="16" height="30" rx="4" fill="url(#gBar)"/>
+            <rect x="26"  y="18" width="16" height="46" rx="4" fill="url(#gBar)"/>
+            <rect x="52"  y="42" width="16" height="22" rx="4" fill="url(#gBar)"/>
+            <rect x="78"  y="8"  width="16" height="56" rx="4" fill="url(#gBar)"/>
+          </g>
+
+          <!-- floating badges -->
+          <g class="float-a">
+            <rect x="18" y="120" width="120" height="42" rx="12" fill="#0f1c40" stroke="#26386b"/>
+            <circle cx="40" cy="141" r="7" fill="#22d3ee"/>
+            <text x="56" y="146" fill="#c7d5f5" font-size="12" font-family="Inter,sans-serif">Measuring</text>
+          </g>
+          <g class="float-b">
+            <rect x="382" y="128" width="120" height="42" rx="12" fill="#0f1c40" stroke="#26386b"/>
+            <circle cx="404" cy="149" r="7" fill="#8b5cf6"/>
+            <text x="420" y="154" fill="#c7d5f5" font-size="12" font-family="Inter,sans-serif">Digital IC</text>
+          </g>
+
+          <!-- base -->
+          <rect x="80" y="356" width="360" height="14" rx="7" fill="#131f45"/>
+          <rect x="150" y="378" width="220" height="10" rx="5" fill="#0e1836"/>
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 2. UNIVERSAL SEARCH ============ -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="search-hero reveal">
+        <h2 class="search-hero__title">What are you looking for?</h2>
+        <p class="search-hero__hint">
+          Search machine, component, experiment or purpose —
+          <span class="mono">CRO</span>, <span class="mono">74153</span>,
+          <span class="mono">waveform</span>, <span class="mono">digital electronics lab</span>
+        </p>
+
+        <form class="searchbar" id="hero-search" role="search" autocomplete="off">
+          <svg class="icon searchbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <label class="sr-only" for="hero-search-input">Search resources</label>
+          <input id="hero-search-input" type="search" placeholder="Search machine, component, experiment or purpose..." aria-describedby="hero-search-hint">
+          <button class="btn btn--primary btn--sm" type="submit">Search</button>
+        </form>
+        <p id="hero-search-hint" class="sr-only">Results update as you type across machines, components, labs, experiments and projects.</p>
+
+        <div class="quick-tags">
+          <span class="quick-tags__label">Try:</span>
+          <button class="chip chip--ghost" data-quick="CRO">CRO</button>
+          <button class="chip chip--ghost" data-quick="74153">74153</button>
+          <button class="chip chip--ghost" data-quick="Function Generator">Function Generator</button>
+          <button class="chip chip--ghost" data-quick="waveform">Waveform</button>
+          <button class="chip chip--ghost" data-quick="Digital Electronics Lab">Digital Electronics Lab</button>
+        </div>
+
+        <div id="hero-search-results" class="search-results" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. EXPLORE RESOURCES ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Browse</span>
+        <h2 class="section__title">Explore Resources</h2>
+        <p class="section__lead">Everything an ENTC student needs, organised in one place.</p>
+      </div>
+      <div class="grid grid--5" id="explore-resources"></div>
+    </div>
+  </section>
+
+  <!-- ============ 4. FIND BY PURPOSE ============ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Student Need → Resource</span>
+        <h2 class="section__title">Find By Purpose</h2>
+        <p class="section__lead">Start with what you want to do, not with which lab you are in.</p>
+      </div>
+      <div class="grid grid--4" id="purpose-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ 5. FEATURED MACHINES ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head section__head--row reveal">
+        <div>
+          <span class="eyebrow">Instruments</span>
+          <h2 class="section__title">Featured Machines</h2>
+        </div>
+        <a class="link-arrow" href="machines.html">View all machines <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="grid grid--4" id="featured-machines"></div>
+    </div>
+  </section>
+
+  <!-- ============ 6. POPULAR COMPONENTS ============ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__head section__head--row reveal">
+        <div>
+          <span class="eyebrow">Components &amp; ICs</span>
+          <h2 class="section__title">Popular Components</h2>
+        </div>
+        <a class="link-arrow" href="components.html">View all components <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="grid grid--4" id="popular-components"></div>
+    </div>
+  </section>
+
+  <!-- ============ 7. EXPLORE LABORATORIES ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head section__head--row reveal">
+        <div>
+          <span class="eyebrow">Where it lives</span>
+          <h2 class="section__title">Explore Laboratories</h2>
+        </div>
+        <a class="link-arrow" href="labs.html">View all labs <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="grid grid--3" id="home-labs"></div>
+    </div>
+  </section>
+
+  <!-- ============ 8. PROJECT FINDER CTA ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div class="cta-band__text">
+          <span class="eyebrow eyebrow--light">Project Finder</span>
+          <h2>Have a project idea? Find out what you need.</h2>
+          <p>
+            Type your project idea and instantly see the required components,
+            their availability and the laboratory where you can find them.
+          </p>
+        </div>
+        <a class="btn btn--light" href="projects.html">
+          Open Project Finder
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. SCAMPER ============ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Methodology</span>
+        <h2 class="section__title">Built using SCAMPER</h2>
+        <p class="section__lead">
+          Seven deliberate design decisions turned scattered lab information into one platform.
+        </p>
+      </div>
+      <div class="scamper-strip" id="scamper-strip"></div>
+      <div class="center mt-32">
+        <a class="btn btn--outline" href="scamper.html">See the full SCAMPER story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. STATISTICS ============ -->
+  <section class="section stats-section">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow eyebrow--light">Platform at a glance</span>
+        <h2 class="section__title section__title--light">Resource Statistics</h2>
+        <p class="section__lead section__lead--light">
+          Figures shown are sample/demo numbers. Replace them with your actual college data in
+          <span class="mono">js/data.js</span>.
+        </p>
+      </div>
+      <div class="grid grid--4" id="stats-grid"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="site-footer"></footer>
+<div id="modal-root"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/search.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>
