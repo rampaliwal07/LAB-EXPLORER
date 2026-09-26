@@ -2,299 +2,1317 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ENTC Machine &amp; Component Explorer</title>
-<meta name="description" content="A centralized platform to explore ENTC laboratory machines, electronic components, experiments and project resources.">
-<meta name="theme-color" content="#070d22">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENTC Machine & Component Explorer</title>
+<meta name="description" content="One smart place to explore ENTC laboratory machines, electronic components, experiments and project resources.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+/* ==================== VARIABLES ==================== */
+:root{
+  --navy-900:#070d22;
+  --navy-800:#0a1228;
+  --navy-700:#0e1a3d;
+  --navy-600:#131f45;
+  --blue-500:#3b82f6;
+  --blue-400:#60a5fa;
+  --cyan-400:#22d3ee;
+  --cyan-300:#67e8f9;
+  --purple-500:#8b5cf6;
+  --white:#ffffff;
+  --gray-50:#f8fafc;
+  --gray-100:#f1f5f9;
+  --gray-200:#e2e8f0;
+  --gray-300:#cbd5e1;
+  --gray-400:#94a3b8;
+  --gray-500:#64748b;
+  --gray-600:#475569;
+  --gray-700:#334155;
+  --gray-800:#1e293b;
+  --gray-900:#0f172a;
+  --font-body:'Inter',system-ui,-apple-system,sans-serif;
+  --font-heading:'Space Grotesk',system-ui,-apple-system,sans-serif;
+  --radius-sm:8px;
+  --radius-md:12px;
+  --radius-lg:20px;
+  --radius-xl:28px;
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg:0 12px 32px rgba(0,0,0,0.12);
+  --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+ul{list-style:none}
+
+/* ==================== UTILITIES ==================== */
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:100px 0;position:relative}
+.section--alt{background:var(--white)}
+.section-head{text-align:center;max-width:640px;margin:0 auto 56px}
+.eyebrow{display:inline-block;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue-500);background:rgba(59,130,246,0.08);padding:6px 14px;border-radius:100px;margin-bottom:16px}
+.section-title{font-family:var(--font-heading);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;color:var(--gray-900);line-height:1.2;margin-bottom:12px}
+.section-lead{font-size:1.05rem;color:var(--gray-500);max-width:520px;margin:0 auto}
+.gradient-text{background:linear-gradient(135deg,var(--cyan-400),var(--blue-500),var(--purple-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grid{display:grid;gap:24px}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:0.95rem;padding:14px 28px;border-radius:100px;transition:var(--transition);border:1.5px solid transparent;white-space:nowrap}
+.btn i,.btn svg{width:18px;height:18px}
+.btn--primary{background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));color:var(--white);box-shadow:0 4px 20px rgba(59,130,246,0.35)}
+.btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(59,130,246,0.45)}
+.btn--ghost{background:rgba(255,255,255,0.06);color:var(--white);border-color:rgba(255,255,255,0.15);backdrop-filter:blur(8px)}
+.btn--ghost:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3)}
+.btn--outline{background:transparent;color:var(--gray-700);border-color:var(--gray-300)}
+.btn--outline:hover{border-color:var(--blue-500);color:var(--blue-500);background:rgba(59,130,246,0.05)}
+.btn--sm{padding:10px 20px;font-size:0.875rem}
+.chip{display:inline-flex;align-items:center;padding:6px 16px;border-radius:100px;font-size:0.8rem;font-weight:500;background:var(--gray-100);color:var(--gray-600);border:1px solid var(--gray-200);transition:var(--transition)}
+.chip:hover{background:var(--blue-500);color:var(--white);border-color:var(--blue-500)}
+
+/* ==================== NAVBAR ==================== */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(7,13,34,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);transition:var(--transition)}
+.navbar__inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.navbar__logo{display:flex;align-items:center;gap:10px;color:var(--white);font-family:var(--font-heading);font-size:1.1rem;letter-spacing:0.02em}
+.logo-icon{display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));border-radius:10px;color:var(--white)}
+.logo-icon i{width:20px;height:20px}
+.logo-text strong{font-weight:700}
+.navbar__links{display:flex;align-items:center;gap:8px}
+.nav-link{color:rgba(255,255,255,0.7);font-size:0.9rem;font-weight:500;padding:8px 16px;border-radius:100px;transition:var(--transition)}
+.nav-link:hover,.nav-link.active{color:var(--white);background:rgba(255,255,255,0.08)}
+.navbar__actions{display:flex;align-items:center;gap:12px}
+.search-btn{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.06);transition:var(--transition)}
+.search-btn:hover{background:rgba(255,255,255,0.12);color:var(--white)}
+.search-btn i{width:20px;height:20px}
+.hamburger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06)}
+.hamburger span{display:block;width:20px;height:2px;background:var(--white);border-radius:2px;transition:var(--transition)}
+
+/* ==================== HERO ==================== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--navy-900);color:var(--white);overflow:hidden;padding-top:72px}
+.hero__bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(59,130,246,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.05) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 40%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 40%,transparent 100%)}
+.hero__glow{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(34,211,238,0.15) 0%,transparent 70%);pointer-events:none}
+.hero__inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;padding:60px 0}
+.hero__badge{display:inline-flex;align-items:center;gap:8px;font-size:0.8rem;font-weight:500;color:var(--cyan-300);background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);padding:8px 18px;border-radius:100px;margin-bottom:24px}
+.hero__badge i{width:16px;height:16px}
+.hero__title{font-family:var(--font-heading);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:16px}
+.hero__tagline{font-size:1.2rem;font-weight:600;color:var(--cyan-300);margin-bottom:12px;letter-spacing:0.02em}
+.hero__desc{font-size:1.05rem;color:rgba(255,255,255,0.65);max-width:480px;margin-bottom:32px;line-height:1.7}
+.hero__buttons{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
+.hero__stats{display:flex;gap:32px;flex-wrap:wrap}
+.hero__stats div{font-size:0.85rem;color:rgba(255,255,255,0.5)}
+.hero__stats strong{display:block;font-size:1.5rem;font-family:var(--font-heading);color:var(--white);font-weight:700}
+.hero__art{display:flex;justify-content:center}
+.hero-svg{width:100%;max-width:520px;height:auto;filter:drop-shadow(0 20px 60px rgba(34,211,238,0.1))}
+.float-a{animation:float 6s ease-in-out infinite}
+.float-b{animation:float 6s ease-in-out infinite 3s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* ==================== SEARCH SECTION ==================== */
+.search-section{background:var(--white);padding:80px 0}
+.search-box{max-width:720px;margin:0 auto;text-align:center}
+.search-box__title{font-family:var(--font-heading);font-size:1.75rem;font-weight:700;color:var(--gray-900);margin-bottom:8px}
+.search-box__hint{color:var(--gray-500);margin-bottom:28px}
+.search-form{display:flex;align-items:center;gap:12px;background:var(--white);border:2px solid var(--gray-200);border-radius:100px;padding:8px 8px 8px 24px;transition:var(--transition);box-shadow:var(--shadow-md)}
+.search-form:focus-within{border-color:var(--blue-500);box-shadow:0 0 0 4px rgba(59,130,246,0.1),var(--shadow-lg)}
+.search-form__icon{width:22px;height:22px;color:var(--gray-400);flex-shrink:0}
+.search-form input{flex:1;border:none;outline:none;font-size:1rem;font-family:inherit;color:var(--gray-800);background:transparent;min-width:0}
+.search-form input::placeholder{color:var(--gray-400)}
+.popular-searches{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:20px;font-size:0.85rem;color:var(--gray-500)}
+.search-results{margin-top:32px;text-align:left;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);max-height:400px;overflow-y:auto}
+.search-results__group{padding:16px 20px;border-bottom:1px solid var(--gray-100)}
+.search-results__group:last-child{border-bottom:none}
+.search-results__group h4{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:8px}
+.search-result-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:var(--radius-sm);cursor:pointer;transition:var(--transition)}
+.search-result-item:hover{background:var(--gray-50)}
+.search-result-item span:first-child{font-weight:500;color:var(--gray-800)}
+.search-result-item span:last-child{font-size:0.8rem;color:var(--gray-400)}
+.no-results{padding:24px;text-align:center;color:var(--gray-400)}
+
+/* ==================== RESOURCE CARDS ==================== */
+.resource-card{position:relative;background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:32px 28px;transition:var(--transition);overflow:hidden;display:block}
+.resource-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--blue-400)}
+.resource-card__icon{display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:var(--radius-md);background:linear-gradient(135deg,rgba(59,130,246,0.1),rgba(34,211,238,0.1));color:var(--blue-500);margin-bottom:20px}
+.resource-card__icon i{width:26px;height:26px}
+.resource-card h3{font-family:var(--font-heading);font-size:1.15rem;font-weight:600;color:var(--gray-900);margin-bottom:8px}
+.resource-card p{font-size:0.9rem;color:var(--gray-500);line-height:1.6}
+.resource-card__arrow{position:absolute;bottom:24px;right:24px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--gray-100);color:var(--gray-500);transition:var(--transition);opacity:0;transform:translateX(-8px)}
+.resource-card__arrow i{width:16px;height:16px}
+.resource-card:hover .resource-card__arrow{opacity:1;transform:translateX(0);background:var(--blue-500);color:var(--white)}
+
+/* ==================== CARDS ==================== */
+.card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:28px;transition:var(--transition);display:flex;flex-direction:column;height:100%}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--blue-400)}
+.card__tag{display:inline-flex;align-items:center;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--blue-500);background:rgba(59,130,246,0.08);padding:4px 12px;border-radius:100px;margin-bottom:16px;width:fit-content}
+.card__title{font-family:var(--font-heading);font-size:1.15rem;font-weight:600;color:var(--gray-900);margin-bottom:8px}
+.card__subtitle{font-size:0.85rem;color:var(--gray-500);margin-bottom:12px}
+.card__meta{display:flex;flex-wrap:wrap;gap:12px;font-size:0.8rem;color:var(--gray-500);margin-bottom:20px}
+.card__meta span{display:inline-flex;align-items:center;gap:6px}
+.card__meta i{width:14px;height:14px;color:var(--gray-400)}
+.card__actions{margin-top:auto;padding-top:16px;border-top:1px solid var(--gray-100)}
+.card__btn{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--blue-500);transition:var(--transition)}
+.card__btn:hover{color:var(--blue-400);gap:10px}
+.card__btn i{width:16px;height:16px}
+
+/* ==================== FILTER BAR ==================== */
+.filter-bar{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:40px}
+.filter-btn{padding:8px 20px;border-radius:100px;font-size:0.85rem;font-weight:500;color:var(--gray-600);background:var(--gray-100);border:1px solid transparent;transition:var(--transition)}
+.filter-btn:hover{background:var(--gray-200)}
+.filter-btn.active{background:var(--blue-500);color:var(--white)}
+
+/* ==================== PROJECT FINDER ==================== */
+.project-finder{max-width:800px;margin:0 auto}
+.project-selector{display:flex;align-items:center;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.project-selector label{font-weight:600;color:var(--gray-700)}
+.project-selector select{flex:1;min-width:240px;padding:12px 20px;border:2px solid var(--gray-200);border-radius:100px;font-size:0.95rem;font-family:inherit;color:var(--gray-800);background:var(--white);outline:none;transition:var(--transition);cursor:pointer}
+.project-selector select:focus{border-color:var(--blue-500);box-shadow:0 0 0 4px rgba(59,130,246,0.1)}
+.project-details{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-md)}
+.project-details__grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.project-details h4{font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--gray-900);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.project-details h4 i{width:18px;height:18px;color:var(--blue-500)}
+.project-list{display:flex;flex-direction:column;gap:10px}
+.project-item{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--gray-50);border-radius:var(--radius-sm);font-size:0.9rem;gap:12px}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:600;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:0.04em;white-space:nowrap}
+.badge--available{background:rgba(34,197,94,0.1);color:#16a34a}
+.badge--unavailable{background:rgba(239,68,68,0.1);color:#dc2626}
+.project-lab{margin-top:24px;padding:16px 20px;background:linear-gradient(135deg,rgba(59,130,246,0.05),rgba(34,211,238,0.05));border:1px solid rgba(59,130,246,0.15);border-radius:var(--radius-md);display:flex;align-items:center;gap:12px;font-size:0.9rem;color:var(--gray-700)}
+.project-lab i{width:20px;height:20px;color:var(--blue-500);flex-shrink:0}
+.project-empty{text-align:center;color:var(--gray-400);padding:20px;font-size:0.9rem}
+
+/* ==================== SCAMPER ==================== */
+.scamper-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.scamper-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:28px;transition:var(--transition);position:relative;overflow:hidden}
+.scamper-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--cyan-400),var(--blue-500),var(--purple-500));opacity:0;transition:var(--transition)}
+.scamper-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--blue-400)}
+.scamper-card:hover::before{opacity:1}
+.scamper-card__letter{font-family:var(--font-heading);font-size:2rem;font-weight:700;background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:12px}
+.scamper-card__title{font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--gray-900);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.04em}
+.scamper-card__desc{font-size:0.9rem;color:var(--gray-500);line-height:1.6}
+
+/* ==================== QR SECTION ==================== */
+.qr-section{background:var(--navy-900);color:var(--white)}
+.qr-content{display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.qr-text{max-width:520px}
+.qr-text .section-title{color:var(--white)}
+.qr-text p{color:rgba(255,255,255,0.6);margin-top:12px}
+.qr-placeholder{display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-lg);backdrop-filter:blur(8px)}
+.qr-placeholder span{font-size:0.8rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em}
+
+/* ==================== FOOTER ==================== */
+.footer{background:var(--navy-900);color:rgba(255,255,255,0.7);padding:64px 0 32px;border-top:1px solid rgba(255,255,255,0.06)}
+.footer__inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:32px}
+.footer__brand .logo-icon{margin:0 auto 12px}
+.footer__brand .logo-text{font-family:var(--font-heading);font-size:1.2rem;color:var(--white);display:block;margin-bottom:8px}
+.footer__brand p{font-size:0.9rem;color:rgba(255,255,255,0.5)}
+.footer__links{display:flex;flex-wrap:wrap;justify-content:center;gap:24px}
+.footer__links a{font-size:0.9rem;color:rgba(255,255,255,0.6);transition:var(--transition)}
+.footer__links a:hover{color:var(--cyan-300)}
+.footer__bottom{display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);width:100%;font-size:0.85rem}
+.footer__bottom .btn--outline{color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.2)}
+.footer__bottom .btn--outline:hover{color:var(--white);border-color:var(--cyan-300);background:rgba(34,211,238,0.1)}
+
+/* ==================== MODAL ==================== */
+.modal{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:24px}
+.modal.open{display:flex}
+.modal__overlay{position:absolute;inset:0;background:rgba(7,13,34,0.7);backdrop-filter:blur(8px)}
+.modal__content{position:relative;background:var(--white);border-radius:var(--radius-xl);max-width:680px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,0.3);animation:modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1)}
+@keyframes modalIn{from{opacity:0;transform:scale(0.95) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal__close{position:absolute;top:20px;right:20px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--gray-100);color:var(--gray-500);transition:var(--transition);z-index:1}
+.modal__close:hover{background:var(--gray-200);color:var(--gray-800)}
+.modal__close i{width:20px;height:20px}
+.modal__body{padding:40px}
+.modal__body h2{font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--gray-900);margin-bottom:4px;padding-right:40px}
+.modal-subtitle{font-size:0.9rem;color:var(--blue-500);font-weight:600;margin-bottom:24px}
+.modal__section{margin-bottom:24px}
+.modal__section h4{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.modal__section h4 i{width:16px;height:16px}
+.modal__section p,.modal__section ul{font-size:0.95rem;color:var(--gray-600);line-height:1.7}
+.modal__section ul{list-style:disc;padding-left:20px}
+.modal__section ul li{margin-bottom:4px}
+.modal__specs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal__spec{background:var(--gray-50);padding:12px 16px;border-radius:var(--radius-sm);font-size:0.85rem;color:var(--gray-700)}
+.modal__spec strong{display:block;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--gray-400);margin-bottom:2px}
+.modal__placeholder{background:var(--gray-50);border-radius:var(--radius-sm);padding:24px;text-align:center;color:var(--gray-400);font-size:0.85rem}
+
+/* ==================== REVEAL ==================== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width:1024px){
+  .hero__inner{grid-template-columns:1fr;text-align:center;gap:48px}
+  .hero__desc{margin-left:auto;margin-right:auto}
+  .hero__buttons{justify-content:center}
+  .hero__stats{justify-content:center}
+  .hero__art{order:-1}
+  .hero-svg{max-width:400px}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:768px){
+  .section{padding:72px 0}
+  .navbar__links{position:fixed;top:72px;left:0;right:0;background:rgba(7,13,34,0.98);backdrop-filter:blur(16px);flex-direction:column;padding:24px;gap:4px;border-bottom:1px solid rgba(255,255,255,0.06);transform:translateY(-120%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);z-index:999}
+  .navbar__links.open{transform:translateY(0)}
+  .nav-link{display:block;padding:12px 16px;font-size:1rem}
+  .hamburger{display:flex}
+  .grid-4{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr}
+  .search-form{flex-direction:column;border-radius:var(--radius-lg);padding:16px;gap:12px}
+  .search-form input{width:100%;text-align:center}
+  .search-form__icon{display:none}
+  .project-details__grid{grid-template-columns:1fr;gap:24px}
+  .qr-content{flex-direction:column;text-align:center}
+  .qr-placeholder{margin:0 auto}
+  .modal__body{padding:28px 20px}
+  .modal__specs{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .container{padding:0 16px}
+  .hero__title{font-size:1.8rem}
+  .hero__stats{gap:20px}
+  .hero__stats strong{font-size:1.2rem}
+  .btn{padding:12px 20px;font-size:0.85rem}
+  .project-selector{flex-direction:column;align-items:stretch}
+  .footer__links{gap:16px}
+  .footer__links a{font-size:0.8rem}
+}
+</style>
 </head>
-<body data-page="home">
+<body>
 
-<a class="skip-link" href="#main">Skip to main content</a>
-
-<header id="site-nav"></header>
-
-<main id="main">
-
-  <!-- ============ 1. HERO ============ -->
-  <section class="hero">
-    <div class="hero__grid-bg" aria-hidden="true"></div>
-    <div class="hero__glow" aria-hidden="true"></div>
-    <div class="container hero__inner">
-
-      <div class="hero__copy">
-        <span class="pill"><span class="pill__dot"></span> SCAMPER-based ENTC resource platform</span>
-
-        <h1 class="hero__title">
-          ENTC MACHINE &amp;<br>
-          <span class="grad">COMPONENT EXPLORER</span>
-        </h1>
-
-        <p class="hero__tagline">Discover. Understand. Connect.</p>
-
-        <p class="hero__sub">
-          A centralized platform to explore ENTC laboratory machines, electronic
-          components, experiments and project resources.
-        </p>
-
-        <div class="hero__cta">
-          <a class="btn btn--primary" href="machines.html">
-            Explore Machines
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="btn btn--ghost" href="components.html">Explore Components</a>
-        </div>
-
-        <ul class="hero__facts">
-          <li><strong>8</strong> Laboratories</li>
-          <li><strong>25+</strong> Machines</li>
-          <li><strong>50+</strong> Components</li>
-          <li><strong>30+</strong> Experiments</li>
-        </ul>
-      </div>
-
-      <!-- CSS/SVG artwork — no external images -->
-      <div class="hero__art" aria-hidden="true">
-        <svg viewBox="0 0 520 430" class="hero-svg" role="img">
-          <defs>
-            <linearGradient id="gPanel" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#0e1a3d"/>
-              <stop offset="100%" stop-color="#0a1228"/>
-            </linearGradient>
-            <linearGradient id="gWave" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#22d3ee"/>
-              <stop offset="60%" stop-color="#3b82f6"/>
-              <stop offset="100%" stop-color="#8b5cf6"/>
-            </linearGradient>
-            <linearGradient id="gBar" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stop-color="#1d4ed8" stop-opacity=".35"/>
-              <stop offset="100%" stop-color="#22d3ee"/>
-            </linearGradient>
-            <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          </defs>
-
-          <!-- main panel -->
-          <rect x="40" y="34" width="440" height="300" rx="22" fill="url(#gPanel)" stroke="#1e2b55"/>
-          <!-- grid -->
-          <g stroke="#1b2649" stroke-width="1">
-            <path d="M40 94h440M40 154h440M40 214h440M40 274h440"/>
-            <path d="M130 34v300M220 34v300M310 34v300M400 34v300"/>
-          </g>
-
-          <!-- header dots -->
-          <circle cx="68" cy="62" r="5" fill="#22d3ee"/>
-          <circle cx="86" cy="62" r="5" fill="#3b82f6"/>
-          <circle cx="104" cy="62" r="5" fill="#8b5cf6"/>
-          <text x="132" y="67" fill="#7d8db8" font-family="monospace" font-size="12">entc_explorer.log</text>
-
-          <!-- waveform -->
-          <path d="M64 178c22-52 44-52 66 0s44 52 66 0 44-52 66 0 44 52 66 0 44-52 66 0"
-                fill="none" stroke="url(#gWave)" stroke-width="3.5" stroke-linecap="round" filter="url(#glow)"/>
-          <path d="M64 178h352" stroke="#22305c" stroke-width="1" stroke-dasharray="4 6"/>
-
-          <!-- chip -->
-          <g transform="translate(300,236)">
-            <rect x="0" y="0" width="96" height="66" rx="10" fill="#101c3e" stroke="#2b3d70"/>
-            <text x="48" y="40" text-anchor="middle" fill="#9fb2dd" font-family="monospace" font-size="15">74153</text>
-            <g stroke="#3b82f6" stroke-width="2" stroke-linecap="round">
-              <path d="M14 -8v10M34 -8v10M54 -8v10M74 -8v10"/>
-              <path d="M14 64v10M34 64v10M54 64v10M74 64v10"/>
-            </g>
-          </g>
-
-          <!-- bar chart -->
-          <g transform="translate(64,236)">
-            <rect x="0"   y="34" width="16" height="30" rx="4" fill="url(#gBar)"/>
-            <rect x="26"  y="18" width="16" height="46" rx="4" fill="url(#gBar)"/>
-            <rect x="52"  y="42" width="16" height="22" rx="4" fill="url(#gBar)"/>
-            <rect x="78"  y="8"  width="16" height="56" rx="4" fill="url(#gBar)"/>
-          </g>
-
-          <!-- floating badges -->
-          <g class="float-a">
-            <rect x="18" y="120" width="120" height="42" rx="12" fill="#0f1c40" stroke="#26386b"/>
-            <circle cx="40" cy="141" r="7" fill="#22d3ee"/>
-            <text x="56" y="146" fill="#c7d5f5" font-size="12" font-family="Inter,sans-serif">Measuring</text>
-          </g>
-          <g class="float-b">
-            <rect x="382" y="128" width="120" height="42" rx="12" fill="#0f1c40" stroke="#26386b"/>
-            <circle cx="404" cy="149" r="7" fill="#8b5cf6"/>
-            <text x="420" y="154" fill="#c7d5f5" font-size="12" font-family="Inter,sans-serif">Digital IC</text>
-          </g>
-
-          <!-- base -->
-          <rect x="80" y="356" width="360" height="14" rx="7" fill="#131f45"/>
-          <rect x="150" y="378" width="220" height="10" rx="5" fill="#0e1836"/>
-        </svg>
-      </div>
-
+<!-- ==================== NAVBAR ==================== -->
+<nav class="navbar">
+  <div class="container navbar__inner">
+    <a href="#home" class="navbar__logo">
+      <span class="logo-icon"><i data-lucide="cpu"></i></span>
+      <span class="logo-text">ENTC <strong>EXPLORER</strong></span>
+    </a>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#machines" class="nav-link">Machines</a></li>
+      <li><a href="#components" class="nav-link">Components</a></li>
+      <li><a href="#labs" class="nav-link">Labs</a></li>
+      <li><a href="#experiments" class="nav-link">Experiments</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#scamper" class="nav-link">SCAMPER</a></li>
+    </ul>
+    <div class="navbar__actions">
+      <button class="search-btn" id="searchToggle" aria-label="Search">
+        <i data-lucide="search"></i>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </section>
+  </div>
+</nav>
 
-  <!-- ============ 2. UNIVERSAL SEARCH ============ -->
-  <section class="section section--tight">
-    <div class="container">
-      <div class="search-hero reveal">
-        <h2 class="search-hero__title">What are you looking for?</h2>
-        <p class="search-hero__hint">
-          Search machine, component, experiment or purpose —
-          <span class="mono">CRO</span>, <span class="mono">74153</span>,
-          <span class="mono">waveform</span>, <span class="mono">digital electronics lab</span>
-        </p>
-
-        <form class="searchbar" id="hero-search" role="search" autocomplete="off">
-          <svg class="icon searchbar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-          <label class="sr-only" for="hero-search-input">Search resources</label>
-          <input id="hero-search-input" type="search" placeholder="Search machine, component, experiment or purpose..." aria-describedby="hero-search-hint">
-          <button class="btn btn--primary btn--sm" type="submit">Search</button>
-        </form>
-        <p id="hero-search-hint" class="sr-only">Results update as you type across machines, components, labs, experiments and projects.</p>
-
-        <div class="quick-tags">
-          <span class="quick-tags__label">Try:</span>
-          <button class="chip chip--ghost" data-quick="CRO">CRO</button>
-          <button class="chip chip--ghost" data-quick="74153">74153</button>
-          <button class="chip chip--ghost" data-quick="Function Generator">Function Generator</button>
-          <button class="chip chip--ghost" data-quick="waveform">Waveform</button>
-          <button class="chip chip--ghost" data-quick="Digital Electronics Lab">Digital Electronics Lab</button>
-        </div>
-
-        <div id="hero-search-results" class="search-results" hidden></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 3. EXPLORE RESOURCES ============ -->
-  <section class="section">
-    <div class="container">
-      <div class="section__head reveal">
-        <span class="eyebrow">Browse</span>
-        <h2 class="section__title">Explore Resources</h2>
-        <p class="section__lead">Everything an ENTC student needs, organised in one place.</p>
-      </div>
-      <div class="grid grid--5" id="explore-resources"></div>
-    </div>
-  </section>
-
-  <!-- ============ 4. FIND BY PURPOSE ============ -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="section__head reveal">
-        <span class="eyebrow">Student Need → Resource</span>
-        <h2 class="section__title">Find By Purpose</h2>
-        <p class="section__lead">Start with what you want to do, not with which lab you are in.</p>
-      </div>
-      <div class="grid grid--4" id="purpose-grid"></div>
-    </div>
-  </section>
-
-  <!-- ============ 5. FEATURED MACHINES ============ -->
-  <section class="section">
-    <div class="container">
-      <div class="section__head section__head--row reveal">
-        <div>
-          <span class="eyebrow">Instruments</span>
-          <h2 class="section__title">Featured Machines</h2>
-        </div>
-        <a class="link-arrow" href="machines.html">View all machines <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="grid grid--4" id="featured-machines"></div>
-    </div>
-  </section>
-
-  <!-- ============ 6. POPULAR COMPONENTS ============ -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="section__head section__head--row reveal">
-        <div>
-          <span class="eyebrow">Components &amp; ICs</span>
-          <h2 class="section__title">Popular Components</h2>
-        </div>
-        <a class="link-arrow" href="components.html">View all components <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="grid grid--4" id="popular-components"></div>
-    </div>
-  </section>
-
-  <!-- ============ 7. EXPLORE LABORATORIES ============ -->
-  <section class="section">
-    <div class="container">
-      <div class="section__head section__head--row reveal">
-        <div>
-          <span class="eyebrow">Where it lives</span>
-          <h2 class="section__title">Explore Laboratories</h2>
-        </div>
-        <a class="link-arrow" href="labs.html">View all labs <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="grid grid--3" id="home-labs"></div>
-    </div>
-  </section>
-
-  <!-- ============ 8. PROJECT FINDER CTA ============ -->
-  <section class="section">
-    <div class="container">
-      <div class="cta-band reveal">
-        <div class="cta-band__text">
-          <span class="eyebrow eyebrow--light">Project Finder</span>
-          <h2>Have a project idea? Find out what you need.</h2>
-          <p>
-            Type your project idea and instantly see the required components,
-            their availability and the laboratory where you can find them.
-          </p>
-        </div>
-        <a class="btn btn--light" href="projects.html">
-          Open Project Finder
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="home">
+  <div class="hero__bg-grid"></div>
+  <div class="hero__glow"></div>
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <span class="hero__badge"><i data-lucide="zap"></i> SCAMPER-based ENTC resource platform</span>
+      <h1 class="hero__title">
+        ENTC MACHINE &amp;<br>
+        <span class="gradient-text">COMPONENT EXPLORER</span>
+      </h1>
+      <p class="hero__tagline">Discover. Understand. Connect.</p>
+      <p class="hero__desc">
+        One smart place to explore ENTC laboratory machines, electronic components,
+        experiments and project resources.
+      </p>
+      <div class="hero__buttons">
+        <a href="#machines" class="btn btn--primary">
+          <i data-lucide="settings"></i> Explore Machines
+        </a>
+        <a href="#components" class="btn btn--ghost">
+          <i data-lucide="circuit-board"></i> Explore Components
         </a>
       </div>
-    </div>
-  </section>
-
-  <!-- ============ 9. SCAMPER ============ -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="section__head reveal">
-        <span class="eyebrow">Methodology</span>
-        <h2 class="section__title">Built using SCAMPER</h2>
-        <p class="section__lead">
-          Seven deliberate design decisions turned scattered lab information into one platform.
-        </p>
-      </div>
-      <div class="scamper-strip" id="scamper-strip"></div>
-      <div class="center mt-32">
-        <a class="btn btn--outline" href="scamper.html">See the full SCAMPER story</a>
+      <div class="hero__stats">
+        <div><strong>8</strong> Labs</div>
+        <div><strong>25+</strong> Machines</div>
+        <div><strong>50+</strong> Components</div>
+        <div><strong>30+</strong> Experiments</div>
       </div>
     </div>
-  </section>
-
-  <!-- ============ 10. STATISTICS ============ -->
-  <section class="section stats-section">
-    <div class="container">
-      <div class="section__head reveal">
-        <span class="eyebrow eyebrow--light">Platform at a glance</span>
-        <h2 class="section__title section__title--light">Resource Statistics</h2>
-        <p class="section__lead section__lead--light">
-          Figures shown are sample/demo numbers. Replace them with your actual college data in
-          <span class="mono">js/data.js</span>.
-        </p>
-      </div>
-      <div class="grid grid--4" id="stats-grid"></div>
+    <div class="hero__art">
+      <svg viewBox="0 0 520 430" class="hero-svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="gPanel" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0e1a3d"/>
+            <stop offset="100%" stop-color="#0a1228"/>
+          </linearGradient>
+          <linearGradient id="gWave" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#22d3ee"/>
+            <stop offset="60%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="#8b5cf6"/>
+          </linearGradient>
+          <linearGradient id="gBar" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#1d4ed8" stop-opacity=".35"/>
+            <stop offset="100%" stop-color="#22d3ee"/>
+          </linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect x="40" y="34" width="440" height="300" rx="22" fill="url(#gPanel)" stroke="#1e2b55"/>
+        <g stroke="#1b2649" stroke-width="1">
+          <path d="M40 94h440M40 154h440M40 214h440M40 274h440"/>
+          <path d="M130 34v300M220 34v300M310 34v300M400 34v300"/>
+        </g>
+        <circle cx="68" cy="62" r="5" fill="#22d3ee"/>
+        <circle cx="86" cy="62" r="5" fill="#3b82f6"/>
+        <circle cx="104" cy="62" r="5" fill="#8b5cf6"/>
+        <text x="132" y="67" fill="#7d8db8" font-family="monospace" font-size="12">entc_explorer.log</text>
+        <path d="M64 178c22-52 44-52 66 0s44 52 66 0 44-52 66 0 44 52 66 0 44-52 66 0"
+              fill="none" stroke="url(#gWave)" stroke-width="3.5" stroke-linecap="round" filter="url(#glow)"/>
+        <path d="M64 178h352" stroke="#22305c" stroke-width="1" stroke-dasharray="4 6"/>
+        <g transform="translate(300,236)">
+          <rect x="0" y="0" width="96" height="66" rx="10" fill="#101c3e" stroke="#2b3d70"/>
+          <text x="48" y="40" text-anchor="middle" fill="#9fb2dd" font-family="monospace" font-size="15">74153</text>
+          <g stroke="#3b82f6" stroke-width="2" stroke-linecap="round">
+            <path d="M14 -8v10M34 -8v10M54 -8v10M74 -8v10"/>
+            <path d="M14 64v10M34 64v10M54 64v10M74 64v10"/>
+          </g>
+        </g>
+        <g transform="translate(64,236)">
+          <rect x="0" y="34" width="16" height="30" rx="4" fill="url(#gBar)"/>
+          <rect x="26" y="18" width="16" height="46" rx="4" fill="url(#gBar)"/>
+          <rect x="52" y="42" width="16" height="22" rx="4" fill="url(#gBar)"/>
+          <rect x="78" y="8" width="16" height="56" rx="4" fill="url(#gBar)"/>
+        </g>
+        <g class="float-a">
+          <rect x="18" y="120" width="120" height="42" rx="12" fill="#0f1c40" stroke="#26386b"/>
+          <circle cx="40" cy="141" r="7" fill="#22d3ee"/>
+          <text x="56" y="146" fill="#c7d5f5" font-size="12" font-family="Inter,sans-serif">Measuring</text>
+        </g>
+        <g class="float-b">
+          <rect x="382" y="128" width="120" height="42" rx="12" fill="#0f1c40" stroke="#26386b"/>
+          <circle cx="404" cy="149" r="7" fill="#8b5cf6"/>
+          <text x="420" y="154" fill="#c7d5f5" font-size="12" font-family="Inter,sans-serif">Digital IC</text>
+        </g>
+        <rect x="80" y="356" width="360" height="14" rx="7" fill="#131f45"/>
+        <rect x="150" y="378" width="220" height="10" rx="5" fill="#0e1836"/>
+      </svg>
     </div>
-  </section>
+  </div>
+</section>
 
-</main>
+<!-- ==================== SMART SEARCH ==================== -->
+<section class="section search-section">
+  <div class="container">
+    <div class="search-box reveal">
+      <h2 class="search-box__title">What are you looking for?</h2>
+      <p class="search-box__hint">Search machines, components, labs, experiments...</p>
+      <form class="search-form" id="searchForm" role="search" autocomplete="off">
+        <i data-lucide="search" class="search-form__icon"></i>
+        <input type="search" id="searchInput" placeholder="e.g. CRO, 74153, Function Generator, Digital Electronics Lab" aria-label="Search resources">
+        <button type="submit" class="btn btn--primary btn--sm">Search</button>
+      </form>
+      <div class="popular-searches">
+        <span>Popular:</span>
+        <button class="chip" data-search="CRO">CRO</button>
+        <button class="chip" data-search="Function Generator">Function Generator</button>
+        <button class="chip" data-search="74153">74153</button>
+        <button class="chip" data-search="Multimeter">Multimeter</button>
+        <button class="chip" data-search="Digital Electronics Lab">Digital Electronics Lab</button>
+      </div>
+      <div id="searchResults" class="search-results" hidden></div>
+    </div>
+  </div>
+</section>
 
-<footer id="site-footer"></footer>
-<div id="modal-root"></div>
+<!-- ==================== EXPLORE RESOURCES ==================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Browse</span>
+      <h2 class="section-title">Explore Resources</h2>
+      <p class="section-lead">Everything an ENTC student needs, organised in one place.</p>
+    </div>
+    <div class="grid grid-4">
+      <a href="#machines" class="resource-card reveal">
+        <div class="resource-card__icon"><i data-lucide="settings"></i></div>
+        <h3>Machines</h3>
+        <p>Explore ENTC laboratory machines and instruments.</p>
+        <span class="resource-card__arrow"><i data-lucide="arrow-right"></i></span>
+      </a>
+      <a href="#components" class="resource-card reveal">
+        <div class="resource-card__icon"><i data-lucide="circuit-board"></i></div>
+        <h3>Components</h3>
+        <p>Find electronic components and ICs.</p>
+        <span class="resource-card__arrow"><i data-lucide="arrow-right"></i></span>
+      </a>
+      <a href="#labs" class="resource-card reveal">
+        <div class="resource-card__icon"><i data-lucide="building-2"></i></div>
+        <h3>Laboratories</h3>
+        <p>Discover resources available in each laboratory.</p>
+        <span class="resource-card__arrow"><i data-lucide="arrow-right"></i></span>
+      </a>
+      <a href="#experiments" class="resource-card reveal">
+        <div class="resource-card__icon"><i data-lucide="flask-conical"></i></div>
+        <h3>Experiments</h3>
+        <p>Find machines and components required for practical experiments.</p>
+        <span class="resource-card__arrow"><i data-lucide="arrow-right"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
 
-<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
-<script src="js/search.js"></script>
-<script src="js/home.js"></script>
+<!-- ==================== MACHINES ==================== -->
+<section class="section section--alt" id="machines">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Instruments</span>
+      <h2 class="section-title">Laboratory Machines</h2>
+      <p class="section-lead">Explore the equipment used in ENTC laboratories.</p>
+    </div>
+    <div class="grid grid-3" id="machinesGrid"></div>
+  </div>
+</section>
+
+<!-- ==================== COMPONENTS ==================== -->
+<section class="section" id="components">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Components &amp; ICs</span>
+      <h2 class="section-title">Electronic Components &amp; ICs</h2>
+      <p class="section-lead">Find the building blocks of your circuits.</p>
+    </div>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Passive">Passive</button>
+      <button class="filter-btn" data-filter="Active">Active</button>
+      <button class="filter-btn" data-filter="Digital IC">Digital IC</button>
+      <button class="filter-btn" data-filter="Microcontroller">Microcontroller</button>
+    </div>
+    <div class="grid grid-4" id="componentsGrid"></div>
+  </div>
+</section>
+
+<!-- ==================== LABS ==================== -->
+<section class="section section--alt" id="labs">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Where it lives</span>
+      <h2 class="section-title">Explore ENTC Laboratories</h2>
+      <p class="section-lead">Discover resources available in each laboratory.</p>
+    </div>
+    <div class="grid grid-3" id="labsGrid"></div>
+  </div>
+</section>
+
+<!-- ==================== EXPERIMENTS ==================== -->
+<section class="section" id="experiments">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Practicals</span>
+      <h2 class="section-title">Find Your Experiment</h2>
+      <p class="section-lead">Machines and components required for your practicals.</p>
+    </div>
+    <div class="grid grid-3" id="experimentsGrid"></div>
+  </div>
+</section>
+
+<!-- ==================== PROJECT FINDER ==================== -->
+<section class="section section--alt" id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Put to another use</span>
+      <h2 class="section-title">Project Finder</h2>
+      <p class="section-lead">Find the components and equipment required for your project.</p>
+    </div>
+    <div class="project-finder reveal">
+      <div class="project-selector">
+        <label for="projectSelect">Select a project idea:</label>
+        <select id="projectSelect">
+          <option value="">-- Choose a project --</option>
+        </select>
+      </div>
+      <div id="projectDetails" class="project-details">
+        <p class="project-empty">Select a project above to see required components, machines and the suggested laboratory.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SCAMPER ==================== -->
+<section class="section" id="scamper">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Methodology</span>
+      <h2 class="section-title">How SCAMPER Shaped ENTC Explorer</h2>
+      <p class="section-lead">Seven deliberate design decisions turned scattered lab information into one platform.</p>
+    </div>
+    <div class="scamper-grid" id="scamperGrid"></div>
+  </div>
+</section>
+
+<!-- ==================== QR CODE ==================== -->
+<section class="section section--alt qr-section">
+  <div class="container">
+    <div class="qr-content reveal">
+      <div class="qr-text">
+        <span class="eyebrow">Scan &amp; Learn</span>
+        <h2 class="section-title">Scan a QR code placed near a machine or component</h2>
+        <p>Instantly open its information on your phone. No app required — just your camera.</p>
+      </div>
+      <div class="qr-placeholder">
+        <svg viewBox="0 0 100 100" width="120" height="120" aria-hidden="true">
+          <rect width="100" height="100" rx="8" fill="#0e1a3d"/>
+          <rect x="10" y="10" width="30" height="30" fill="#22d3ee"/>
+          <rect x="60" y="10" width="30" height="30" fill="#22d3ee"/>
+          <rect x="10" y="60" width="30" height="30" fill="#22d3ee"/>
+          <rect x="45" y="45" width="10" height="10" fill="#3b82f6"/>
+          <rect x="60" y="60" width="15" height="15" fill="#8b5cf6"/>
+          <rect x="80" y="80" width="10" height="10" fill="#22d3ee"/>
+        </svg>
+        <span>QR Placeholder</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="logo-icon"><i data-lucide="cpu"></i></span>
+      <span class="logo-text">ENTC <strong>EXPLORER</strong></span>
+      <p>Discover. Understand. Connect.</p>
+    </div>
+    <div class="footer__links">
+      <a href="#home">Home</a>
+      <a href="#machines">Machines</a>
+      <a href="#components">Components</a>
+      <a href="#labs">Labs</a>
+      <a href="#experiments">Experiments</a>
+      <a href="#projects">Projects</a>
+      <a href="#scamper">SCAMPER</a>
+    </div>
+    <div class="footer__bottom">
+      <p>ENTC Department — Academic Project</p>
+      <a href="https://github.com/" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
+        <i data-lucide="github"></i> View Source
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== MODAL ==================== -->
+<div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal__overlay" id="modalOverlay"></div>
+  <div class="modal__content">
+    <button class="modal__close" id="modalClose" aria-label="Close modal">
+      <i data-lucide="x"></i>
+    </button>
+    <div id="modalBody" class="modal__body"></div>
+  </div>
+</div>
+
+<script>
+/* ==================== DATA ==================== */
+var machines = [
+  {
+    id: 'cro',
+    name: 'CRO (Cathode Ray Oscilloscope)',
+    category: 'Measuring Instrument',
+    purpose: 'Waveform observation and signal measurement',
+    lab: 'Communication Lab',
+    description: 'A CRO is a type of electronic test instrument that graphically displays varying signal voltages, usually as a two-dimensional plot of one or more signals as a function of time.',
+    workingPrinciple: 'The cathode ray tube generates an electron beam that is deflected horizontally and vertically by electric fields to draw the waveform on a fluorescent screen.',
+    functions: ['Observe waveform shape', 'Measure voltage (peak-to-peak, RMS)', 'Measure time period and frequency', 'Compare two signals (dual trace)', 'Measure phase difference'],
+    specifications: { Bandwidth: '20 MHz', Channels: '2', InputImpedance: '1 MΩ', Sensitivity: '5 mV/div', Screen: '5 inch CRT' },
+    experiments: ['Waveform Observation using CRO', 'Measurement of Frequency and Phase', 'Lissajous Figures'],
+    safety: ['Check connections before switching ON', 'Use appropriate input range', 'Avoid excessive input voltage', 'Do not touch the CRT face directly']
+  },
+  {
+    id: 'function-generator',
+    name: 'Function Generator',
+    category: 'Signal Source',
+    purpose: 'Generate standard waveforms (sine, square, triangle)',
+    lab: 'Communication Lab',
+    description: 'A function generator is a piece of electronic test equipment used to generate different types of electrical waveforms over a wide range of frequencies.',
+    workingPrinciple: 'It uses an oscillator circuit to produce periodic waveforms. The frequency and amplitude can be adjusted using controls.',
+    functions: ['Generate sine wave', 'Generate square wave', 'Generate triangle wave', 'Adjust frequency', 'Adjust amplitude'],
+    specifications: { FrequencyRange: '0.1 Hz – 2 MHz', Waveforms: 'Sine, Square, Triangle', Amplitude: '0–20 Vpp', Impedance: '50 Ω' },
+    experiments: ['Study of Function Generator', 'RC Coupled Amplifier', 'Filter Characteristics'],
+    safety: ['Do not short the output terminals', 'Set amplitude before connecting to circuit', 'Use proper probes']
+  },
+  {
+    id: 'digital-multimeter',
+    name: 'Digital Multimeter',
+    category: 'Measuring Instrument',
+    purpose: 'Measure voltage, current, resistance and continuity',
+    lab: 'EDC Lab',
+    description: 'A digital multimeter is a test tool used to measure two or more electrical values—principally voltage (volts), current (amps) and resistance (ohms).',
+    workingPrinciple: 'It uses an analog-to-digital converter to convert the measured analog value into a digital display.',
+    functions: ['Measure DC voltage', 'Measure AC voltage', 'Measure DC current', 'Measure AC current', 'Measure resistance', 'Check continuity', 'Test diodes'],
+    specifications: { Display: '3.5 digit LCD', DCVoltage: '0–1000 V', ACVoltage: '0–750 V', Resistance: '0–20 MΩ', Current: '0–10 A' },
+    experiments: ['Verification of Ohm\'s Law', 'Measurement of Resistance', 'Continuity Testing'],
+    safety: ['Select correct function before measuring', 'Do not measure resistance on live circuit', 'Use correct range', 'Keep probes in good condition']
+  },
+  {
+    id: 'oscilloscope',
+    name: 'Digital Storage Oscilloscope',
+    category: 'Measuring Instrument',
+    purpose: 'Capture and analyze high-speed signals',
+    lab: 'VLSI Lab',
+    description: 'A digital storage oscilloscope (DSO) is an oscilloscope that uses digital memory to store waveform data for display and analysis.',
+    workingPrinciple: 'The input signal is sampled by an ADC and stored in memory. The stored data is then processed and displayed on an LCD screen.',
+    functions: ['Capture transient signals', 'Store waveforms', 'Measure rise time', 'FFT analysis', 'Protocol decoding'],
+    specifications: { Bandwidth: '100 MHz', SampleRate: '1 GS/s', Channels: '2', Display: '7 inch TFT', Memory: '1 Mpts' },
+    experiments: ['Study of DSO', 'Measurement of Rise Time', 'Digital Signal Analysis'],
+    safety: ['Do not exceed maximum input voltage', 'Use proper grounding', 'Avoid electrostatic discharge']
+  },
+  {
+    id: 'dc-power-supply',
+    name: 'DC Power Supply',
+    category: 'Power Source',
+    purpose: 'Provide regulated DC voltage to circuits',
+    lab: 'EDC Lab',
+    description: 'A DC power supply converts AC mains voltage into a stable, regulated DC voltage for powering electronic circuits.',
+    workingPrinciple: 'It steps down AC voltage using a transformer, rectifies it using diodes, filters it using capacitors, and regulates it using a voltage regulator IC.',
+    functions: ['Adjustable output voltage', 'Current limiting', 'Short circuit protection', 'Dual / triple output', 'Digital display'],
+    specifications: { OutputVoltage: '0–30 V', OutputCurrent: '0–5 A', Ripple: '<5 mV', Display: 'LED', Protection: 'OVP, OCP' },
+    experiments: ['Study of DC Power Supply', 'Biasing Circuits', 'Amplifier Circuits'],
+    safety: ['Do not short output terminals', 'Set voltage before connecting', 'Do not exceed current limit']
+  },
+  {
+    id: 'digital-trainer',
+    name: 'Digital Trainer Kit',
+    category: 'Training Equipment',
+    purpose: 'Learn and implement digital logic circuits',
+    lab: 'Digital Electronics Lab',
+    description: 'A digital trainer kit is a self-contained system that provides a platform for building and testing digital circuits without soldering.',
+    workingPrinciple: 'It provides a breadboard area, power supply, clock generator, logic switches, LEDs, and other components for digital circuit experiments.',
+    functions: ['Provide fixed 5V supply', 'Generate clock pulses', 'Provide logic input switches', 'Display output via LEDs', 'Mount ICs and components'],
+    specifications: { Supply: '5V, 12V', Clock: '1 Hz – 1 MHz', Switches: '8 logic switches', LEDs: '10 output LEDs', Breadboard: 'Solderless' },
+    experiments: ['Logic Gates', 'Multiplexer', 'Decoder', 'Flip-Flops', 'Counters'],
+    safety: ['Do not short the power supply', 'Insert ICs correctly', 'Avoid static discharge', 'Check wiring before power ON']
+  }
+];
+
+var components = [
+  {
+    id: 'resistor',
+    name: 'Resistor',
+    type: 'Passive',
+    category: 'Passive',
+    purpose: 'Limit current and divide voltage',
+    lab: 'EDC Lab',
+    description: 'A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element.',
+    workingPrinciple: 'It opposes the flow of electric current, converting electrical energy into heat.',
+    applications: ['Current limiting', 'Voltage division', 'Biasing', 'Pull-up / pull-down', 'Load'],
+    specifications: { Resistance: '1 Ω – 10 MΩ', Tolerance: '±5%', Power: '0.25 W', TempCoeff: '100 ppm/°C' },
+    pins: '2 terminals (no polarity)',
+    experiments: ['Ohm\'s Law', 'Series and Parallel Circuits', 'Voltage Divider']
+  },
+  {
+    id: 'capacitor',
+    name: 'Capacitor',
+    type: 'Passive',
+    category: 'Passive',
+    purpose: 'Store charge and filter signals',
+    lab: 'EDC Lab',
+    description: 'A capacitor is a passive two-terminal electrical component that stores electrical energy in an electric field.',
+    workingPrinciple: 'It consists of two conductive plates separated by a dielectric. When voltage is applied, charge accumulates on the plates.',
+    applications: ['Filtering', 'Coupling', 'Decoupling', 'Energy storage', 'Tuning'],
+    specifications: { Capacitance: '1 pF – 1000 µF', Voltage: '6.3 V – 450 V', Tolerance: '±10%', Type: 'Ceramic, Electrolytic' },
+    pins: '2 terminals (polarized for electrolytic)',
+    experiments: ['RC Charging and Discharging', 'Rectifier Filter', 'Coupling Amplifier']
+  },
+  {
+    id: 'diode',
+    name: 'Diode',
+    type: 'Active',
+    category: 'Active',
+    purpose: 'Allow current in one direction only',
+    lab: 'EDC Lab',
+    description: 'A diode is a two-terminal electronic component that conducts current primarily in one direction.',
+    workingPrinciple: 'It is a p-n junction. When forward biased, it conducts; when reverse biased, it blocks current.',
+    applications: ['Rectification', 'Clipping', 'Clamping', 'Protection', 'Switching'],
+    specifications: { ForwardVoltage: '0.7 V (Si), 0.3 V (Ge)', MaxCurrent: '1 A', ReverseVoltage: '50 V', Type: '1N4007' },
+    pins: 'Anode and Cathode (polarized)',
+    experiments: ['Diode Characteristics', 'Half-wave Rectifier', 'Full-wave Rectifier']
+  },
+  {
+    id: 'led',
+    name: 'LED',
+    type: 'Active',
+    category: 'Active',
+    purpose: 'Emit light when current flows',
+    lab: 'EDC Lab',
+    description: 'A light-emitting diode (LED) is a semiconductor device that emits light when current flows through it.',
+    workingPrinciple: 'Electrons recombine with holes in the semiconductor, releasing energy in the form of photons.',
+    applications: ['Indicators', 'Displays', 'Lighting', 'Optocouplers', 'Remote controls'],
+    specifications: { ForwardVoltage: '1.8–3.3 V', ForwardCurrent: '20 mA', Color: 'Red, Green, Blue', LuminousIntensity: '100 mcd' },
+    pins: 'Anode and Cathode (polarized)',
+    experiments: ['LED Characteristics', 'LED Blinking Circuit', 'Seven Segment Display']
+  },
+  {
+    id: 'transistor',
+    name: 'Transistor (BJT)',
+    type: 'Active',
+    category: 'Active',
+    purpose: 'Amplify or switch electronic signals',
+    lab: 'EDC Lab',
+    description: 'A bipolar junction transistor (BJT) is a three-terminal semiconductor device used for amplification and switching.',
+    workingPrinciple: 'A small current at the base controls a larger current between collector and emitter.',
+    applications: ['Amplification', 'Switching', 'Oscillators', 'Voltage regulation', 'Signal modulation'],
+    specifications: { Type: 'NPN / PNP', MaxCurrent: '100 mA', MaxVoltage: '40 V', Gain: '100–300', Package: 'TO-92' },
+    pins: 'Emitter, Base, Collector',
+    experiments: ['Transistor Characteristics', 'Common Emitter Amplifier', 'Transistor as Switch']
+  },
+  {
+    id: '74153',
+    name: '74153 Multiplexer',
+    type: 'Digital IC',
+    category: 'Digital IC',
+    purpose: 'Select one of four inputs to output',
+    lab: 'Digital Electronics Lab',
+    description: 'A multiplexer is a digital circuit that selects one input from multiple inputs and sends the selected input to the output.',
+    workingPrinciple: 'It uses select lines to choose which input is connected to the output.',
+    applications: ['Data routing', 'Signal selection', 'Function generation', 'Parallel to serial conversion'],
+    specifications: { Inputs: '4 (per section)', Outputs: '1 (per section)', SelectLines: '2', Supply: '5 V', Package: 'DIP-16' },
+    pins: '16 pins — inputs (I0–I3), select (S0, S1), output (Y), enable (E), VCC, GND',
+    experiments: ['Multiplexer', 'Data Selection', 'Function Implementation']
+  },
+  {
+    id: '74138',
+    name: '74138 Decoder',
+    type: 'Digital IC',
+    category: 'Digital IC',
+    purpose: 'Decode 3-bit binary to 8 outputs',
+    lab: 'Digital Electronics Lab',
+    description: 'A decoder is a combinational circuit that converts binary information from n input lines to a maximum of 2^n unique output lines.',
+    workingPrinciple: 'It activates one output based on the binary input combination.',
+    applications: ['Memory addressing', 'Demultiplexing', 'Seven segment display', 'Control systems'],
+    specifications: { Inputs: '3', Outputs: '8', Supply: '5 V', Package: 'DIP-16', Enable: 'Active low' },
+    pins: '16 pins — inputs (A0–A2), outputs (Y0–Y7), enable (E1, E2, E3), VCC, GND',
+    experiments: ['Decoder', 'Seven Segment Display', 'Memory Addressing']
+  },
+  {
+    id: '8051',
+    name: '8051 Microcontroller',
+    type: 'Microcontroller',
+    category: 'Microcontroller',
+    purpose: 'Embedded control and processing',
+    lab: 'Microcontroller Lab',
+    description: 'The 8051 is an 8-bit microcontroller with 4KB ROM, 128 bytes RAM, and various peripherals.',
+    workingPrinciple: 'It executes instructions stored in memory to control external devices through its I/O ports.',
+    applications: ['Embedded systems', 'Automation', 'Robotics', 'Instrumentation', 'Control systems'],
+    specifications: { Architecture: '8-bit', ROM: '4 KB', RAM: '128 bytes', Timers: '2', IOPins: '32', Package: 'DIP-40' },
+    pins: '40 pins — Ports 0–3, RXD, TXD, INT0, INT1, T0, T1, ALE, PSEN, EA, XTAL1, XTAL2, RST, VCC, GND',
+    experiments: ['LED Blinking', 'LCD Interfacing', 'Keypad Interfacing', 'Motor Control']
+  }
+];
+
+var labs = [
+  { id: 'edc-lab', name: 'EDC Lab', description: 'Basic Electronics and Devices Laboratory for studying electronic components and circuits.', mainMachines: ['DC Power Supply', 'Digital Multimeter', 'Function Generator', 'CRO'], mainComponents: ['Resistor', 'Capacitor', 'Diode', 'Transistor', 'LED'] },
+  { id: 'digital-electronics-lab', name: 'Digital Electronics Lab', description: 'Laboratory for digital logic design, combinational and sequential circuits.', mainMachines: ['Digital Trainer Kit', 'CRO', 'DC Power Supply'], mainComponents: ['74153 Multiplexer', '74138 Decoder', 'Logic Gates', 'Flip-Flops', 'Counters'] },
+  { id: 'communication-lab', name: 'Communication Lab', description: 'Laboratory for analog and digital communication experiments.', mainMachines: ['CRO', 'Function Generator', 'Spectrum Analyzer', 'DSO'], mainComponents: ['Transistor', 'IC 555', 'Op-Amp', 'Antenna', 'Filter'] },
+  { id: 'network-analysis-lab', name: 'Network Analysis Lab', description: 'Laboratory for network theorems, filters and transmission lines.', mainMachines: ['CRO', 'Function Generator', 'DC Power Supply', 'Multimeter'], mainComponents: ['Resistor', 'Capacitor', 'Inductor', 'Transformer'] },
+  { id: 'vlsi-lab', name: 'VLSI Lab', description: 'Laboratory for VLSI design and verification using CAD tools.', mainMachines: ['DSO', 'Workstations', 'FPGA Boards'], mainComponents: ['FPGA', 'ASIC', 'CMOS ICs'] },
+  { id: 'dsp-lab', name: 'DSP Lab', description: 'Laboratory for digital signal processing experiments.', mainMachines: ['DSO', 'DSP Kits', 'PCs'], mainComponents: ['DSP Processor', 'ADC', 'DAC'] },
+  { id: 'microcontroller-lab', name: 'Microcontroller Lab', description: 'Laboratory for microcontroller programming and interfacing.', mainMachines: ['PCs', 'Microcontroller Kits', 'CRO'], mainComponents: ['8051', 'Arduino', 'LCD', 'Keypad', 'Sensors'] }
+];
+
+var experiments = [
+  { id: 'waveform-cro', name: 'Waveform Observation using CRO', subject: 'Signal & Systems', machine: 'CRO', components: ['Connecting probes'], lab: 'Communication Lab', description: 'Study and observe different waveforms using a Cathode Ray Oscilloscope.' },
+  { id: 'ohms-law', name: 'Verification of Ohm\'s Law', subject: 'Basic Electronics', machine: 'DC Power Supply', components: ['Resistor', 'Multimeter', 'Connecting wires'], lab: 'EDC Lab', description: 'Verify the relationship between voltage, current and resistance.' },
+  { id: 'half-wave-rectifier', name: 'Half-wave Rectifier', subject: 'Electronic Devices', machine: 'CRO', components: ['Diode', 'Resistor', 'Capacitor', 'Transformer'], lab: 'EDC Lab', description: 'Study the working of a half-wave rectifier and measure its efficiency.' },
+  { id: 'multiplexer-exp', name: 'Study of Multiplexer', subject: 'Digital Electronics', machine: 'Digital Trainer Kit', components: ['74153 Multiplexer', 'LEDs', 'Resistors'], lab: 'Digital Electronics Lab', description: 'Implement and verify the truth table of a 4:1 multiplexer.' },
+  { id: 'decoder-exp', name: 'Study of Decoder', subject: 'Digital Electronics', machine: 'Digital Trainer Kit', components: ['74138 Decoder', 'LEDs', 'Resistors'], lab: 'Digital Electronics Lab', description: 'Implement and verify the truth table of a 3:8 decoder.' },
+  { id: 'led-blinking', name: 'LED Blinking using 8051', subject: 'Microcontrollers', machine: 'Microcontroller Kit', components: ['8051', 'LED', 'Resistor', 'Crystal', 'Capacitor'], lab: 'Microcontroller Lab', description: 'Write and execute a program to blink an LED using 8051 microcontroller.' }
+];
+
+var projects = [
+  {
+    id: 'smart-railway-gate',
+    name: 'Smart Railway Gate',
+    components: [
+      { name: 'IR Sensor', available: true, lab: 'Microcontroller Lab' },
+      { name: 'LED', available: true, lab: 'EDC Lab' },
+      { name: 'Resistor', available: true, lab: 'EDC Lab' },
+      { name: 'Motor', available: false, lab: 'Microcontroller Lab' },
+      { name: 'Logic IC', available: true, lab: 'Digital Electronics Lab' },
+      { name: 'Power Supply', available: true, lab: 'EDC Lab' }
+    ],
+    machines: ['Microcontroller Kit', 'DC Power Supply'],
+    suggestedLab: 'Microcontroller Lab'
+  },
+  {
+    id: 'automatic-street-light',
+    name: 'Automatic Street Light',
+    components: [
+      { name: 'LDR', available: true, lab: 'EDC Lab' },
+      { name: 'LED', available: true, lab: 'EDC Lab' },
+      { name: 'Resistor', available: true, lab: 'EDC Lab' },
+      { name: 'Transistor', available: true, lab: 'EDC Lab' },
+      { name: 'Relay', available: false, lab: 'Microcontroller Lab' }
+    ],
+    machines: ['DC Power Supply', 'Multimeter'],
+    suggestedLab: 'EDC Lab'
+  },
+  {
+    id: 'digital-counter',
+    name: 'Digital Counter',
+    components: [
+      { name: '7490 Counter', available: true, lab: 'Digital Electronics Lab' },
+      { name: 'Seven Segment Display', available: true, lab: 'Digital Electronics Lab' },
+      { name: 'Resistor', available: true, lab: 'EDC Lab' },
+      { name: '555 Timer', available: true, lab: 'EDC Lab' }
+    ],
+    machines: ['Digital Trainer Kit', 'DC Power Supply'],
+    suggestedLab: 'Digital Electronics Lab'
+  },
+  {
+    id: 'home-automation',
+    name: 'Home Automation',
+    components: [
+      { name: 'Arduino', available: true, lab: 'Microcontroller Lab' },
+      { name: 'Relay Module', available: false, lab: 'Microcontroller Lab' },
+      { name: 'IR Sensor', available: true, lab: 'Microcontroller Lab' },
+      { name: 'LED', available: true, lab: 'EDC Lab' },
+      { name: 'Resistor', available: true, lab: 'EDC Lab' }
+    ],
+    machines: ['Microcontroller Kit', 'PC'],
+    suggestedLab: 'Microcontroller Lab'
+  },
+  {
+    id: 'line-following-robot',
+    name: 'Line Following Robot',
+    components: [
+      { name: 'IR Sensor', available: true, lab: 'Microcontroller Lab' },
+      { name: 'Motor Driver', available: false, lab: 'Microcontroller Lab' },
+      { name: 'DC Motors', available: false, lab: 'Microcontroller Lab' },
+      { name: 'Arduino', available: true, lab: 'Microcontroller Lab' },
+      { name: 'Battery', available: true, lab: 'EDC Lab' }
+    ],
+    machines: ['Microcontroller Kit'],
+    suggestedLab: 'Microcontroller Lab'
+  }
+];
+
+var scamperData = [
+  { letter: 'S', title: 'Substitute', desc: 'Replace scattered information with one centralized ENTC Explorer.' },
+  { letter: 'C', title: 'Combine', desc: 'Combine machine/component information with purpose, specifications, laboratory and experiments.' },
+  { letter: 'A', title: 'Adapt', desc: 'Adapt search, categorization and QR-based access for laboratory resources.' },
+  { letter: 'M', title: 'Modify', desc: 'Make technical information simple and beginner-friendly.' },
+  { letter: 'P', title: 'Put to Another Use', desc: 'Use the platform for project discovery and experiment planning.' },
+  { letter: 'E', title: 'Eliminate', desc: 'Eliminate repeated searching and scattered information.' },
+  { letter: 'R', title: 'Rearrange / Reverse', desc: 'Change discovery from Lab to Resource, to Student Need to Resource to Purpose to Lab to Experiment.' }
+];
+
+/* ==================== DOM SHORTCUTS ==================== */
+var $ = function(id){ return document.getElementById(id); };
+var machinesGrid = $('machinesGrid');
+var componentsGrid = $('componentsGrid');
+var labsGrid = $('labsGrid');
+var experimentsGrid = $('experimentsGrid');
+var scamperGrid = $('scamperGrid');
+var projectSelect = $('projectSelect');
+var projectDetails = $('projectDetails');
+var searchInput = $('searchInput');
+var searchResults = $('searchResults');
+var searchForm = $('searchForm');
+var modal = $('modal');
+var modalBody = $('modalBody');
+var modalClose = $('modalClose');
+var modalOverlay = $('modalOverlay');
+var hamburger = $('hamburger');
+var navLinks = $('navLinks');
+var searchToggle = $('searchToggle');
+
+/* ==================== RENDER FUNCTIONS ==================== */
+function renderMachines(){
+  machinesGrid.innerHTML = machines.map(function(m){
+    return '<article class="card reveal">' +
+      '<span class="card__tag">' + m.category + '</span>' +
+      '<h3 class="card__title">' + m.name + '</h3>' +
+      '<p class="card__subtitle">' + m.purpose + '</p>' +
+      '<div class="card__meta"><span><i data-lucide="building-2"></i> ' + m.lab + '</span></div>' +
+      '<div class="card__actions">' +
+        '<button class="card__btn" onclick="openMachineModal(\'' + m.id + '\')">View Details <i data-lucide="arrow-right"></i></button>' +
+      '</div>' +
+    '</article>';
+  }).join('');
+}
+
+function renderComponents(filter){
+  filter = filter || 'all';
+  var filtered = filter === 'all' ? components : components.filter(function(c){ return c.category === filter; });
+  componentsGrid.innerHTML = filtered.map(function(c){
+    return '<article class="card reveal">' +
+      '<span class="card__tag">' + c.category + '</span>' +
+      '<h3 class="card__title">' + c.name + '</h3>' +
+      '<p class="card__subtitle">' + c.purpose + '</p>' +
+      '<div class="card__meta">' +
+        '<span><i data-lucide="tag"></i> ' + c.type + '</span>' +
+        '<span><i data-lucide="building-2"></i> ' + c.lab + '</span>' +
+      '</div>' +
+      '<div class="card__actions">' +
+        '<button class="card__btn" onclick="openComponentModal(\'' + c.id + '\')">View Details <i data-lucide="arrow-right"></i></button>' +
+      '</div>' +
+    '</article>';
+  }).join('');
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function renderLabs(){
+  labsGrid.innerHTML = labs.map(function(l){
+    return '<article class="card reveal">' +
+      '<span class="card__tag">Laboratory</span>' +
+      '<h3 class="card__title">' + l.name + '</h3>' +
+      '<p class="card__subtitle">' + l.description + '</p>' +
+      '<div class="card__meta">' +
+        '<span><i data-lucide="settings"></i> ' + l.mainMachines.length + ' machines</span>' +
+        '<span><i data-lucide="circuit-board"></i> ' + l.mainComponents.length + ' components</span>' +
+      '</div>' +
+      '<div class="card__actions">' +
+        '<button class="card__btn" onclick="openLabModal(\'' + l.id + '\')">Explore Lab <i data-lucide="arrow-right"></i></button>' +
+      '</div>' +
+    '</article>';
+  }).join('');
+}
+
+function renderExperiments(){
+  experimentsGrid.innerHTML = experiments.map(function(e){
+    return '<article class="card reveal">' +
+      '<span class="card__tag">' + e.subject + '</span>' +
+      '<h3 class="card__title">' + e.name + '</h3>' +
+      '<p class="card__subtitle">' + e.description + '</p>' +
+      '<div class="card__meta">' +
+        '<span><i data-lucide="settings"></i> ' + e.machine + '</span>' +
+        '<span><i data-lucide="building-2"></i> ' + e.lab + '</span>' +
+      '</div>' +
+      '<div class="card__actions">' +
+        '<button class="card__btn" onclick="openExperimentModal(\'' + e.id + '\')">View Details <i data-lucide="arrow-right"></i></button>' +
+      '</div>' +
+    '</article>';
+  }).join('');
+}
+
+function renderScamper(){
+  scamperGrid.innerHTML = scamperData.map(function(s){
+    return '<div class="scamper-card reveal">' +
+      '<div class="scamper-card__letter">' + s.letter + '</div>' +
+      '<h3 class="scamper-card__title">' + s.title + '</h3>' +
+      '<p class="scamper-card__desc">' + s.desc + '</p>' +
+    '</div>';
+  }).join('');
+}
+
+function renderProjects(){
+  projectSelect.innerHTML = '<option value="">-- Choose a project --</option>' +
+    projects.map(function(p){ return '<option value="' + p.id + '">' + p.name + '</option>'; }).join('');
+}
+
+/* ==================== MODAL FUNCTIONS ==================== */
+function openModal(content){
+  modalBody.innerHTML = content;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function closeModal(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+
+function specsToHtml(specs){
+  return Object.keys(specs).map(function(k){
+    return '<div class="modal__spec"><strong>' + k + '</strong>' + specs[k] + '</div>';
+  }).join('');
+}
+
+function openMachineModal(id){
+  var m = machines.find(function(x){ return x.id === id; });
+  if (!m) return;
+  var content =
+    '<h2>' + m.name + '</h2>' +
+    '<p class="modal-subtitle">' + m.category + ' — ' + m.lab + '</p>' +
+    '<div class="modal__section"><h4><i data-lucide="target"></i> Purpose</h4><p>' + m.purpose + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="file-text"></i> Description</h4><p>' + m.description + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="cog"></i> Working Principle</h4><p>' + m.workingPrinciple + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="list"></i> Main Functions</h4><ul>' + m.functions.map(function(f){ return '<li>' + f + '</li>'; }).join('') + '</ul></div>' +
+    '<div class="modal__section"><h4><i data-lucide="bar-chart-3"></i> Specifications</h4><div class="modal__specs">' + specsToHtml(m.specifications) + '</div></div>' +
+    '<div class="modal__section"><h4><i data-lucide="flask-conical"></i> Related Experiments</h4><ul>' + m.experiments.map(function(e){ return '<li>' + e + '</li>'; }).join('') + '</ul></div>' +
+    '<div class="modal__section"><h4><i data-lucide="shield-alert"></i> Safety Precautions</h4><ul>' + m.safety.map(function(s){ return '<li>' + s + '</li>'; }).join('') + '</ul></div>';
+  openModal(content);
+}
+
+function openComponentModal(id){
+  var c = components.find(function(x){ return x.id === id; });
+  if (!c) return;
+  var content =
+    '<h2>' + c.name + '</h2>' +
+    '<p class="modal-subtitle">' + c.type + ' — ' + c.lab + '</p>' +
+    '<div class="modal__section"><h4><i data-lucide="target"></i> Purpose</h4><p>' + c.purpose + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="file-text"></i> Description</h4><p>' + c.description + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="cog"></i> Working Principle</h4><p>' + c.workingPrinciple + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="list"></i> Applications</h4><ul>' + c.applications.map(function(a){ return '<li>' + a + '</li>'; }).join('') + '</ul></div>' +
+    '<div class="modal__section"><h4><i data-lucide="bar-chart-3"></i> Specifications</h4><div class="modal__specs">' + specsToHtml(c.specifications) + '</div></div>' +
+    '<div class="modal__section"><h4><i data-lucide="git-branch"></i> Pin Information</h4><p>' + c.pins + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="flask-conical"></i> Related Experiments</h4><ul>' + c.experiments.map(function(e){ return '<li>' + e + '</li>'; }).join('') + '</ul></div>' +
+    '<div class="modal__section"><h4><i data-lucide="file"></i> Datasheet</h4><p><em>Datasheet placeholder — add link to actual PDF.</em></p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="layout"></i> Pin Diagram</h4><div class="modal__placeholder">Pin diagram placeholder — use SVG or image here.</div></div>';
+  openModal(content);
+}
+
+function openLabModal(id){
+  var l = labs.find(function(x){ return x.id === id; });
+  if (!l) return;
+  var content =
+    '<h2>' + l.name + '</h2>' +
+    '<p class="modal-subtitle">Laboratory</p>' +
+    '<div class="modal__section"><h4><i data-lucide="info"></i> Description</h4><p>' + l.description + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="settings"></i> Main Machines</h4><ul>' + l.mainMachines.map(function(m){ return '<li>' + m + '</li>'; }).join('') + '</ul></div>' +
+    '<div class="modal__section"><h4><i data-lucide="circuit-board"></i> Main Components</h4><ul>' + l.mainComponents.map(function(c){ return '<li>' + c + '</li>'; }).join('') + '</ul></div>';
+  openModal(content);
+}
+
+function openExperimentModal(id){
+  var e = experiments.find(function(x){ return x.id === id; });
+  if (!e) return;
+  var content =
+    '<h2>' + e.name + '</h2>' +
+    '<p class="modal-subtitle">' + e.subject + ' — ' + e.lab + '</p>' +
+    '<div class="modal__section"><h4><i data-lucide="file-text"></i> Description</h4><p>' + e.description + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="settings"></i> Required Machine</h4><p>' + e.machine + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="circuit-board"></i> Required Components</h4><ul>' + e.components.map(function(c){ return '<li>' + c + '</li>'; }).join('') + '</ul></div>' +
+    '<div class="modal__section"><h4><i data-lucide="building-2"></i> Laboratory</h4><p>' + e.lab + '</p></div>';
+  openModal(content);
+}
+
+/* ==================== SEARCH ==================== */
+function performSearch(query){
+  if (!query || !query.trim()){
+    searchResults.hidden = true;
+    searchResults.innerHTML = '';
+    return;
+  }
+  var q = query.toLowerCase().trim();
+
+  var matchedMachines = machines.filter(function(m){
+    return m.name.toLowerCase().indexOf(q) !== -1 ||
+           m.purpose.toLowerCase().indexOf(q) !== -1 ||
+           m.category.toLowerCase().indexOf(q) !== -1 ||
+           m.lab.toLowerCase().indexOf(q) !== -1;
+  });
+
+  var matchedComponents = components.filter(function(c){
+    return c.name.toLowerCase().indexOf(q) !== -1 ||
+           c.purpose.toLowerCase().indexOf(q) !== -1 ||
+           c.type.toLowerCase().indexOf(q) !== -1 ||
+           c.category.toLowerCase().indexOf(q) !== -1 ||
+           c.lab.toLowerCase().indexOf(q) !== -1;
+  });
+
+  var matchedLabs = labs.filter(function(l){
+    return l.name.toLowerCase().indexOf(q) !== -1 ||
+           l.description.toLowerCase().indexOf(q) !== -1;
+  });
+
+  var matchedExperiments = experiments.filter(function(e){
+    return e.name.toLowerCase().indexOf(q) !== -1 ||
+           e.subject.toLowerCase().indexOf(q) !== -1 ||
+           e.machine.toLowerCase().indexOf(q) !== -1 ||
+           e.lab.toLowerCase().indexOf(q) !== -1;
+  });
+
+  var total = matchedMachines.length + matchedComponents.length + matchedLabs.length + matchedExperiments.length;
+
+  if (total === 0){
+    searchResults.innerHTML = '<div class="no-results">No results found for "<strong>' + query + '</strong>"</div>';
+    searchResults.hidden = false;
+    return;
+  }
+
+  var html = '';
+
+  if (matchedMachines.length){
+    html += '<div class="search-results__group"><h4>Machines (' + matchedMachines.length + ')</h4>' +
+      matchedMachines.map(function(m){
+        return '<div class="search-result-item" onclick="openMachineModal(\'' + m.id + '\'); document.getElementById(\'searchResults\').hidden=true;">' +
+          '<span>' + m.name + '</span><span>' + m.lab + '</span></div>';
+      }).join('') + '</div>';
+  }
+
+  if (matchedComponents.length){
+    html += '<div class="search-results__group"><h4>Components (' + matchedComponents.length + ')</h4>' +
+      matchedComponents.map(function(c){
+        return '<div class="search-result-item" onclick="openComponentModal(\'' + c.id + '\'); document.getElementById(\'searchResults\').hidden=true;">' +
+          '<span>' + c.name + '</span><span>' + c.type + '</span></div>';
+      }).join('') + '</div>';
+  }
+
+  if (matchedLabs.length){
+    html += '<div class="search-results__group"><h4>Laboratories (' + matchedLabs.length + ')</h4>' +
+      matchedLabs.map(function(l){
+        return '<div class="search-result-item" onclick="openLabModal(\'' + l.id + '\'); document.getElementById(\'searchResults\').hidden=true;">' +
+          '<span>' + l.name + '</span><span>Lab</span></div>';
+      }).join('') + '</div>';
+  }
+
+  if (matchedExperiments.length){
+    html += '<div class="search-results__group"><h4>Experiments (' + matchedExperiments.length + ')</h4>' +
+      matchedExperiments.map(function(e){
+        return '<div class="search-result-item" onclick="openExperimentModal(\'' + e.id + '\'); document.getElementById(\'searchResults\').hidden=true;">' +
+          '<span>' + e.name + '</span><span>' + e.lab + '</span></div>';
+      }).join('') + '</div>';
+  }
+
+  searchResults.innerHTML = html;
+  searchResults.hidden = false;
+}
+
+/* ==================== PROJECT FINDER ==================== */
+function renderProjectDetails(projectId){
+  var project = projects.find(function(p){ return p.id === projectId; });
+  if (!project){
+    projectDetails.innerHTML = '<p class="project-empty">Select a project above to see required components, machines and the suggested laboratory.</p>';
+    return;
+  }
+
+  var componentsHtml = project.components.map(function(c){
+    return '<div class="project-item">' +
+      '<span>' + c.name + '</span>' +
+      '<span class="badge ' + (c.available ? 'badge--available' : 'badge--unavailable') + '">' +
+        (c.available ? 'Available' : 'Not Available') +
+      '</span></div>';
+  }).join('');
+
+  var machinesHtml = project.machines.map(function(m){
+    return '<div class="project-item"><span>' + m + '</span><span class="badge badge--available">Available</span></div>';
+  }).join('');
+
+  projectDetails.innerHTML =
+    '<h3 style="font-family:var(--font-heading);font-size:1.25rem;margin-bottom:20px;">' + project.name + '</h3>' +
+    '<div class="project-details__grid">' +
+      '<div><h4><i data-lucide="circuit-board"></i> Required Components</h4><div class="project-list">' + componentsHtml + '</div></div>' +
+      '<div><h4><i data-lucide="settings"></i> Required Machines</h4><div class="project-list">' + machinesHtml + '</div></div>' +
+    '</div>' +
+    '<div class="project-lab"><i data-lucide="building-2"></i><span>Suggested Laboratory: <strong>' + project.suggestedLab + '</strong></span></div>';
+
+  if (window.lucide) window.lucide.createIcons();
+}
+
+/* ==================== INIT ==================== */
+document.addEventListener('DOMContentLoaded', function(){
+  // Render sections
+  renderMachines();
+  renderComponents();
+  renderLabs();
+  renderExperiments();
+  renderScamper();
+  renderProjects();
+
+  // Icons
+  if (window.lucide) window.lucide.createIcons();
+
+  // Reveal on scroll
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+
+  // Search
+  searchInput.addEventListener('input', function(e){ performSearch(e.target.value); });
+  searchForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    performSearch(searchInput.value);
+  });
+
+  // Popular searches
+  document.querySelectorAll('[data-search]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      searchInput.value = btn.getAttribute('data-search');
+      performSearch(searchInput.value);
+      searchInput.focus();
+    });
+  });
+
+  // Component filters
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      renderComponents(btn.getAttribute('data-filter'));
+      document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+    });
+  });
+
+  // Project finder
+  projectSelect.addEventListener('change', function(e){ renderProjectDetails(e.target.value); });
+
+  // Modal
+  modalClose.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  // Mobile menu
+  hamburger.addEventListener('click', function(){
+    navLinks.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.nav-link').forEach(function(link){
+    link.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Search toggle in navbar
+  searchToggle.addEventListener('click', function(){
+    var searchSection = document.querySelector('.search-section');
+    if (searchSection){
+      searchSection.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(function(){ searchInput.focus(); }, 600);
+    }
+  });
+
+  // Active nav link on scroll
+  var sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', function(){
+    var current = '';
+    sections.forEach(function(section){
+      var sectionTop = section.offsetTop - 100;
+      if (window.scrollY >= sectionTop) current = section.getAttribute('id');
+    });
+    document.querySelectorAll('.nav-link').forEach(function(link){
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+
+  // Hide search results when clicking outside
+  document.addEventListener('click', function(e){
+    if (!searchResults.hidden){
+      var box = document.querySelector('.search-box');
+      if (box && !box.contains(e.target)) searchResults.hidden = true;
+    }
+  });
+});
+
+/* Expose functions globally for inline onclick handlers */
+window.openMachineModal = openMachineModal;
+window.openComponentModal = openComponentModal;
+window.openLabModal = openLabModal;
+window.openExperimentModal = openExperimentModal;
+</script>
 </body>
 </html>
