@@ -411,7 +411,7 @@ body::before{
       <p class="search-box__hint">Search machines, components, labs and more...</p>
       <form class="search-form" id="searchForm" role="search" autocomplete="off">
         <i data-lucide="search" class="search-form__icon"></i>
-        <input type="search" id="searchInput" placeholder="e.g. CRO, 74153, Function Generator, Digital Electronics Lab" aria-label="Search resources">
+        <input type="search" id="searchInput" placeholder="e.g. CRO, 74153, Function Generator, 6319LA" aria-label="Search resources">
         <button type="submit" class="btn btn--primary btn--sm">Search</button>
       </form>
       <div class="popular-searches">
@@ -420,7 +420,8 @@ body::before{
         <button class="chip" data-search="Function Generator">Function Generator</button>
         <button class="chip" data-search="74153">74153</button>
         <button class="chip" data-search="Multimeter">Multimeter</button>
-        <button class="chip" data-search="6508LA">6508LA</button>
+        <button class="chip" data-search="6319LA">6319LA</button>
+        <button class="chip" data-search="6506LA">6506LA</button>
       </div>
       <div id="searchResults" class="search-results" hidden></div>
     </div>
@@ -569,8 +570,8 @@ var machines = [
     name: 'CRO (Cathode Ray Oscilloscope)',
     category: 'Measuring Instrument',
     purpose: 'Waveform observation and signal measurement',
-    lab: 'Communication Lab',
-    location: '3412LA, 3rd Floor',
+    lab: 'Signal and System Lab',
+    location: '6317LA',
     description: 'A CRO is a type of electronic test instrument that graphically displays varying signal voltages, usually as a two-dimensional plot of one or more signals as a function of time.',
     workingPrinciple: 'The cathode ray tube generates an electron beam that is deflected horizontally and vertically by electric fields to draw the waveform on a fluorescent screen.',
     functions: ['Observe waveform shape', 'Measure voltage (peak-to-peak, RMS)', 'Measure time period and frequency', 'Compare two signals (dual trace)', 'Measure phase difference'],
@@ -582,8 +583,8 @@ var machines = [
     name: 'Function Generator',
     category: 'Signal Source',
     purpose: 'Generate standard waveforms (sine, square, triangle)',
-    lab: 'Communication Lab',
-    location: '3412LA, 3rd Floor',
+    lab: 'Signal and System Lab',
+    location: '6317LA',
     description: 'A function generator is a piece of electronic test equipment used to generate different types of electrical waveforms over a wide range of frequencies.',
     workingPrinciple: 'It uses an oscillator circuit to produce periodic waveforms. The frequency and amplitude can be adjusted using controls.',
     functions: ['Generate sine wave', 'Generate square wave', 'Generate triangle wave', 'Adjust frequency', 'Adjust amplitude'],
@@ -596,7 +597,7 @@ var machines = [
     category: 'Measuring Instrument',
     purpose: 'Measure voltage, current, resistance and continuity',
     lab: 'EDC Lab',
-    location: '1204LA, 1st Floor',
+    location: '6319LA',
     description: 'A digital multimeter is a test tool used to measure two or more electrical values—principally voltage (volts), current (amps) and resistance (ohms).',
     workingPrinciple: 'It uses an analog-to-digital converter to convert the measured analog value into a digital display.',
     functions: ['Measure DC voltage', 'Measure AC voltage', 'Measure DC current', 'Measure AC current', 'Measure resistance', 'Check continuity', 'Test diodes'],
@@ -609,7 +610,7 @@ var machines = [
     category: 'Measuring Instrument',
     purpose: 'Capture and analyze high-speed signals',
     lab: 'VLSI Lab',
-    location: '5527LA, 5th Floor',
+    location: '6412LA',
     description: 'A digital storage oscilloscope (DSO) is an oscilloscope that uses digital memory to store waveform data for display and analysis.',
     workingPrinciple: 'The input signal is sampled by an ADC and stored in memory. The stored data is then processed and displayed on an LCD screen.',
     functions: ['Capture transient signals', 'Store waveforms', 'Measure rise time', 'FFT analysis', 'Protocol decoding'],
@@ -622,7 +623,7 @@ var machines = [
     category: 'Power Source',
     purpose: 'Provide regulated DC voltage to circuits',
     lab: 'EDC Lab',
-    location: '1204LA, 1st Floor',
+    location: '6319LA',
     description: 'A DC power supply converts AC mains voltage into a stable, regulated DC voltage for powering electronic circuits.',
     workingPrinciple: 'It steps down AC voltage using a transformer, rectifies it using diodes, filters it using capacitors, and regulates it using a voltage regulator IC.',
     functions: ['Adjustable output voltage', 'Current limiting', 'Short circuit protection', 'Dual / triple output', 'Digital display'],
@@ -635,7 +636,7 @@ var machines = [
     category: 'Training Equipment',
     purpose: 'Learn and implement digital logic circuits',
     lab: 'Digital Electronics Lab',
-    location: '6508LA, 6th Floor',
+    location: '6508LA',
     description: 'A digital trainer kit is a self-contained system that provides a platform for building and testing digital circuits without soldering.',
     workingPrinciple: 'It provides a breadboard area, power supply, clock generator, logic switches, LEDs, and other components for digital circuit experiments.',
     functions: ['Provide fixed 5V supply', 'Generate clock pulses', 'Provide logic input switches', 'Display output via LEDs', 'Mount ICs and components'],
@@ -648,7 +649,7 @@ var components = [
   {
     id: 'resistor', name: 'Resistor', type: 'Passive', category: 'Passive',
     purpose: 'Limit current and divide voltage', lab: 'EDC Lab',
-    location: '1204LA, 1st Floor',
+    location: '6319LA',
     description: 'A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element.',
     workingPrinciple: 'It opposes the flow of electric current, converting electrical energy into heat.',
     applications: ['Current limiting', 'Voltage division', 'Biasing', 'Pull-up / pull-down', 'Load'],
@@ -658,7 +659,7 @@ var components = [
   {
     id: 'capacitor', name: 'Capacitor', type: 'Passive', category: 'Passive',
     purpose: 'Store charge and filter signals', lab: 'EDC Lab',
-    location: '1204LA, 1st Floor',
+    location: '6319LA',
     description: 'A capacitor is a passive two-terminal electrical component that stores electrical energy in an electric field.',
     workingPrinciple: 'It consists of two conductive plates separated by a dielectric. When voltage is applied, charge accumulates on the plates.',
     applications: ['Filtering', 'Coupling', 'Decoupling', 'Energy storage', 'Tuning'],
@@ -668,7 +669,7 @@ var components = [
   {
     id: 'diode', name: 'Diode', type: 'Active', category: 'Active',
     purpose: 'Allow current in one direction only', lab: 'EDC Lab',
-    location: '1204LA, 1st Floor',
+    location: '6319LA',
     description: 'A diode is a two-terminal electronic component that conducts current primarily in one direction.',
     workingPrinciple: 'It is a p-n junction. When forward biased, it conducts; when reverse biased, it blocks current.',
     applications: ['Rectification', 'Clipping', 'Clamping', 'Protection', 'Switching'],
@@ -678,7 +679,7 @@ var components = [
   {
     id: 'led', name: 'LED', type: 'Active', category: 'Active',
     purpose: 'Emit light when current flows', lab: 'EDC Lab',
-    location: '1204LA, 1st Floor',
+    location: '6319LA',
     description: 'A light-emitting diode (LED) is a semiconductor device that emits light when current flows through it.',
     workingPrinciple: 'Electrons recombine with holes in the semiconductor, releasing energy in the form of photons.',
     applications: ['Indicators', 'Displays', 'Lighting', 'Optocouplers', 'Remote controls'],
@@ -688,7 +689,7 @@ var components = [
   {
     id: 'transistor', name: 'Transistor (BJT)', type: 'Active', category: 'Active',
     purpose: 'Amplify or switch electronic signals', lab: 'EDC Lab',
-    location: '1204LA, 1st Floor',
+    location: '6319LA',
     description: 'A bipolar junction transistor (BJT) is a three-terminal semiconductor device used for amplification and switching.',
     workingPrinciple: 'A small current at the base controls a larger current between collector and emitter.',
     applications: ['Amplification', 'Switching', 'Oscillators', 'Voltage regulation', 'Signal modulation'],
@@ -698,7 +699,7 @@ var components = [
   {
     id: '74153', name: '74153 Multiplexer', type: 'Digital IC', category: 'Digital IC',
     purpose: 'Select one of four inputs to output', lab: 'Digital Electronics Lab',
-    location: '6508LA, 6th Floor',
+    location: '6508LA',
     description: 'A multiplexer is a digital circuit that selects one input from multiple inputs and sends the selected input to the output.',
     workingPrinciple: 'It uses select lines to choose which input is connected to the output.',
     applications: ['Data routing', 'Signal selection', 'Function generation', 'Parallel to serial conversion'],
@@ -708,7 +709,7 @@ var components = [
   {
     id: '74138', name: '74138 Decoder', type: 'Digital IC', category: 'Digital IC',
     purpose: 'Decode 3-bit binary to 8 outputs', lab: 'Digital Electronics Lab',
-    location: '6508LA, 6th Floor',
+    location: '6508LA',
     description: 'A decoder is a combinational circuit that converts binary information from n input lines to a maximum of 2^n unique output lines.',
     workingPrinciple: 'It activates one output based on the binary input combination.',
     applications: ['Memory addressing', 'Demultiplexing', 'Seven segment display', 'Control systems'],
@@ -718,7 +719,7 @@ var components = [
   {
     id: '8051', name: '8051 Microcontroller', type: 'Microcontroller', category: 'Microcontroller',
     purpose: 'Embedded control and processing', lab: 'Microcontroller Lab',
-    location: '4423LA, 4th Floor',
+    location: '6319LA',
     description: 'The 8051 is an 8-bit microcontroller with 4KB ROM, 128 bytes RAM, and various peripherals.',
     workingPrinciple: 'It executes instructions stored in memory to control external devices through its I/O ports.',
     applications: ['Embedded systems', 'Automation', 'Robotics', 'Instrumentation', 'Control systems'],
@@ -730,49 +731,49 @@ var components = [
 var labs = [
   {
     id: 'edc-lab', name: 'EDC Lab',
-    location: '1204LA, 1st Floor',
+    location: '6319LA',
     description: 'Basic Electronics and Devices Laboratory for studying electronic components and circuits.',
     mainMachines: ['DC Power Supply', 'Digital Multimeter', 'Function Generator', 'CRO'],
     mainComponents: ['Resistor', 'Capacitor', 'Diode', 'Transistor', 'LED']
   },
   {
     id: 'digital-electronics-lab', name: 'Digital Electronics Lab',
-    location: '6508LA, 6th Floor',
+    location: '6508LA',
     description: 'Laboratory for digital logic design, combinational and sequential circuits.',
     mainMachines: ['Digital Trainer Kit', 'CRO', 'DC Power Supply'],
     mainComponents: ['74153 Multiplexer', '74138 Decoder', 'Logic Gates', 'Flip-Flops', 'Counters']
   },
   {
-    id: 'communication-lab', name: 'Communication Lab',
-    location: '3412LA, 3rd Floor',
-    description: 'Laboratory for analog and digital communication experiments.',
+    id: 'signal-system-lab', name: 'Signal and System Lab',
+    location: '6317LA',
+    description: 'Laboratory for analog and digital signal analysis, waveform study and system response experiments.',
     mainMachines: ['CRO', 'Function Generator', 'Spectrum Analyzer', 'DSO'],
-    mainComponents: ['Transistor', 'IC 555', 'Op-Amp', 'Antenna', 'Filter']
+    mainComponents: ['Transistor', 'IC 555', 'Op-Amp', 'Filter']
   },
   {
     id: 'network-analysis-lab', name: 'Network Analysis Lab',
-    location: '3418LA, 3rd Floor',
+    location: '6506LA',
     description: 'Laboratory for network theorems, filters and transmission lines.',
     mainMachines: ['CRO', 'Function Generator', 'DC Power Supply', 'Multimeter'],
     mainComponents: ['Resistor', 'Capacitor', 'Inductor', 'Transformer']
   },
   {
     id: 'vlsi-lab', name: 'VLSI Lab',
-    location: '5527LA, 5th Floor',
+    location: '6412LA',
     description: 'Laboratory for VLSI design and verification using CAD tools.',
     mainMachines: ['DSO', 'Workstations', 'FPGA Boards'],
     mainComponents: ['FPGA', 'ASIC', 'CMOS ICs']
   },
   {
     id: 'dsp-lab', name: 'DSP Lab',
-    location: '4416LA, 4th Floor',
+    location: '6121LA',
     description: 'Laboratory for digital signal processing experiments.',
     mainMachines: ['DSO', 'DSP Kits', 'PCs'],
     mainComponents: ['DSP Processor', 'ADC', 'DAC']
   },
   {
     id: 'microcontroller-lab', name: 'Microcontroller Lab',
-    location: '4423LA, 4th Floor',
+    location: '6319LA',
     description: 'Laboratory for microcontroller programming and interfacing.',
     mainMachines: ['PCs', 'Microcontroller Kits', 'CRO'],
     mainComponents: ['8051', 'Arduino', 'LCD', 'Keypad', 'Sensors']
@@ -878,7 +879,7 @@ function openMachineModal(id){
   var content =
     '<h2>' + m.name + '</h2>' +
     '<p class="modal-subtitle">' + m.category + ' — ' + m.lab + '</p>' +
-    '<div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>' + m.location + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>' + m.location + ' (' + m.lab + ')</p></div>' +
     '<div class="modal__section"><h4><i data-lucide="target"></i> Purpose</h4><p>' + m.purpose + '</p></div>' +
     '<div class="modal__section"><h4><i data-lucide="file-text"></i> Description</h4><p>' + m.description + '</p></div>' +
     '<div class="modal__section"><h4><i data-lucide="cog"></i> Working Principle</h4><p>' + m.workingPrinciple + '</p></div>' +
@@ -894,7 +895,7 @@ function openComponentModal(id){
   var content =
     '<h2>' + c.name + '</h2>' +
     '<p class="modal-subtitle">' + c.type + ' — ' + c.lab + '</p>' +
-    '<div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>' + c.location + '</p></div>' +
+    '<div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>' + c.location + ' (' + c.lab + ')</p></div>' +
     '<div class="modal__section"><h4><i data-lucide="target"></i> Purpose</h4><p>' + c.purpose + '</p></div>' +
     '<div class="modal__section"><h4><i data-lucide="file-text"></i> Description</h4><p>' + c.description + '</p></div>' +
     '<div class="modal__section"><h4><i data-lucide="cog"></i> Working Principle</h4><p>' + c.workingPrinciple + '</p></div>' +
@@ -965,7 +966,7 @@ function performSearch(query){
     html += '<div class="search-results__group"><h4>Machines (' + matchedMachines.length + ')</h4>' +
       matchedMachines.map(function(m){
         return '<div class="search-result-item" onclick="openMachineModal(\'' + m.id + '\'); document.getElementById(\'searchResults\').hidden=true;">' +
-          '<span>' + m.name + '</span><span>' + m.lab + '</span></div>';
+          '<span>' + m.name + '</span><span>' + m.location + '</span></div>';
       }).join('') + '</div>';
   }
 
@@ -973,7 +974,7 @@ function performSearch(query){
     html += '<div class="search-results__group"><h4>Components (' + matchedComponents.length + ')</h4>' +
       matchedComponents.map(function(c){
         return '<div class="search-result-item" onclick="openComponentModal(\'' + c.id + '\'); document.getElementById(\'searchResults\').hidden=true;">' +
-          '<span>' + c.name + '</span><span>' + c.type + '</span></div>';
+          '<span>' + c.name + '</span><span>' + c.location + '</span></div>';
       }).join('') + '</div>';
   }
 
@@ -1091,3 +1092,4 @@ window.openLabModal = openLabModal;
 </script>
 </body>
 </html>
+
