@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ENTC Machine & Component Explorer</title>
-<meta name="description" content="One smart place to explore ENTC laboratory machines, electronic components, laboratories and project resources.">
+<meta name="description" content="One smart place to explore ENTC laboratory machines, electronic components and laboratory resources.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -17,13 +17,11 @@
   --navy-850:#080f28;
   --navy-800:#0a1228;
   --navy-700:#0e1a3d;
-  --navy-600:#131f45;
   --blue-500:#3b82f6;
   --blue-400:#60a5fa;
   --cyan-400:#22d3ee;
   --cyan-300:#67e8f9;
   --purple-500:#8b5cf6;
-  --purple-400:#a78bfa;
   --white:#ffffff;
   --text-primary:#ffffff;
   --text-secondary:rgba(255,255,255,0.68);
@@ -103,7 +101,7 @@ body::before{
 .logo-icon i{width:20px;height:20px}
 .logo-text strong{font-weight:700}
 .navbar__links{display:flex;align-items:center;gap:6px}
-.nav-link{color:rgba(255,255,255,0.68);font-size:0.9rem;font-weight:500;padding:9px 16px;border-radius:100px;transition:var(--transition);position:relative}
+.nav-link{color:rgba(255,255,255,0.68);font-size:0.9rem;font-weight:500;padding:9px 16px;border-radius:100px;transition:var(--transition)}
 .nav-link:hover,.nav-link.active{color:var(--white);background:rgba(255,255,255,0.08)}
 .nav-link.active{background:rgba(34,211,238,0.12);color:var(--cyan-300)}
 .navbar__actions{display:flex;align-items:center;gap:12px}
@@ -187,7 +185,7 @@ body::before{
 .card__btn:hover{color:var(--white);gap:10px}
 .card__btn i{width:16px;height:16px}
 
-/* Lab-specific */
+/* Lab-specific location bar */
 .lab-location{display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(34,211,238,0.06);border:1px solid rgba(34,211,238,0.15);border-radius:var(--radius-sm);font-size:0.82rem;color:var(--cyan-300);margin-bottom:16px;font-weight:500}
 .lab-location i{width:15px;height:15px;flex-shrink:0}
 .lab-location span strong{color:var(--white);font-weight:600}
@@ -197,16 +195,6 @@ body::before{
 .filter-btn{padding:9px 22px;border-radius:100px;font-size:0.85rem;font-weight:500;color:var(--text-secondary);background:rgba(255,255,255,0.05);border:1px solid var(--border-subtle);transition:var(--transition)}
 .filter-btn:hover{background:rgba(255,255,255,0.1);color:var(--white)}
 .filter-btn.active{background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));color:var(--white);border-color:transparent;box-shadow:0 4px 16px rgba(59,130,246,0.35)}
-
-/* ==================== SCAMPER ==================== */
-.scamper-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
-.scamper-card{background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:28px 26px;transition:var(--transition);position:relative;overflow:hidden;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.scamper-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--cyan-400),var(--blue-500),var(--purple-500));opacity:0;transition:var(--transition)}
-.scamper-card:hover{transform:translateY(-5px);background:var(--card-bg-hover);border-color:rgba(34,211,238,0.35);box-shadow:var(--shadow-lg)}
-.scamper-card:hover::before{opacity:1}
-.scamper-card__letter{font-family:var(--font-heading);font-size:2.4rem;font-weight:700;background:linear-gradient(135deg,var(--cyan-400),var(--blue-500),var(--purple-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:14px}
-.scamper-card__title{font-family:var(--font-heading);font-size:0.98rem;font-weight:600;color:var(--white);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em}
-.scamper-card__desc{font-size:0.9rem;color:var(--text-secondary);line-height:1.65}
 
 /* ==================== QR SECTION ==================== */
 .qr-content{display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap;background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:56px 48px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);position:relative;overflow:hidden}
@@ -312,7 +300,6 @@ body::before{
       <li><a href="#machines" class="nav-link">Machines</a></li>
       <li><a href="#components" class="nav-link">Components</a></li>
       <li><a href="#labs" class="nav-link">Labs</a></li>
-      <li><a href="#scamper" class="nav-link">SCAMPER</a></li>
     </ul>
     <div class="navbar__actions">
       <button class="search-btn" id="searchToggle" aria-label="Search">
@@ -331,7 +318,7 @@ body::before{
   <div class="hero__glow-2"></div>
   <div class="container hero__inner">
     <div class="hero__content">
-      <span class="hero__badge"><i data-lucide="zap"></i> SCAMPER-based ENTC resource platform</span>
+      <span class="hero__badge"><i data-lucide="zap"></i> Centralized ENTC resource platform</span>
       <h1 class="hero__title">
         ENTC MACHINE &amp;<br>
         <span class="gradient-text">COMPONENT EXPLORER</span>
@@ -350,10 +337,9 @@ body::before{
         </a>
       </div>
       <div class="hero__stats">
-        <div><strong>8</strong> Labs</div>
-        <div><strong>25+</strong> Machines</div>
-        <div><strong>50+</strong> Components</div>
-        <div><strong>30+</strong> Experiments</div>
+        <div><strong>7</strong> Labs</div>
+        <div><strong>6</strong> Machines</div>
+        <div><strong>8</strong> Components</div>
       </div>
     </div>
     <div class="hero__art">
@@ -434,7 +420,7 @@ body::before{
         <button class="chip" data-search="Function Generator">Function Generator</button>
         <button class="chip" data-search="74153">74153</button>
         <button class="chip" data-search="Multimeter">Multimeter</button>
-        <button class="chip" data-search="Digital Electronics Lab">Digital Electronics Lab</button>
+        <button class="chip" data-search="6508LA">6508LA</button>
       </div>
       <div id="searchResults" class="search-results" hidden></div>
     </div>
@@ -465,7 +451,7 @@ body::before{
       <a href="#labs" class="resource-card reveal">
         <div class="resource-card__icon"><i data-lucide="building-2"></i></div>
         <h3>Laboratories</h3>
-        <p>Discover resources available in each laboratory, along with their exact location.</p>
+        <p>Discover resources available in each laboratory, along with its exact room location.</p>
         <span class="resource-card__arrow"><i data-lucide="arrow-right"></i></span>
       </a>
     </div>
@@ -509,21 +495,9 @@ body::before{
     <div class="section-head reveal">
       <span class="eyebrow">Where it lives</span>
       <h2 class="section-title">Explore ENTC Laboratories</h2>
-      <p class="section-lead">Discover resources available in each laboratory, along with its exact location in the department.</p>
+      <p class="section-lead">Discover resources available in each laboratory, along with its exact room location.</p>
     </div>
     <div class="grid grid-3" id="labsGrid"></div>
-  </div>
-</section>
-
-<!-- ==================== SCAMPER ==================== -->
-<section class="section" id="scamper">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Methodology</span>
-      <h2 class="section-title">How SCAMPER Shaped ENTC Explorer</h2>
-      <p class="section-lead">The core design concept behind the platform, mapped to seven proven innovation principles.</p>
-    </div>
-    <div class="scamper-grid" id="scamperGrid"></div>
   </div>
 </section>
 
@@ -565,7 +539,6 @@ body::before{
       <a href="#machines">Machines</a>
       <a href="#components">Components</a>
       <a href="#labs">Labs</a>
-      <a href="#scamper">SCAMPER</a>
     </div>
     <div class="footer__bottom">
       <p>ENTC Department — Academic Project</p>
@@ -597,7 +570,7 @@ var machines = [
     category: 'Measuring Instrument',
     purpose: 'Waveform observation and signal measurement',
     lab: 'Communication Lab',
-    location: 'Room 204, 2nd Floor, ENTC Building',
+    location: '3412LA, 3rd Floor',
     description: 'A CRO is a type of electronic test instrument that graphically displays varying signal voltages, usually as a two-dimensional plot of one or more signals as a function of time.',
     workingPrinciple: 'The cathode ray tube generates an electron beam that is deflected horizontally and vertically by electric fields to draw the waveform on a fluorescent screen.',
     functions: ['Observe waveform shape', 'Measure voltage (peak-to-peak, RMS)', 'Measure time period and frequency', 'Compare two signals (dual trace)', 'Measure phase difference'],
@@ -610,7 +583,7 @@ var machines = [
     category: 'Signal Source',
     purpose: 'Generate standard waveforms (sine, square, triangle)',
     lab: 'Communication Lab',
-    location: 'Room 204, 2nd Floor, ENTC Building',
+    location: '3412LA, 3rd Floor',
     description: 'A function generator is a piece of electronic test equipment used to generate different types of electrical waveforms over a wide range of frequencies.',
     workingPrinciple: 'It uses an oscillator circuit to produce periodic waveforms. The frequency and amplitude can be adjusted using controls.',
     functions: ['Generate sine wave', 'Generate square wave', 'Generate triangle wave', 'Adjust frequency', 'Adjust amplitude'],
@@ -623,7 +596,7 @@ var machines = [
     category: 'Measuring Instrument',
     purpose: 'Measure voltage, current, resistance and continuity',
     lab: 'EDC Lab',
-    location: 'Room 101, Ground Floor, ENTC Building',
+    location: '1204LA, 1st Floor',
     description: 'A digital multimeter is a test tool used to measure two or more electrical values—principally voltage (volts), current (amps) and resistance (ohms).',
     workingPrinciple: 'It uses an analog-to-digital converter to convert the measured analog value into a digital display.',
     functions: ['Measure DC voltage', 'Measure AC voltage', 'Measure DC current', 'Measure AC current', 'Measure resistance', 'Check continuity', 'Test diodes'],
@@ -636,7 +609,7 @@ var machines = [
     category: 'Measuring Instrument',
     purpose: 'Capture and analyze high-speed signals',
     lab: 'VLSI Lab',
-    location: 'Room 305, 3rd Floor, ENTC Building',
+    location: '5527LA, 5th Floor',
     description: 'A digital storage oscilloscope (DSO) is an oscilloscope that uses digital memory to store waveform data for display and analysis.',
     workingPrinciple: 'The input signal is sampled by an ADC and stored in memory. The stored data is then processed and displayed on an LCD screen.',
     functions: ['Capture transient signals', 'Store waveforms', 'Measure rise time', 'FFT analysis', 'Protocol decoding'],
@@ -649,7 +622,7 @@ var machines = [
     category: 'Power Source',
     purpose: 'Provide regulated DC voltage to circuits',
     lab: 'EDC Lab',
-    location: 'Room 101, Ground Floor, ENTC Building',
+    location: '1204LA, 1st Floor',
     description: 'A DC power supply converts AC mains voltage into a stable, regulated DC voltage for powering electronic circuits.',
     workingPrinciple: 'It steps down AC voltage using a transformer, rectifies it using diodes, filters it using capacitors, and regulates it using a voltage regulator IC.',
     functions: ['Adjustable output voltage', 'Current limiting', 'Short circuit protection', 'Dual / triple output', 'Digital display'],
@@ -662,7 +635,7 @@ var machines = [
     category: 'Training Equipment',
     purpose: 'Learn and implement digital logic circuits',
     lab: 'Digital Electronics Lab',
-    location: 'Room 102, Ground Floor, ENTC Building',
+    location: '6508LA, 6th Floor',
     description: 'A digital trainer kit is a self-contained system that provides a platform for building and testing digital circuits without soldering.',
     workingPrinciple: 'It provides a breadboard area, power supply, clock generator, logic switches, LEDs, and other components for digital circuit experiments.',
     functions: ['Provide fixed 5V supply', 'Generate clock pulses', 'Provide logic input switches', 'Display output via LEDs', 'Mount ICs and components'],
@@ -675,7 +648,7 @@ var components = [
   {
     id: 'resistor', name: 'Resistor', type: 'Passive', category: 'Passive',
     purpose: 'Limit current and divide voltage', lab: 'EDC Lab',
-    location: 'Room 101, Ground Floor, ENTC Building',
+    location: '1204LA, 1st Floor',
     description: 'A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element.',
     workingPrinciple: 'It opposes the flow of electric current, converting electrical energy into heat.',
     applications: ['Current limiting', 'Voltage division', 'Biasing', 'Pull-up / pull-down', 'Load'],
@@ -685,7 +658,7 @@ var components = [
   {
     id: 'capacitor', name: 'Capacitor', type: 'Passive', category: 'Passive',
     purpose: 'Store charge and filter signals', lab: 'EDC Lab',
-    location: 'Room 101, Ground Floor, ENTC Building',
+    location: '1204LA, 1st Floor',
     description: 'A capacitor is a passive two-terminal electrical component that stores electrical energy in an electric field.',
     workingPrinciple: 'It consists of two conductive plates separated by a dielectric. When voltage is applied, charge accumulates on the plates.',
     applications: ['Filtering', 'Coupling', 'Decoupling', 'Energy storage', 'Tuning'],
@@ -695,7 +668,7 @@ var components = [
   {
     id: 'diode', name: 'Diode', type: 'Active', category: 'Active',
     purpose: 'Allow current in one direction only', lab: 'EDC Lab',
-    location: 'Room 101, Ground Floor, ENTC Building',
+    location: '1204LA, 1st Floor',
     description: 'A diode is a two-terminal electronic component that conducts current primarily in one direction.',
     workingPrinciple: 'It is a p-n junction. When forward biased, it conducts; when reverse biased, it blocks current.',
     applications: ['Rectification', 'Clipping', 'Clamping', 'Protection', 'Switching'],
@@ -705,7 +678,7 @@ var components = [
   {
     id: 'led', name: 'LED', type: 'Active', category: 'Active',
     purpose: 'Emit light when current flows', lab: 'EDC Lab',
-    location: 'Room 101, Ground Floor, ENTC Building',
+    location: '1204LA, 1st Floor',
     description: 'A light-emitting diode (LED) is a semiconductor device that emits light when current flows through it.',
     workingPrinciple: 'Electrons recombine with holes in the semiconductor, releasing energy in the form of photons.',
     applications: ['Indicators', 'Displays', 'Lighting', 'Optocouplers', 'Remote controls'],
@@ -715,7 +688,7 @@ var components = [
   {
     id: 'transistor', name: 'Transistor (BJT)', type: 'Active', category: 'Active',
     purpose: 'Amplify or switch electronic signals', lab: 'EDC Lab',
-    location: 'Room 101, Ground Floor, ENTC Building',
+    location: '1204LA, 1st Floor',
     description: 'A bipolar junction transistor (BJT) is a three-terminal semiconductor device used for amplification and switching.',
     workingPrinciple: 'A small current at the base controls a larger current between collector and emitter.',
     applications: ['Amplification', 'Switching', 'Oscillators', 'Voltage regulation', 'Signal modulation'],
@@ -725,7 +698,7 @@ var components = [
   {
     id: '74153', name: '74153 Multiplexer', type: 'Digital IC', category: 'Digital IC',
     purpose: 'Select one of four inputs to output', lab: 'Digital Electronics Lab',
-    location: 'Room 102, Ground Floor, ENTC Building',
+    location: '6508LA, 6th Floor',
     description: 'A multiplexer is a digital circuit that selects one input from multiple inputs and sends the selected input to the output.',
     workingPrinciple: 'It uses select lines to choose which input is connected to the output.',
     applications: ['Data routing', 'Signal selection', 'Function generation', 'Parallel to serial conversion'],
@@ -735,7 +708,7 @@ var components = [
   {
     id: '74138', name: '74138 Decoder', type: 'Digital IC', category: 'Digital IC',
     purpose: 'Decode 3-bit binary to 8 outputs', lab: 'Digital Electronics Lab',
-    location: 'Room 102, Ground Floor, ENTC Building',
+    location: '6508LA, 6th Floor',
     description: 'A decoder is a combinational circuit that converts binary information from n input lines to a maximum of 2^n unique output lines.',
     workingPrinciple: 'It activates one output based on the binary input combination.',
     applications: ['Memory addressing', 'Demultiplexing', 'Seven segment display', 'Control systems'],
@@ -745,7 +718,7 @@ var components = [
   {
     id: '8051', name: '8051 Microcontroller', type: 'Microcontroller', category: 'Microcontroller',
     purpose: 'Embedded control and processing', lab: 'Microcontroller Lab',
-    location: 'Room 302, 3rd Floor, ENTC Building',
+    location: '4423LA, 4th Floor',
     description: 'The 8051 is an 8-bit microcontroller with 4KB ROM, 128 bytes RAM, and various peripherals.',
     workingPrinciple: 'It executes instructions stored in memory to control external devices through its I/O ports.',
     applications: ['Embedded systems', 'Automation', 'Robotics', 'Instrumentation', 'Control systems'],
@@ -757,70 +730,53 @@ var components = [
 var labs = [
   {
     id: 'edc-lab', name: 'EDC Lab',
-    room: 'Room 101', floor: 'Ground Floor',
-    location: 'Room 101, Ground Floor, ENTC Building',
+    location: '1204LA, 1st Floor',
     description: 'Basic Electronics and Devices Laboratory for studying electronic components and circuits.',
     mainMachines: ['DC Power Supply', 'Digital Multimeter', 'Function Generator', 'CRO'],
     mainComponents: ['Resistor', 'Capacitor', 'Diode', 'Transistor', 'LED']
   },
   {
     id: 'digital-electronics-lab', name: 'Digital Electronics Lab',
-    room: 'Room 102', floor: 'Ground Floor',
-    location: 'Room 102, Ground Floor, ENTC Building',
+    location: '6508LA, 6th Floor',
     description: 'Laboratory for digital logic design, combinational and sequential circuits.',
     mainMachines: ['Digital Trainer Kit', 'CRO', 'DC Power Supply'],
     mainComponents: ['74153 Multiplexer', '74138 Decoder', 'Logic Gates', 'Flip-Flops', 'Counters']
   },
   {
     id: 'communication-lab', name: 'Communication Lab',
-    room: 'Room 204', floor: '2nd Floor',
-    location: 'Room 204, 2nd Floor, ENTC Building',
+    location: '3412LA, 3rd Floor',
     description: 'Laboratory for analog and digital communication experiments.',
     mainMachines: ['CRO', 'Function Generator', 'Spectrum Analyzer', 'DSO'],
     mainComponents: ['Transistor', 'IC 555', 'Op-Amp', 'Antenna', 'Filter']
   },
   {
     id: 'network-analysis-lab', name: 'Network Analysis Lab',
-    room: 'Room 203', floor: '2nd Floor',
-    location: 'Room 203, 2nd Floor, ENTC Building',
+    location: '3418LA, 3rd Floor',
     description: 'Laboratory for network theorems, filters and transmission lines.',
     mainMachines: ['CRO', 'Function Generator', 'DC Power Supply', 'Multimeter'],
     mainComponents: ['Resistor', 'Capacitor', 'Inductor', 'Transformer']
   },
   {
     id: 'vlsi-lab', name: 'VLSI Lab',
-    room: 'Room 305', floor: '3rd Floor',
-    location: 'Room 305, 3rd Floor, ENTC Building',
+    location: '5527LA, 5th Floor',
     description: 'Laboratory for VLSI design and verification using CAD tools.',
     mainMachines: ['DSO', 'Workstations', 'FPGA Boards'],
     mainComponents: ['FPGA', 'ASIC', 'CMOS ICs']
   },
   {
     id: 'dsp-lab', name: 'DSP Lab',
-    room: 'Room 304', floor: '3rd Floor',
-    location: 'Room 304, 3rd Floor, ENTC Building',
+    location: '4416LA, 4th Floor',
     description: 'Laboratory for digital signal processing experiments.',
     mainMachines: ['DSO', 'DSP Kits', 'PCs'],
     mainComponents: ['DSP Processor', 'ADC', 'DAC']
   },
   {
     id: 'microcontroller-lab', name: 'Microcontroller Lab',
-    room: 'Room 302', floor: '3rd Floor',
-    location: 'Room 302, 3rd Floor, ENTC Building',
+    location: '4423LA, 4th Floor',
     description: 'Laboratory for microcontroller programming and interfacing.',
     mainMachines: ['PCs', 'Microcontroller Kits', 'CRO'],
     mainComponents: ['8051', 'Arduino', 'LCD', 'Keypad', 'Sensors']
   }
-];
-
-var scamperData = [
-  { letter: 'S', title: 'Substitute', desc: 'Replace scattered information with one centralized ENTC Explorer.' },
-  { letter: 'C', title: 'Combine', desc: 'Combine machine and component information with purpose, specifications, laboratory and location.' },
-  { letter: 'A', title: 'Adapt', desc: 'Adapt search, categorization and QR-based access for laboratory resources.' },
-  { letter: 'M', title: 'Modify', desc: 'Make technical information simple and beginner-friendly.' },
-  { letter: 'P', title: 'Put to Another Use', desc: 'Use the platform for project discovery and student orientation.' },
-  { letter: 'E', title: 'Eliminate', desc: 'Eliminate repeated searching and scattered information.' },
-  { letter: 'R', title: 'Rearrange', desc: 'Change discovery from Lab → Resource to Student Need → Resource → Purpose → Lab.' }
 ];
 
 /* ==================== DOM SHORTCUTS ==================== */
@@ -828,7 +784,6 @@ var $ = function(id){ return document.getElementById(id); };
 var machinesGrid = $('machinesGrid');
 var componentsGrid = $('componentsGrid');
 var labsGrid = $('labsGrid');
-var scamperGrid = $('scamperGrid');
 var searchInput = $('searchInput');
 var searchResults = $('searchResults');
 var searchForm = $('searchForm');
@@ -868,7 +823,7 @@ function renderComponents(filter){
       '<p class="card__subtitle">' + c.purpose + '</p>' +
       '<div class="card__meta">' +
         '<span><i data-lucide="tag"></i> ' + c.type + '</span>' +
-        '<span><i data-lucide="building-2"></i> ' + c.lab + '</span>' +
+        '<span><i data-lucide="map-pin"></i> ' + c.location + '</span>' +
       '</div>' +
       '<div class="card__actions">' +
         '<button class="card__btn" onclick="openComponentModal(\'' + c.id + '\')">View Details <i data-lucide="arrow-right"></i></button>' +
@@ -893,16 +848,6 @@ function renderLabs(){
         '<button class="card__btn" onclick="openLabModal(\'' + l.id + '\')">Explore Lab <i data-lucide="arrow-right"></i></button>' +
       '</div>' +
     '</article>';
-  }).join('');
-}
-
-function renderScamper(){
-  scamperGrid.innerHTML = scamperData.map(function(s){
-    return '<div class="scamper-card reveal">' +
-      '<div class="scamper-card__letter">' + s.letter + '</div>' +
-      '<h3 class="scamper-card__title">' + s.title + '</h3>' +
-      '<p class="scamper-card__desc">' + s.desc + '</p>' +
-    '</div>';
   }).join('');
 }
 
@@ -966,7 +911,7 @@ function openLabModal(id){
   if (!l) return;
   var content =
     '<h2>' + l.name + '</h2>' +
-    '<p class="modal-subtitle">' + l.floor + '</p>' +
+    '<p class="modal-subtitle">Laboratory</p>' +
     '<div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>' + l.location + '</p></div>' +
     '<div class="modal__section"><h4><i data-lucide="info"></i> Description</h4><p>' + l.description + '</p></div>' +
     '<div class="modal__section"><h4><i data-lucide="settings"></i> Main Machines</h4><ul>' + l.mainMachines.map(function(m){ return '<li>' + m + '</li>'; }).join('') + '</ul></div>' +
@@ -996,7 +941,8 @@ function performSearch(query){
            c.purpose.toLowerCase().indexOf(q) !== -1 ||
            c.type.toLowerCase().indexOf(q) !== -1 ||
            c.category.toLowerCase().indexOf(q) !== -1 ||
-           c.lab.toLowerCase().indexOf(q) !== -1;
+           c.lab.toLowerCase().indexOf(q) !== -1 ||
+           c.location.toLowerCase().indexOf(q) !== -1;
   });
 
   var matchedLabs = labs.filter(function(l){
@@ -1035,7 +981,7 @@ function performSearch(query){
     html += '<div class="search-results__group"><h4>Laboratories (' + matchedLabs.length + ')</h4>' +
       matchedLabs.map(function(l){
         return '<div class="search-result-item" onclick="openLabModal(\'' + l.id + '\'); document.getElementById(\'searchResults\').hidden=true;">' +
-          '<span>' + l.name + '</span><span>' + l.room + '</span></div>';
+          '<span>' + l.name + '</span><span>' + l.location + '</span></div>';
       }).join('') + '</div>';
   }
 
@@ -1048,7 +994,6 @@ document.addEventListener('DOMContentLoaded', function(){
   renderMachines();
   renderComponents();
   renderLabs();
-  renderScamper();
 
   if (window.lucide) window.lucide.createIcons();
 
