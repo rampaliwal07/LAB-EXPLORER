@@ -3,85 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ENTC Machine & Component Explorer</title>
-<meta name="description" content="One smart place to explore ENTC laboratory machines, electronic components and laboratory resources.">
+<title>ENTC Explorer — Machines, Components, Labs & Experiments</title>
+<meta name="description" content="Centralized ENTC resource platform — machines, components, laboratories, experiments, equipment inventory, maintenance tracker and QR access.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 <style>
 /* ==================== VARIABLES ==================== */
 :root{
-  --navy-950:#050a18;
-  --navy-900:#070d22;
-  --navy-850:#080f28;
-  --navy-800:#0a1228;
-  --navy-700:#0e1a3d;
-  --blue-500:#3b82f6;
-  --blue-400:#60a5fa;
-  --cyan-400:#22d3ee;
-  --cyan-300:#67e8f9;
-  --purple-500:#8b5cf6;
-  --white:#ffffff;
-  --text-primary:#ffffff;
-  --text-secondary:rgba(255,255,255,0.68);
-  --text-muted:rgba(255,255,255,0.45);
-  --border-subtle:rgba(255,255,255,0.08);
-  --border-medium:rgba(255,255,255,0.14);
-  --card-bg:rgba(255,255,255,0.035);
-  --card-bg-hover:rgba(255,255,255,0.06);
-  --font-body:'Inter',system-ui,-apple-system,sans-serif;
-  --font-heading:'Space Grotesk',system-ui,-apple-system,sans-serif;
-  --radius-sm:8px;
-  --radius-md:12px;
-  --radius-lg:20px;
-  --radius-xl:28px;
-  --shadow-lg:0 20px 50px rgba(0,0,0,0.45);
-  --shadow-glow:0 0 40px rgba(34,211,238,0.14);
+  --navy-950:#050a18;--navy-900:#070d22;--navy-850:#080f28;--navy-800:#0a1228;--navy-700:#0e1a3d;
+  --blue-500:#3b82f6;--blue-400:#60a5fa;--cyan-400:#22d3ee;--cyan-300:#67e8f9;
+  --purple-500:#8b5cf6;--green-500:#22c55e;--amber-500:#f59e0b;--red-500:#ef4444;
+  --white:#fff;--text-primary:#fff;--text-secondary:rgba(255,255,255,0.68);--text-muted:rgba(255,255,255,0.45);
+  --border-subtle:rgba(255,255,255,0.08);--border-medium:rgba(255,255,255,0.14);
+  --card-bg:rgba(255,255,255,0.035);--card-bg-hover:rgba(255,255,255,0.06);
+  --font-body:'Inter',system-ui,-apple-system,sans-serif;--font-heading:'Space Grotesk',system-ui,sans-serif;
+  --radius-sm:8px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px;
+  --shadow-lg:0 20px 50px rgba(0,0,0,0.45);--shadow-glow:0 0 40px rgba(34,211,238,0.14);
   --transition:0.3s cubic-bezier(0.4,0,0.2,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{
-  font-family:var(--font-body);
-  background:var(--navy-900);
-  color:var(--text-primary);
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
+body{font-family:var(--font-body);background:var(--navy-900);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,svg{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 ul{list-style:none}
-
-/* ==================== BACKGROUND DECOR ==================== */
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  background-image:
-    linear-gradient(rgba(59,130,246,0.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(59,130,246,0.035) 1px,transparent 1px);
-  background-size:70px 70px;
-  pointer-events:none;
-  z-index:0;
-  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 30%,transparent 100%);
-  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 30%,transparent 100%);
-}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(59,130,246,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.035) 1px,transparent 1px);background-size:70px 70px;pointer-events:none;z-index:0;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 30%,transparent 100%)}
 
 /* ==================== UTILITIES ==================== */
 .container{width:100%;max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-.section{padding:100px 0;position:relative;z-index:1}
-.section-head{text-align:center;max-width:660px;margin:0 auto 56px}
+.section{padding:90px 0;position:relative;z-index:1}
+.section-head{text-align:center;max-width:680px;margin:0 auto 48px}
 .eyebrow{display:inline-block;font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--cyan-300);background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);padding:6px 16px;border-radius:100px;margin-bottom:18px}
-.section-title{font-family:var(--font-heading);font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:700;color:var(--text-primary);line-height:1.15;margin-bottom:14px;letter-spacing:-0.02em}
-.section-lead{font-size:1.05rem;color:var(--text-secondary);max-width:540px;margin:0 auto}
+.section-title{font-family:var(--font-heading);font-size:clamp(1.8rem,3.2vw,2.5rem);font-weight:700;color:var(--text-primary);line-height:1.15;margin-bottom:14px;letter-spacing:-0.02em}
+.section-lead{font-size:1.02rem;color:var(--text-secondary);max-width:560px;margin:0 auto}
 .gradient-text{background:linear-gradient(135deg,var(--cyan-400),var(--blue-500),var(--purple-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.grid{display:grid;gap:24px}
+.grid{display:grid;gap:22px}
 .grid-4{grid-template-columns:repeat(4,1fr)}
 .grid-3{grid-template-columns:repeat(3,1fr)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:0.95rem;padding:14px 28px;border-radius:100px;transition:var(--transition);border:1.5px solid transparent;white-space:nowrap}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:0.92rem;padding:13px 26px;border-radius:100px;transition:var(--transition);border:1.5px solid transparent;white-space:nowrap}
 .btn i,.btn svg{width:18px;height:18px}
 .btn--primary{background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));color:var(--white);box-shadow:0 4px 20px rgba(59,130,246,0.35)}
 .btn--primary:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(59,130,246,0.5)}
@@ -89,204 +53,273 @@ body::before{
 .btn--ghost:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.32)}
 .btn--outline{background:transparent;color:rgba(255,255,255,0.75);border-color:rgba(255,255,255,0.22)}
 .btn--outline:hover{border-color:var(--cyan-300);color:var(--white);background:rgba(34,211,238,0.1)}
-.btn--sm{padding:10px 20px;font-size:0.875rem}
-.chip{display:inline-flex;align-items:center;padding:6px 16px;border-radius:100px;font-size:0.8rem;font-weight:500;background:rgba(255,255,255,0.05);color:var(--text-secondary);border:1px solid var(--border-subtle);transition:var(--transition)}
+.btn--sm{padding:9px 18px;font-size:0.83rem}
+.chip{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.78rem;font-weight:500;background:rgba(255,255,255,0.05);color:var(--text-secondary);border:1px solid var(--border-subtle);transition:var(--transition)}
 .chip:hover{background:var(--blue-500);color:var(--white);border-color:var(--blue-500);transform:translateY(-1px)}
 
 /* ==================== NAVBAR ==================== */
-.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,10,24,0.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border-subtle);transition:var(--transition)}
-.navbar__inner{display:flex;align-items:center;justify-content:space-between;height:72px}
-.navbar__logo{display:flex;align-items:center;gap:10px;color:var(--white);font-family:var(--font-heading);font-size:1.1rem;letter-spacing:0.02em}
-.logo-icon{display:flex;align-items:center;justify-content:center;width:38px;height:38px;background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));border-radius:11px;color:var(--white);box-shadow:0 4px 16px rgba(59,130,246,0.4)}
-.logo-icon i{width:20px;height:20px}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,10,24,0.85);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border-subtle);transition:var(--transition)}
+.navbar__inner{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+.navbar__logo{display:flex;align-items:center;gap:10px;color:var(--white);font-family:var(--font-heading);font-size:1.08rem;letter-spacing:0.02em;flex-shrink:0}
+.logo-icon{display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));border-radius:10px;color:var(--white);box-shadow:0 4px 16px rgba(59,130,246,0.4)}
+.logo-icon i{width:19px;height:19px}
 .logo-text strong{font-weight:700}
-.navbar__links{display:flex;align-items:center;gap:6px}
-.nav-link{color:rgba(255,255,255,0.68);font-size:0.9rem;font-weight:500;padding:9px 16px;border-radius:100px;transition:var(--transition)}
+.navbar__links{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.navbar__links::-webkit-scrollbar{display:none}
+.nav-link{color:rgba(255,255,255,0.68);font-size:0.85rem;font-weight:500;padding:8px 14px;border-radius:100px;transition:var(--transition);white-space:nowrap}
 .nav-link:hover,.nav-link.active{color:var(--white);background:rgba(255,255,255,0.08)}
 .nav-link.active{background:rgba(34,211,238,0.12);color:var(--cyan-300)}
-.navbar__actions{display:flex;align-items:center;gap:12px}
-.search-btn{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.06);border:1px solid var(--border-subtle);transition:var(--transition)}
-.search-btn:hover{background:rgba(34,211,238,0.15);color:var(--cyan-300);border-color:rgba(34,211,238,0.35)}
-.search-btn i{width:19px;height:19px}
-.hamburger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--border-subtle)}
-.hamburger span{display:block;width:20px;height:2px;background:var(--white);border-radius:2px;transition:var(--transition)}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.navbar__actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.icon-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.06);border:1px solid var(--border-subtle);transition:var(--transition)}
+.icon-btn:hover{background:rgba(34,211,238,0.15);color:var(--cyan-300);border-color:rgba(34,211,238,0.35)}
+.icon-btn i{width:18px;height:18px}
+.login-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:100px;font-size:0.83rem;font-weight:600;background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));color:var(--white);box-shadow:0 4px 14px rgba(59,130,246,0.35);transition:var(--transition)}
+.login-btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(59,130,246,0.5)}
+.login-btn i{width:16px;height:16px}
+.user-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:100px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.25);font-size:0.82rem;color:var(--cyan-300);font-weight:600}
+.user-pill__avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--white);font-weight:700}
+.hamburger{display:none;flex-direction:column;gap:4px;width:38px;height:38px;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--border-subtle)}
+.hamburger span{display:block;width:18px;height:2px;background:var(--white);border-radius:2px;transition:var(--transition)}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
 /* ==================== HERO ==================== */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:72px}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:70px}
 .hero__glow{position:absolute;top:-15%;right:-5%;width:700px;height:700px;background:radial-gradient(circle,rgba(34,211,238,0.13) 0%,transparent 65%);pointer-events:none}
 .hero__glow-2{position:absolute;bottom:-20%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(139,92,246,0.1) 0%,transparent 65%);pointer-events:none}
-.hero__inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:60px 0}
-.hero__badge{display:inline-flex;align-items:center;gap:8px;font-size:0.78rem;font-weight:500;color:var(--cyan-300);background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);padding:8px 18px;border-radius:100px;margin-bottom:26px}
-.hero__badge i{width:15px;height:15px}
-.hero__title{font-family:var(--font-heading);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;line-height:1.08;letter-spacing:-0.025em;margin-bottom:18px}
-.hero__tagline{font-size:1.2rem;font-weight:600;color:var(--cyan-300);margin-bottom:14px;letter-spacing:0.02em}
-.hero__desc{font-size:1.05rem;color:var(--text-secondary);max-width:480px;margin-bottom:34px;line-height:1.75}
-.hero__buttons{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:52px}
-.hero__stats{display:flex;gap:36px;flex-wrap:wrap}
-.hero__stats div{font-size:0.82rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;font-weight:500}
-.hero__stats strong{display:block;font-size:1.6rem;font-family:var(--font-heading);color:var(--white);font-weight:700;margin-bottom:2px;background:linear-gradient(135deg,#fff,var(--cyan-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero__inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:50px 0}
+.hero__badge{display:inline-flex;align-items:center;gap:8px;font-size:0.76rem;font-weight:500;color:var(--cyan-300);background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);padding:7px 16px;border-radius:100px;margin-bottom:24px}
+.hero__badge i{width:14px;height:14px}
+.hero__title{font-family:var(--font-heading);font-size:clamp(2.1rem,4.8vw,3.6rem);font-weight:700;line-height:1.08;letter-spacing:-0.025em;margin-bottom:18px}
+.hero__tagline{font-size:1.15rem;font-weight:600;color:var(--cyan-300);margin-bottom:12px}
+.hero__desc{font-size:1.02rem;color:var(--text-secondary);max-width:470px;margin-bottom:30px;line-height:1.75}
+.hero__buttons{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.hero__stats{display:flex;gap:32px;flex-wrap:wrap}
+.hero__stats div{font-size:0.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;font-weight:500}
+.hero__stats strong{display:block;font-size:1.5rem;font-family:var(--font-heading);color:var(--white);font-weight:700;margin-bottom:2px;background:linear-gradient(135deg,#fff,var(--cyan-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero__art{display:flex;justify-content:center}
-.hero-svg{width:100%;max-width:520px;height:auto;filter:drop-shadow(0 20px 60px rgba(34,211,238,0.15))}
+.hero-svg{width:100%;max-width:500px;height:auto;filter:drop-shadow(0 20px 60px rgba(34,211,238,0.15))}
 .float-a{animation:float 6s ease-in-out infinite}
 .float-b{animation:float 6s ease-in-out infinite 3s}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
-/* ==================== SEARCH SECTION ==================== */
-.search-section{padding:90px 0}
-.search-box{max-width:760px;margin:0 auto;text-align:center;background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:48px 36px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);position:relative;overflow:hidden}
-.search-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(34,211,238,0.5),transparent)}
-.search-box__title{font-family:var(--font-heading);font-size:1.75rem;font-weight:700;color:var(--white);margin-bottom:8px}
-.search-box__hint{color:var(--text-secondary);margin-bottom:28px;font-size:0.95rem}
-.search-form{display:flex;align-items:center;gap:12px;background:rgba(5,10,24,0.6);border:2px solid var(--border-medium);border-radius:100px;padding:8px 8px 8px 24px;transition:var(--transition)}
-.search-form:focus-within{border-color:var(--cyan-400);box-shadow:0 0 0 4px rgba(34,211,238,0.12),0 12px 32px rgba(0,0,0,0.3)}
-.search-form__icon{width:22px;height:22px;color:var(--text-muted);flex-shrink:0}
-.search-form input{flex:1;border:none;outline:none;font-size:1rem;font-family:inherit;color:var(--white);background:transparent;min-width:0}
-.search-form input::placeholder{color:var(--text-muted)}
-.popular-searches{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:22px;font-size:0.85rem;color:var(--text-muted)}
-.search-results{margin-top:28px;text-align:left;background:rgba(5,10,24,0.75);border:1px solid var(--border-medium);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);max-height:420px;overflow-y:auto;backdrop-filter:blur(12px)}
-.search-results__group{padding:16px 20px;border-bottom:1px solid var(--border-subtle)}
-.search-results__group:last-child{border-bottom:none}
-.search-results__group h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--cyan-300);margin-bottom:10px;font-weight:600}
-.search-result-item{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-radius:var(--radius-sm);cursor:pointer;transition:var(--transition);gap:12px}
-.search-result-item:hover{background:rgba(34,211,238,0.08)}
-.search-result-item span:first-child{font-weight:500;color:var(--white);font-size:0.92rem}
-.search-result-item span:last-child{font-size:0.78rem;color:var(--text-muted);white-space:nowrap}
-.no-results{padding:28px;text-align:center;color:var(--text-muted);font-size:0.9rem}
+/* ==================== DASHBOARD ==================== */
+.dashboard-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat-card{position:relative;background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:24px;backdrop-filter:blur(10px);transition:var(--transition);overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan-400),var(--blue-500));opacity:0.6}
+.stat-card:hover{transform:translateY(-4px);border-color:rgba(34,211,238,0.35);box-shadow:var(--shadow-glow)}
+.stat-card__icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,rgba(59,130,246,0.18),rgba(34,211,238,0.18));color:var(--cyan-300);margin-bottom:14px;border:1px solid rgba(34,211,238,0.2)}
+.stat-card__icon i{width:22px;height:22px}
+.stat-card__value{font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--white);line-height:1;margin-bottom:4px}
+.stat-card__label{font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;font-weight:500}
+.stat-card__trend{font-size:0.78rem;color:var(--green-500);margin-top:8px;display:flex;align-items:center;gap:4px}
+.stat-card__trend i{width:14px;height:14px}
 
-/* ==================== RESOURCE CARDS ==================== */
-.resource-card{position:relative;background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:32px 28px;transition:var(--transition);overflow:hidden;display:block;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.resource-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan-400),var(--blue-500),var(--purple-500));opacity:0;transition:var(--transition)}
-.resource-card:hover{transform:translateY(-5px);background:var(--card-bg-hover);border-color:rgba(34,211,238,0.35);box-shadow:var(--shadow-glow)}
-.resource-card:hover::before{opacity:1}
-.resource-card__icon{display:flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:var(--radius-md);background:linear-gradient(135deg,rgba(59,130,246,0.18),rgba(34,211,238,0.18));color:var(--cyan-300);margin-bottom:20px;border:1px solid rgba(34,211,238,0.2)}
-.resource-card__icon i{width:26px;height:26px}
-.resource-card h3{font-family:var(--font-heading);font-size:1.15rem;font-weight:600;color:var(--white);margin-bottom:8px}
-.resource-card p{font-size:0.9rem;color:var(--text-secondary);line-height:1.65}
-.resource-card__arrow{position:absolute;bottom:24px;right:24px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);color:var(--text-muted);transition:var(--transition);opacity:0;transform:translateX(-8px)}
-.resource-card__arrow i{width:16px;height:16px}
-.resource-card:hover .resource-card__arrow{opacity:1;transform:translateX(0);background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));color:var(--white)}
+/* ==================== SEARCH ==================== */
+.search-box{max-width:820px;margin:0 auto;background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:40px 32px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.search-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(34,211,238,0.5),transparent)}
+.search-box__title{font-family:var(--font-heading);font-size:1.6rem;font-weight:700;color:var(--white);margin-bottom:6px;text-align:center}
+.search-box__hint{color:var(--text-secondary);margin-bottom:24px;font-size:0.92rem;text-align:center}
+.search-form{display:flex;align-items:center;gap:10px;background:rgba(5,10,24,0.6);border:2px solid var(--border-medium);border-radius:100px;padding:7px 7px 7px 22px;transition:var(--transition)}
+.search-form:focus-within{border-color:var(--cyan-400);box-shadow:0 0 0 4px rgba(34,211,238,0.12),0 12px 32px rgba(0,0,0,0.3)}
+.search-form__icon{width:20px;height:20px;color:var(--text-muted);flex-shrink:0}
+.search-form input{flex:1;border:none;outline:none;font-size:0.98rem;font-family:inherit;color:var(--white);background:transparent;min-width:0}
+.search-form input::placeholder{color:var(--text-muted)}
+.search-filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;justify-content:center}
+.filter-select{padding:8px 16px;border-radius:100px;font-size:0.82rem;font-weight:500;background:rgba(255,255,255,0.05);border:1px solid var(--border-subtle);color:var(--white);cursor:pointer;transition:var(--transition);font-family:inherit}
+.filter-select:hover{background:rgba(255,255,255,0.1)}
+.filter-select:focus{outline:none;border-color:var(--cyan-400)}
+.filter-select option{background:var(--navy-800);color:var(--white)}
+.popular-searches{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:18px;font-size:0.82rem;color:var(--text-muted)}
+.search-results{margin-top:24px;text-align:left;background:rgba(5,10,24,0.75);border:1px solid var(--border-medium);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);max-height:440px;overflow-y:auto;backdrop-filter:blur(12px)}
+.search-results__group{padding:14px 18px;border-bottom:1px solid var(--border-subtle)}
+.search-results__group:last-child{border-bottom:none}
+.search-results__group h4{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--cyan-300);margin-bottom:8px;font-weight:600}
+.search-result-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:var(--radius-sm);cursor:pointer;transition:var(--transition);gap:12px}
+.search-result-item:hover{background:rgba(34,211,238,0.08)}
+.search-result-item span:first-child{font-weight:500;color:var(--white);font-size:0.9rem}
+.search-result-item span:last-child{font-size:0.75rem;color:var(--text-muted);white-space:nowrap}
+.no-results{padding:26px;text-align:center;color:var(--text-muted);font-size:0.88rem}
 
 /* ==================== CARDS ==================== */
-.card{background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:28px;transition:var(--transition);display:flex;flex-direction:column;height:100%;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.card{background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:24px;transition:var(--transition);display:flex;flex-direction:column;height:100%;backdrop-filter:blur(10px);position:relative;overflow:hidden}
 .card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan-400),var(--blue-500));opacity:0;transition:var(--transition)}
 .card:hover{transform:translateY(-5px);background:var(--card-bg-hover);border-color:rgba(34,211,238,0.35);box-shadow:var(--shadow-lg)}
 .card:hover::after{opacity:1}
-.card__tag{display:inline-flex;align-items:center;font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--cyan-300);background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);padding:4px 12px;border-radius:100px;margin-bottom:16px;width:fit-content}
-.card__title{font-family:var(--font-heading);font-size:1.15rem;font-weight:600;color:var(--white);margin-bottom:8px}
-.card__subtitle{font-size:0.85rem;color:var(--text-secondary);margin-bottom:14px;line-height:1.6}
-.card__meta{display:flex;flex-wrap:wrap;gap:14px;font-size:0.8rem;color:var(--text-muted);margin-bottom:20px}
-.card__meta span{display:inline-flex;align-items:center;gap:6px}
-.card__meta i{width:14px;height:14px;color:var(--cyan-400)}
-.card__actions{margin-top:auto;padding-top:16px;border-top:1px solid var(--border-subtle)}
-.card__btn{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--cyan-300);transition:var(--transition)}
+.card__tag{display:inline-flex;align-items:center;font-size:0.66rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--cyan-300);background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);padding:3px 11px;border-radius:100px;margin-bottom:14px;width:fit-content}
+.card__title{font-family:var(--font-heading);font-size:1.08rem;font-weight:600;color:var(--white);margin-bottom:8px}
+.card__subtitle{font-size:0.83rem;color:var(--text-secondary);margin-bottom:12px;line-height:1.55}
+.card__meta{display:flex;flex-wrap:wrap;gap:12px;font-size:0.76rem;color:var(--text-muted);margin-bottom:16px}
+.card__meta span{display:inline-flex;align-items:center;gap:5px}
+.card__meta i{width:13px;height:13px;color:var(--cyan-400)}
+.card__actions{margin-top:auto;padding-top:14px;border-top:1px solid var(--border-subtle);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.card__btn{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:600;color:var(--cyan-300);transition:var(--transition)}
 .card__btn:hover{color:var(--white);gap:10px}
-.card__btn i{width:16px;height:16px}
+.card__btn i{width:15px;height:15px}
 
-/* Lab-specific location bar */
-.lab-location{display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(34,211,238,0.06);border:1px solid rgba(34,211,238,0.15);border-radius:var(--radius-sm);font-size:0.82rem;color:var(--cyan-300);margin-bottom:16px;font-weight:500}
-.lab-location i{width:15px;height:15px;flex-shrink:0}
-.lab-location span strong{color:var(--white);font-weight:600}
+/* Component image area */
+.comp-img{width:100%;height:120px;background:radial-gradient(circle at 50% 50%,rgba(34,211,238,0.08),transparent 70%);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin-bottom:14px;border:1px solid var(--border-subtle);overflow:hidden}
+.comp-img svg{width:100%;height:100%;max-width:180px}
+
+/* ==================== BADGES ==================== */
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:0.68rem;font-weight:600;padding:3px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:0.04em;white-space:nowrap}
+.badge--working{background:rgba(34,197,94,0.12);color:#4ade80;border:1px solid rgba(34,197,94,0.3)}
+.badge--repair{background:rgba(245,158,11,0.12);color:#fbbf24;border:1px solid rgba(245,158,11,0.3)}
+.badge--fault{background:rgba(239,68,68,0.12);color:#f87171;border:1px solid rgba(239,68,68,0.3)}
+.badge--available{background:rgba(34,197,94,0.12);color:#4ade80;border:1px solid rgba(34,197,94,0.3)}
+.badge--in-use{background:rgba(59,130,246,0.12);color:#93c5fd;border:1px solid rgba(59,130,246,0.3)}
+.badge--na{background:rgba(148,163,184,0.12);color:#cbd5e1;border:1px solid rgba(148,163,184,0.3)}
+.badge--sample{background:rgba(139,92,246,0.12);color:#c4b5fd;border:1px solid rgba(139,92,246,0.3)}
 
 /* ==================== FILTER BAR ==================== */
-.filter-bar{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:40px}
-.filter-btn{padding:9px 22px;border-radius:100px;font-size:0.85rem;font-weight:500;color:var(--text-secondary);background:rgba(255,255,255,0.05);border:1px solid var(--border-subtle);transition:var(--transition)}
+.filter-bar{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.filter-btn{padding:8px 20px;border-radius:100px;font-size:0.82rem;font-weight:500;color:var(--text-secondary);background:rgba(255,255,255,0.05);border:1px solid var(--border-subtle);transition:var(--transition)}
 .filter-btn:hover{background:rgba(255,255,255,0.1);color:var(--white)}
 .filter-btn.active{background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));color:var(--white);border-color:transparent;box-shadow:0 4px 16px rgba(59,130,246,0.35)}
 
-/* ==================== QR SECTION ==================== */
-.qr-content{display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap;background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:56px 48px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);position:relative;overflow:hidden}
-.qr-content::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.5),transparent)}
-.qr-text{max-width:540px}
-.qr-text p{color:var(--text-secondary);margin-top:14px;font-size:1rem;line-height:1.7}
-.qr-placeholder{display:flex;flex-direction:column;align-items:center;gap:14px;padding:26px;background:rgba(5,10,24,0.55);border:1px solid var(--border-medium);border-radius:var(--radius-lg)}
-.qr-placeholder span{font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;font-weight:600}
+/* ==================== LAB location bar ==================== */
+.lab-location{display:flex;align-items:center;gap:8px;padding:9px 13px;background:rgba(34,211,238,0.06);border:1px solid rgba(34,211,238,0.15);border-radius:var(--radius-sm);font-size:0.78rem;color:var(--cyan-300);margin-bottom:14px;font-weight:500}
+.lab-location i{width:14px;height:14px;flex-shrink:0}
+.lab-location span strong{color:var(--white);font-weight:600}
 
-/* ==================== FOOTER ==================== */
-.footer{background:rgba(5,10,24,0.7);border-top:1px solid var(--border-subtle);padding:64px 0 32px;position:relative;z-index:1;backdrop-filter:blur(10px)}
-.footer__inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:32px}
-.footer__brand .logo-icon{margin:0 auto 14px}
-.footer__brand .logo-text{font-family:var(--font-heading);font-size:1.2rem;color:var(--white);display:block;margin-bottom:8px}
-.footer__brand p{font-size:0.9rem;color:var(--text-muted)}
-.footer__links{display:flex;flex-wrap:wrap;justify-content:center;gap:26px}
-.footer__links a{font-size:0.9rem;color:var(--text-secondary);transition:var(--transition)}
-.footer__links a:hover{color:var(--cyan-300)}
-.footer__bottom{display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;padding-top:26px;border-top:1px solid var(--border-subtle);width:100%;font-size:0.85rem;color:var(--text-muted)}
+/* ==================== QR SECTION ==================== */
+.qr-content{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;background:var(--card-bg);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:44px 40px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.qr-content::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.5),transparent)}
+.qr-text p{color:var(--text-secondary);margin-top:14px;font-size:0.98rem;line-height:1.7}
+.qr-controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.qr-controls select{flex:1;min-width:200px;padding:10px 16px;border-radius:100px;background:rgba(5,10,24,0.6);border:1px solid var(--border-medium);color:var(--white);font-family:inherit;font-size:0.88rem;cursor:pointer;outline:none}
+.qr-controls select:focus{border-color:var(--cyan-400)}
+.qr-controls select option{background:var(--navy-800)}
+.qr-display{display:flex;flex-direction:column;align-items:center;gap:14px}
+.qr-canvas-wrap{padding:20px;background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
+.qr-canvas-wrap img,.qr-canvas-wrap canvas{display:block;width:200px!important;height:200px!important}
+.qr-display__label{font-size:0.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;font-weight:600}
+.qr-display__target{font-size:0.9rem;color:var(--cyan-300);font-weight:600;text-align:center}
 
 /* ==================== MODAL ==================== */
-.modal{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:24px}
+.modal{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}
 .modal.open{display:flex}
 .modal__overlay{position:absolute;inset:0;background:rgba(5,10,24,0.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.modal__content{position:relative;background:var(--navy-850);border:1px solid var(--border-medium);border-radius:var(--radius-xl);max-width:700px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 30px 90px rgba(0,0,0,0.6);animation:modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1)}
+.modal__content{position:relative;background:var(--navy-850);border:1px solid var(--border-medium);border-radius:var(--radius-xl);max-width:780px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 30px 90px rgba(0,0,0,0.6);animation:modalIn 0.28s cubic-bezier(0.34,1.56,0.64,1)}
 .modal__content::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(34,211,238,0.6),transparent)}
+.modal__content--narrow{max-width:440px}
 @keyframes modalIn{from{opacity:0;transform:scale(0.95) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal__close{position:absolute;top:20px;right:20px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--border-subtle);color:var(--text-secondary);transition:var(--transition);z-index:1}
+.modal__close{position:absolute;top:18px;right:18px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--border-subtle);color:var(--text-secondary);transition:var(--transition);z-index:1}
 .modal__close:hover{background:rgba(255,255,255,0.12);color:var(--white)}
-.modal__close i{width:20px;height:20px}
-.modal__body{padding:44px 40px}
-.modal__body h2{font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:6px;padding-right:44px}
-.modal-subtitle{font-size:0.9rem;color:var(--cyan-300);font-weight:600;margin-bottom:26px}
-.modal__section{margin-bottom:24px}
-.modal__section h4{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--cyan-300);margin-bottom:10px;display:flex;align-items:center;gap:8px;font-weight:600}
-.modal__section h4 i{width:16px;height:16px}
-.modal__section p,.modal__section ul{font-size:0.94rem;color:var(--text-secondary);line-height:1.75}
+.modal__close i{width:18px;height:18px}
+.modal__body{padding:40px 36px}
+.modal__body h2{font-family:var(--font-heading);font-size:1.42rem;font-weight:700;color:var(--white);margin-bottom:6px;padding-right:44px}
+.modal-subtitle{font-size:0.88rem;color:var(--cyan-300);font-weight:600;margin-bottom:24px}
+.modal__section{margin-bottom:22px}
+.modal__section h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--cyan-300);margin-bottom:9px;display:flex;align-items:center;gap:8px;font-weight:600}
+.modal__section h4 i{width:15px;height:15px}
+.modal__section p,.modal__section ul{font-size:0.92rem;color:var(--text-secondary);line-height:1.7}
 .modal__section ul{list-style:none;padding-left:0}
-.modal__section ul li{margin-bottom:6px;padding-left:20px;position:relative}
-.modal__section ul li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--cyan-400)}
-.modal__specs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.modal__spec{background:rgba(255,255,255,0.04);border:1px solid var(--border-subtle);padding:12px 16px;border-radius:var(--radius-sm);font-size:0.85rem;color:var(--white)}
-.modal__spec strong{display:block;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:4px;font-weight:600}
-.modal__placeholder{background:rgba(255,255,255,0.03);border:1px dashed var(--border-medium);border-radius:var(--radius-sm);padding:28px;text-align:center;color:var(--text-muted);font-size:0.85rem}
+.modal__section ul li{margin-bottom:6px;padding-left:18px;position:relative}
+.modal__section ul li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--cyan-400)}
+.modal__section ol{padding-left:22px;font-size:0.92rem;color:var(--text-secondary);line-height:1.75}
+.modal__section ol li{margin-bottom:6px;padding-left:6px}
+.modal__specs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal__spec{background:rgba(255,255,255,0.04);border:1px solid var(--border-subtle);padding:11px 14px;border-radius:var(--radius-sm);font-size:0.83rem;color:var(--white)}
+.modal__spec strong{display:block;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:3px;font-weight:600}
+.modal__placeholder{background:rgba(255,255,255,0.03);border:1px dashed var(--border-medium);border-radius:var(--radius-sm);padding:24px;text-align:center;color:var(--text-muted);font-size:0.83rem}
+.modal__actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--border-subtle)}
+.modal__actions .btn{flex:1;min-width:140px}
+.ds-link{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--cyan-300);padding:8px 14px;border-radius:100px;background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);transition:var(--transition)}
+.ds-link:hover{background:rgba(34,211,238,0.15);color:var(--white);gap:10px}
+.ds-link i{width:14px;height:14px}
 
-/* ==================== REVEAL ==================== */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity 0.7s ease,transform 0.7s ease}
+/* Form (login) */
+.form-field{margin-bottom:14px}
+.form-field label{display:block;font-size:0.78rem;color:var(--text-secondary);font-weight:500;margin-bottom:6px}
+.form-field input{width:100%;padding:11px 14px;border-radius:var(--radius-sm);background:rgba(5,10,24,0.6);border:1px solid var(--border-medium);color:var(--white);font-family:inherit;font-size:0.92rem;outline:none;transition:var(--transition)}
+.form-field input:focus{border-color:var(--cyan-400);box-shadow:0 0 0 3px rgba(34,211,238,0.1)}
+.form-hint{font-size:0.75rem;color:var(--text-muted);margin-top:6px;text-align:center}
+.form-tabs{display:flex;gap:6px;margin-bottom:20px;background:rgba(255,255,255,0.04);padding:4px;border-radius:100px}
+.form-tab{flex:1;padding:8px;border-radius:100px;font-size:0.85rem;font-weight:600;color:var(--text-secondary);transition:var(--transition);text-align:center}
+.form-tab.active{background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));color:var(--white)}
+
+/* ==================== FOOTER ==================== */
+.footer{background:rgba(5,10,24,0.7);border-top:1px solid var(--border-subtle);padding:56px 0 28px;position:relative;z-index:1;backdrop-filter:blur(10px)}
+.footer__inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px}
+.footer__brand .logo-icon{margin:0 auto 12px}
+.footer__brand .logo-text{font-family:var(--font-heading);font-size:1.15rem;color:var(--white);display:block;margin-bottom:6px}
+.footer__brand p{font-size:0.87rem;color:var(--text-muted)}
+.footer__links{display:flex;flex-wrap:wrap;justify-content:center;gap:22px}
+.footer__links a{font-size:0.86rem;color:var(--text-secondary);transition:var(--transition)}
+.footer__links a:hover{color:var(--cyan-300)}
+.footer__bottom{display:flex;align-items:center;gap:22px;flex-wrap:wrap;justify-content:center;padding-top:22px;border-top:1px solid var(--border-subtle);width:100%;font-size:0.82rem;color:var(--text-muted)}
+
+/* ==================== REVEAL & LOADER ==================== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
+.loader{position:fixed;inset:0;z-index:3000;background:var(--navy-900);display:flex;align-items:center;justify-content:center;transition:opacity 0.5s ease,visibility 0.5s ease}
+.loader.hidden{opacity:0;visibility:hidden}
+.loader__inner{text-align:center}
+.loader__logo{width:56px;height:56px;margin:0 auto 18px;background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--white);animation:pulse 1.4s ease-in-out infinite}
+.loader__logo i{width:28px;height:28px}
+.loader__text{font-family:var(--font-heading);font-size:1rem;color:var(--cyan-300);letter-spacing:0.15em;text-transform:uppercase;font-weight:600}
+.loader__bar{width:200px;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;margin:16px auto 0}
+.loader__bar span{display:block;width:40%;height:100%;background:linear-gradient(90deg,var(--blue-500),var(--cyan-400));border-radius:2px;animation:loaderBar 1.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes loaderBar{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width:1024px){
-  .hero__inner{grid-template-columns:1fr;text-align:center;gap:48px}
+  .hero__inner{grid-template-columns:1fr;text-align:center;gap:44px}
   .hero__desc{margin-left:auto;margin-right:auto}
   .hero__buttons{justify-content:center}
   .hero__stats{justify-content:center}
   .hero__art{order:-1}
-  .hero-svg{max-width:400px}
+  .hero-svg{max-width:380px}
+  .dashboard-grid{grid-template-columns:repeat(2,1fr)}
   .grid-4{grid-template-columns:repeat(2,1fr)}
   .grid-3{grid-template-columns:repeat(2,1fr)}
+  .qr-content{grid-template-columns:1fr;padding:36px 28px}
+  .navbar__links{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(5,10,24,0.98);backdrop-filter:blur(20px);flex-direction:column;padding:20px;gap:4px;border-bottom:1px solid var(--border-subtle);align-items:stretch}
+  .navbar__links.open{display:flex}
+  .nav-link{display:block;padding:12px 16px;font-size:0.95rem;text-align:center}
+  .hamburger{display:flex}
 }
 @media (max-width:768px){
-  .section{padding:76px 0}
-  .search-box{padding:36px 22px}
-  .qr-content{padding:40px 28px}
-  .navbar__links{position:fixed;top:72px;left:0;right:0;background:rgba(5,10,24,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);flex-direction:column;padding:24px;gap:4px;border-bottom:1px solid var(--border-subtle);transform:translateY(-130%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);z-index:999;align-items:stretch}
-  .navbar__links.open{transform:translateY(0)}
-  .nav-link{display:block;padding:14px 18px;font-size:1rem;text-align:center}
-  .hamburger{display:flex}
+  .section{padding:70px 0}
+  .search-box{padding:30px 20px}
   .grid-4{grid-template-columns:1fr}
   .grid-3{grid-template-columns:1fr}
-  .search-form{flex-direction:column;border-radius:var(--radius-lg);padding:16px;gap:12px}
+  .grid-2{grid-template-columns:1fr}
+  .dashboard-grid{grid-template-columns:1fr}
+  .search-form{flex-direction:column;border-radius:var(--radius-lg);padding:14px;gap:10px}
   .search-form input{width:100%;text-align:center}
   .search-form__icon{display:none}
-  .qr-content{flex-direction:column;text-align:center}
-  .qr-placeholder{margin:0 auto}
-  .modal__body{padding:32px 22px}
+  .modal__body{padding:28px 20px}
   .modal__specs{grid-template-columns:1fr}
-  .modal__body h2{font-size:1.25rem}
+  .modal__body h2{font-size:1.2rem}
+  .qr-controls{flex-direction:column}
 }
 @media (max-width:480px){
-  .container{padding:0 18px}
-  .hero__title{font-size:1.85rem}
-  .hero__stats{gap:22px}
-  .hero__stats strong{font-size:1.3rem}
-  .btn{padding:12px 20px;font-size:0.85rem}
-  .footer__links{gap:16px}
-  .footer__links a{font-size:0.82rem}
-  .search-box{padding:28px 18px}
+  .container{padding:0 16px}
+  .hero__title{font-size:1.75rem}
+  .hero__stats{gap:20px}
+  .hero__stats strong{font-size:1.25rem}
+  .btn{padding:11px 18px;font-size:0.82rem}
+  .footer__links{gap:14px}
+  .footer__links a{font-size:0.78rem}
+  .login-btn span{display:none}
+  .login-btn{padding:8px 10px}
 }
 </style>
 </head>
 <body>
+
+<!-- ==================== LOADER ==================== -->
+<div class="loader" id="loader">
+  <div class="loader__inner">
+    <div class="loader__logo"><i data-lucide="cpu"></i></div>
+    <div class="loader__text">ENTC Explorer</div>
+    <div class="loader__bar"><span></span></div>
+  </div>
+</div>
 
 <!-- ==================== NAVBAR ==================== -->
 <nav class="navbar">
@@ -297,17 +330,19 @@ body::before{
     </a>
     <ul class="navbar__links" id="navLinks">
       <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
       <li><a href="#machines" class="nav-link">Machines</a></li>
       <li><a href="#components" class="nav-link">Components</a></li>
       <li><a href="#labs" class="nav-link">Labs</a></li>
+      <li><a href="#experiments" class="nav-link">Experiments</a></li>
+      <li><a href="#equipment" class="nav-link">Equipment</a></li>
+      <li><a href="#maintenance" class="nav-link">Maintenance</a></li>
+      <li><a href="#qr" class="nav-link">QR</a></li>
     </ul>
     <div class="navbar__actions">
-      <button class="search-btn" id="searchToggle" aria-label="Search">
-        <i data-lucide="search"></i>
-      </button>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="icon-btn" id="searchToggle" aria-label="Search"><i data-lucide="search"></i></button>
+      <button class="login-btn" id="loginBtn"><i data-lucide="user"></i> <span>Login</span></button>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
@@ -319,142 +354,95 @@ body::before{
   <div class="container hero__inner">
     <div class="hero__content">
       <span class="hero__badge"><i data-lucide="zap"></i> Centralized ENTC resource platform</span>
-      <h1 class="hero__title">
-        ENTC MACHINE &amp;<br>
-        <span class="gradient-text">COMPONENT EXPLORER</span>
-      </h1>
+      <h1 class="hero__title">ENTC MACHINE &amp;<br><span class="gradient-text">COMPONENT EXPLORER</span></h1>
       <p class="hero__tagline">Discover. Understand. Connect.</p>
-      <p class="hero__desc">
-        One smart place to explore ENTC laboratory machines, electronic components
-        and laboratory resources — all in a single, unified platform.
-      </p>
+      <p class="hero__desc">One smart place to explore ENTC laboratory machines, electronic components, laboratories, experiments, equipment inventory and maintenance — all in a single, unified platform.</p>
       <div class="hero__buttons">
-        <a href="#machines" class="btn btn--primary">
-          <i data-lucide="settings"></i> Explore Machines
-        </a>
-        <a href="#components" class="btn btn--ghost">
-          <i data-lucide="circuit-board"></i> Explore Components
-        </a>
+        <a href="#machines" class="btn btn--primary"><i data-lucide="settings"></i> Explore Machines</a>
+        <a href="#components" class="btn btn--ghost"><i data-lucide="circuit-board"></i> Explore Components</a>
       </div>
       <div class="hero__stats">
         <div><strong>7</strong> Labs</div>
         <div><strong>6</strong> Machines</div>
         <div><strong>8</strong> Components</div>
+        <div><strong>6</strong> Experiments</div>
       </div>
     </div>
     <div class="hero__art">
       <svg viewBox="0 0 520 430" class="hero-svg" aria-hidden="true">
         <defs>
-          <linearGradient id="gPanel" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#0e1a3d"/>
-            <stop offset="100%" stop-color="#0a1228"/>
-          </linearGradient>
-          <linearGradient id="gWave" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#22d3ee"/>
-            <stop offset="60%" stop-color="#3b82f6"/>
-            <stop offset="100%" stop-color="#8b5cf6"/>
-          </linearGradient>
-          <linearGradient id="gBar" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0%" stop-color="#1d4ed8" stop-opacity=".35"/>
-            <stop offset="100%" stop-color="#22d3ee"/>
-          </linearGradient>
+          <linearGradient id="gPanel" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0e1a3d"/><stop offset="100%" stop-color="#0a1228"/></linearGradient>
+          <linearGradient id="gWave" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22d3ee"/><stop offset="60%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient>
+          <linearGradient id="gBar" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#1d4ed8" stop-opacity=".35"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient>
           <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         </defs>
         <rect x="40" y="34" width="440" height="300" rx="22" fill="url(#gPanel)" stroke="#1e2b55"/>
-        <g stroke="#1b2649" stroke-width="1">
-          <path d="M40 94h440M40 154h440M40 214h440M40 274h440"/>
-          <path d="M130 34v300M220 34v300M310 34v300M400 34v300"/>
-        </g>
-        <circle cx="68" cy="62" r="5" fill="#22d3ee"/>
-        <circle cx="86" cy="62" r="5" fill="#3b82f6"/>
-        <circle cx="104" cy="62" r="5" fill="#8b5cf6"/>
+        <g stroke="#1b2649" stroke-width="1"><path d="M40 94h440M40 154h440M40 214h440M40 274h440"/><path d="M130 34v300M220 34v300M310 34v300M400 34v300"/></g>
+        <circle cx="68" cy="62" r="5" fill="#22d3ee"/><circle cx="86" cy="62" r="5" fill="#3b82f6"/><circle cx="104" cy="62" r="5" fill="#8b5cf6"/>
         <text x="132" y="67" fill="#7d8db8" font-family="monospace" font-size="12">entc_explorer.log</text>
-        <path d="M64 178c22-52 44-52 66 0s44 52 66 0 44-52 66 0 44 52 66 0 44-52 66 0"
-              fill="none" stroke="url(#gWave)" stroke-width="3.5" stroke-linecap="round" filter="url(#glow)"/>
+        <path d="M64 178c22-52 44-52 66 0s44 52 66 0 44-52 66 0 44 52 66 0 44-52 66 0" fill="none" stroke="url(#gWave)" stroke-width="3.5" stroke-linecap="round" filter="url(#glow)"/>
         <path d="M64 178h352" stroke="#22305c" stroke-width="1" stroke-dasharray="4 6"/>
-        <g transform="translate(300,236)">
-          <rect x="0" y="0" width="96" height="66" rx="10" fill="#101c3e" stroke="#2b3d70"/>
-          <text x="48" y="40" text-anchor="middle" fill="#9fb2dd" font-family="monospace" font-size="15">74153</text>
-          <g stroke="#3b82f6" stroke-width="2" stroke-linecap="round">
-            <path d="M14 -8v10M34 -8v10M54 -8v10M74 -8v10"/>
-            <path d="M14 64v10M34 64v10M54 64v10M74 64v10"/>
-          </g>
-        </g>
-        <g transform="translate(64,236)">
-          <rect x="0" y="34" width="16" height="30" rx="4" fill="url(#gBar)"/>
-          <rect x="26" y="18" width="16" height="46" rx="4" fill="url(#gBar)"/>
-          <rect x="52" y="42" width="16" height="22" rx="4" fill="url(#gBar)"/>
-          <rect x="78" y="8" width="16" height="56" rx="4" fill="url(#gBar)"/>
-        </g>
-        <g class="float-a">
-          <rect x="18" y="120" width="120" height="42" rx="12" fill="#0f1c40" stroke="#26386b"/>
-          <circle cx="40" cy="141" r="7" fill="#22d3ee"/>
-          <text x="56" y="146" fill="#c7d5f5" font-size="12" font-family="Inter,sans-serif">Measuring</text>
-        </g>
-        <g class="float-b">
-          <rect x="382" y="128" width="120" height="42" rx="12" fill="#0f1c40" stroke="#26386b"/>
-          <circle cx="404" cy="149" r="7" fill="#8b5cf6"/>
-          <text x="420" y="154" fill="#c7d5f5" font-size="12" font-family="Inter,sans-serif">Digital IC</text>
-        </g>
-        <rect x="80" y="356" width="360" height="14" rx="7" fill="#131f45"/>
-        <rect x="150" y="378" width="220" height="10" rx="5" fill="#0e1836"/>
+        <g transform="translate(300,236)"><rect x="0" y="0" width="96" height="66" rx="10" fill="#101c3e" stroke="#2b3d70"/><text x="48" y="40" text-anchor="middle" fill="#9fb2dd" font-family="monospace" font-size="15">74153</text><g stroke="#3b82f6" stroke-width="2" stroke-linecap="round"><path d="M14 -8v10M34 -8v10M54 -8v10M74 -8v10"/><path d="M14 64v10M34 64v10M54 64v10M74 64v10"/></g></g>
+        <g transform="translate(64,236)"><rect x="0" y="34" width="16" height="30" rx="4" fill="url(#gBar)"/><rect x="26" y="18" width="16" height="46" rx="4" fill="url(#gBar)"/><rect x="52" y="42" width="16" height="22" rx="4" fill="url(#gBar)"/><rect x="78" y="8" width="16" height="56" rx="4" fill="url(#gBar)"/></g>
+        <g class="float-a"><rect x="18" y="120" width="120" height="42" rx="12" fill="#0f1c40" stroke="#26386b"/><circle cx="40" cy="141" r="7" fill="#22d3ee"/><text x="56" y="146" fill="#c7d5f5" font-size="12" font-family="Inter,sans-serif">Measuring</text></g>
+        <g class="float-b"><rect x="382" y="128" width="120" height="42" rx="12" fill="#0f1c40" stroke="#26386b"/><circle cx="404" cy="149" r="7" fill="#8b5cf6"/><text x="420" y="154" fill="#c7d5f5" font-size="12" font-family="Inter,sans-serif">Digital IC</text></g>
+        <rect x="80" y="356" width="360" height="14" rx="7" fill="#131f45"/><rect x="150" y="378" width="220" height="10" rx="5" fill="#0e1836"/>
       </svg>
     </div>
   </div>
 </section>
 
+<!-- ==================== DASHBOARD ==================== -->
+<section class="section" id="dashboard">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Live Overview</span>
+      <h2 class="section-title">Smart Dashboard</h2>
+      <p class="section-lead">Dynamic statistics for machines, components, labs, experiments and equipment health.</p>
+    </div>
+    <div class="dashboard-grid" id="dashboardGrid"></div>
+  </div>
+</section>
+
 <!-- ==================== SMART SEARCH ==================== -->
-<section class="section search-section">
+<section class="section" id="search-section">
   <div class="container">
     <div class="search-box reveal">
       <h2 class="search-box__title">What are you looking for?</h2>
-      <p class="search-box__hint">Search machines, components, labs and more...</p>
+      <p class="search-box__hint">Search across machines, components, labs, experiments and equipment — with filters.</p>
       <form class="search-form" id="searchForm" role="search" autocomplete="off">
         <i data-lucide="search" class="search-form__icon"></i>
-        <input type="search" id="searchInput" placeholder="e.g. CRO, 74153, Function Generator, 6319LA" aria-label="Search resources">
+        <input type="search" id="searchInput" placeholder="e.g. CRO, 74153, Function Generator, 6319LA, Rectifier" aria-label="Search resources">
         <button type="submit" class="btn btn--primary btn--sm">Search</button>
       </form>
+      <div class="search-filters">
+        <select class="filter-select" id="searchCategory">
+          <option value="all">All Categories</option>
+          <option value="machine">Machines</option>
+          <option value="component">Components</option>
+          <option value="lab">Laboratories</option>
+          <option value="experiment">Experiments</option>
+          <option value="equipment">Equipment</option>
+        </select>
+        <select class="filter-select" id="searchLocation">
+          <option value="all">All Locations</option>
+          <option value="6319LA">6319LA</option>
+          <option value="6317LA">6317LA</option>
+          <option value="6506LA">6506LA</option>
+          <option value="6508LA">6508LA</option>
+          <option value="6412LA">6412LA</option>
+          <option value="6121LA">6121LA</option>
+        </select>
+      </div>
       <div class="popular-searches">
         <span>Popular:</span>
         <button class="chip" data-search="CRO">CRO</button>
         <button class="chip" data-search="Function Generator">Function Generator</button>
         <button class="chip" data-search="74153">74153</button>
-        <button class="chip" data-search="Multimeter">Multimeter</button>
+        <button class="chip" data-search="Rectifier">Rectifier</button>
         <button class="chip" data-search="6319LA">6319LA</button>
-        <button class="chip" data-search="6506LA">6506LA</button>
       </div>
       <div id="searchResults" class="search-results" hidden></div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== EXPLORE RESOURCES ==================== -->
-<section class="section">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Browse</span>
-      <h2 class="section-title">Explore Resources</h2>
-      <p class="section-lead">Everything an ENTC student needs, organised in one place.</p>
-    </div>
-    <div class="grid grid-3">
-      <a href="#machines" class="resource-card reveal">
-        <div class="resource-card__icon"><i data-lucide="settings"></i></div>
-        <h3>Machines</h3>
-        <p>Explore ENTC laboratory machines and instruments.</p>
-        <span class="resource-card__arrow"><i data-lucide="arrow-right"></i></span>
-      </a>
-      <a href="#components" class="resource-card reveal">
-        <div class="resource-card__icon"><i data-lucide="circuit-board"></i></div>
-        <h3>Components</h3>
-        <p>Find electronic components and ICs.</p>
-        <span class="resource-card__arrow"><i data-lucide="arrow-right"></i></span>
-      </a>
-      <a href="#labs" class="resource-card reveal">
-        <div class="resource-card__icon"><i data-lucide="building-2"></i></div>
-        <h3>Laboratories</h3>
-        <p>Discover resources available in each laboratory, along with its exact room location.</p>
-        <span class="resource-card__arrow"><i data-lucide="arrow-right"></i></span>
-      </a>
     </div>
   </div>
 </section>
@@ -465,7 +453,7 @@ body::before{
     <div class="section-head reveal">
       <span class="eyebrow">Instruments</span>
       <h2 class="section-title">Laboratory Machines</h2>
-      <p class="section-lead">Explore the equipment used in ENTC laboratories.</p>
+      <p class="section-lead">Explore the equipment used in ENTC laboratories. Every entry is linked to its experiment, location and QR code.</p>
     </div>
     <div class="grid grid-3" id="machinesGrid"></div>
   </div>
@@ -475,16 +463,17 @@ body::before{
 <section class="section" id="components">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Components &amp; ICs</span>
+      <span class="eyebrow">Component Knowledge Hub</span>
       <h2 class="section-title">Electronic Components &amp; ICs</h2>
-      <p class="section-lead">Find the building blocks of your circuits.</p>
+      <p class="section-lead">Specifications, pin diagrams, working principles, applications and verified datasheet links.</p>
     </div>
-    <div class="filter-bar reveal">
+    <div class="filter-bar reveal" id="componentFilters">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="Passive">Passive</button>
       <button class="filter-btn" data-filter="Active">Active</button>
       <button class="filter-btn" data-filter="Digital IC">Digital IC</button>
       <button class="filter-btn" data-filter="Microcontroller">Microcontroller</button>
+      <button class="filter-btn" data-filter="Sensor">Sensor</button>
     </div>
     <div class="grid grid-4" id="componentsGrid"></div>
   </div>
@@ -502,26 +491,68 @@ body::before{
   </div>
 </section>
 
-<!-- ==================== QR CODE ==================== -->
-<section class="section">
+<!-- ==================== EXPERIMENTS ==================== -->
+<section class="section" id="experiments">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Practical Guide</span>
+      <h2 class="section-title">Experiment Explorer</h2>
+      <p class="section-lead">Complete experiment documentation — aim, theory, apparatus, procedure, precautions, expected results and viva questions.</p>
+    </div>
+    <div class="grid grid-3" id="experimentsGrid"></div>
+  </div>
+</section>
+
+<!-- ==================== EQUIPMENT INVENTORY ==================== -->
+<section class="section" id="equipment">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Inventory</span>
+      <h2 class="section-title">Equipment Inventory</h2>
+      <p class="section-lead">Equipment ID, name, laboratory location, condition and availability status.</p>
+    </div>
+    <div class="filter-bar reveal" id="equipmentFilters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Working">Working</button>
+      <button class="filter-btn" data-filter="Needs Repair">Needs Repair</button>
+      <button class="filter-btn" data-filter="Under Maintenance">Under Maintenance</button>
+    </div>
+    <div class="grid grid-3" id="equipmentGrid"></div>
+  </div>
+</section>
+
+<!-- ==================== MAINTENANCE ==================== -->
+<section class="section" id="maintenance">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Health & Safety</span>
+      <h2 class="section-title">Maintenance Tracker</h2>
+      <p class="section-lead">Maintenance history, last inspection date, next inspection date and fault reports.</p>
+    </div>
+    <div class="grid grid-2" id="maintenanceGrid"></div>
+  </div>
+</section>
+
+<!-- ==================== QR SECTION ==================== -->
+<section class="section" id="qr">
   <div class="container">
     <div class="qr-content reveal">
       <div class="qr-text">
         <span class="eyebrow">Scan &amp; Learn</span>
-        <h2 class="section-title">Scan a QR code placed near a machine or component</h2>
-        <p>Instantly open its information on your phone. No app required — just your camera. Each machine and component in the lab carries a QR code that opens its detail page on this platform.</p>
+        <h2 class="section-title">Real scannable QR codes</h2>
+        <p>Every machine and component has a live QR code. Scan with your phone camera and the corresponding detail page opens instantly — no app required. When hosted on GitHub Pages, the QR will point to the live URL. Locally, it points to the anchor <span class="mono">#item-id</span> which auto-opens the modal.</p>
+        <div class="qr-controls">
+          <select id="qrTypeSelect" aria-label="QR resource type">
+            <option value="machine">Machines</option>
+            <option value="component">Components</option>
+          </select>
+          <select id="qrItemSelect" aria-label="QR resource item"></select>
+        </div>
       </div>
-      <div class="qr-placeholder">
-        <svg viewBox="0 0 100 100" width="130" height="130" aria-hidden="true">
-          <rect width="100" height="100" rx="8" fill="#0e1a3d"/>
-          <rect x="10" y="10" width="30" height="30" fill="#22d3ee"/>
-          <rect x="60" y="10" width="30" height="30" fill="#22d3ee"/>
-          <rect x="10" y="60" width="30" height="30" fill="#22d3ee"/>
-          <rect x="45" y="45" width="10" height="10" fill="#3b82f6"/>
-          <rect x="60" y="60" width="15" height="15" fill="#8b5cf6"/>
-          <rect x="80" y="80" width="10" height="10" fill="#22d3ee"/>
-        </svg>
-        <span>QR Placeholder</span>
+      <div class="qr-display">
+        <div class="qr-canvas-wrap" id="qrCanvasWrap"></div>
+        <div class="qr-display__label">Scan to open</div>
+        <div class="qr-display__target" id="qrTargetLabel">—</div>
       </div>
     </div>
   </div>
@@ -536,560 +567,1048 @@ body::before{
       <p>Discover. Understand. Connect.</p>
     </div>
     <div class="footer__links">
-      <a href="#home">Home</a>
-      <a href="#machines">Machines</a>
-      <a href="#components">Components</a>
-      <a href="#labs">Labs</a>
+      <a href="#home">Home</a><a href="#dashboard">Dashboard</a><a href="#machines">Machines</a>
+      <a href="#components">Components</a><a href="#labs">Labs</a><a href="#experiments">Experiments</a>
+      <a href="#equipment">Equipment</a><a href="#maintenance">Maintenance</a><a href="#qr">QR</a>
     </div>
     <div class="footer__bottom">
       <p>ENTC Department — Academic Project</p>
-      <a href="https://github.com/" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
-        <i data-lucide="github"></i> View Source
+      <a href="https://github.com/your-username/entc-explorer" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
+        <i data-lucide="github"></i> View on GitHub
       </a>
     </div>
   </div>
 </footer>
 
-<!-- ==================== MODAL ==================== -->
+<!-- ==================== DETAIL MODAL ==================== -->
 <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="modal__overlay" id="modalOverlay"></div>
-  <div class="modal__content">
-    <button class="modal__close" id="modalClose" aria-label="Close modal">
-      <i data-lucide="x"></i>
-    </button>
+  <div class="modal__content" id="modalContent">
+    <button class="modal__close" id="modalClose" aria-label="Close"><i data-lucide="x"></i></button>
     <div id="modalBody" class="modal__body"></div>
   </div>
 </div>
 
+<!-- ==================== LOGIN MODAL ==================== -->
+<div id="loginModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal__overlay" id="loginOverlay"></div>
+  <div class="modal__content modal__content--narrow">
+    <button class="modal__close" id="loginClose" aria-label="Close"><i data-lucide="x"></i></button>
+    <div class="modal__body">
+      <div id="loginView">
+        <h2 style="text-align:center;padding-right:0">Welcome Back</h2>
+        <p class="modal-subtitle" style="text-align:center">Sign in to your ENTC Explorer account</p>
+        <div class="form-tabs">
+          <div class="form-tab active" data-tab="login">Login</div>
+          <div class="form-tab" data-tab="signup">Sign Up</div>
+        </div>
+        <form id="authForm">
+          <div class="form-field" id="nameField" style="display:none">
+            <label for="authName">Full Name</label>
+            <input type="text" id="authName" placeholder="e.g. Aditya Sharma">
+          </div>
+          <div class="form-field">
+            <label for="authEmail">Email</label>
+            <input type="email" id="authEmail" placeholder="you@college.edu" required>
+          </div>
+          <div class="form-field">
+            <label for="authPassword">Password</label>
+            <input type="password" id="authPassword" placeholder="Minimum 6 characters" required minlength="6">
+          </div>
+          <button type="submit" class="btn btn--primary" style="width:100%;margin-top:8px" id="authSubmit">Sign In</button>
+          <p class="form-hint">Demo accounts work locally via browser storage. No data leaves your device.</p>
+        </form>
+      </div>
+      <div id="userView" style="display:none;text-align:center">
+        <div style="width:70px;height:70px;margin:0 auto 16px;border-radius:50%;background:linear-gradient(135deg,var(--blue-500),var(--cyan-400));display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;color:var(--white)" id="userAvatar">A</div>
+        <h2 style="text-align:center;padding-right:0" id="userName">User</h2>
+        <p class="modal-subtitle" style="text-align:center" id="userEmail">user@example.com</p>
+        <button class="btn btn--outline" style="width:100%" id="logoutBtn"><i data-lucide="log-out"></i> Logout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+/* ====================================================================
+   ENTC EXPLORER — MAIN SCRIPT
+   All data below uses realistic sample values. Replace with your
+   college's actual data when available.
+   ==================================================================== */
+
+/* ==================== COMPONENT SVG ILLUSTRATIONS ==================== */
+/* Inline SVG so there are never broken image links. Each looks like a
+   small technical datasheet drawing. */
+
+const SVG_IMAGES = {
+  resistor: `<svg viewBox="0 0 160 80"><rect x="0" y="0" width="160" height="80" fill="none"/><line x1="10" y1="40" x2="40" y2="40" stroke="#67e8f9" stroke-width="2"/><rect x="40" y="28" width="80" height="24" rx="3" fill="#0e1a3d" stroke="#22d3ee" stroke-width="2"/><rect x="48" y="28" width="6" height="24" fill="#8b5cf6"/><rect x="62" y="28" width="6" height="24" fill="#f59e0b"/><rect x="76" y="28" width="6" height="24" fill="#22d3ee"/><rect x="90" y="28" width="6" height="24" fill="#3b82f6"/><line x1="120" y1="40" x2="150" y2="40" stroke="#67e8f9" stroke-width="2"/></svg>`,
+  capacitor: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="70" y2="40" stroke="#67e8f9" stroke-width="2"/><line x1="70" y1="20" x2="70" y2="60" stroke="#22d3ee" stroke-width="3"/><line x1="90" y1="20" x2="90" y2="60" stroke="#22d3ee" stroke-width="3"/><line x1="90" y1="40" x2="150" y2="40" stroke="#67e8f9" stroke-width="2"/><text x="80" y="18" text-anchor="middle" fill="#7d8db8" font-size="10" font-family="monospace">+</text></svg>`,
+  diode: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="60" y2="40" stroke="#67e8f9" stroke-width="2"/><polygon points="60,22 60,58 90,40" fill="#0e1a3d" stroke="#22d3ee" stroke-width="2"/><line x1="90" y1="22" x2="90" y2="58" stroke="#22d3ee" stroke-width="3"/><line x1="90" y1="40" x2="150" y2="40" stroke="#67e8f9" stroke-width="2"/><text x="100" y="18" fill="#7d8db8" font-size="10" font-family="monospace">A→K</text></svg>`,
+  led: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="60" y2="40" stroke="#67e8f9" stroke-width="2"/><polygon points="60,22 60,58 90,40" fill="#0e1a3d" stroke="#22d3ee" stroke-width="2"/><line x1="90" y1="22" x2="90" y2="58" stroke="#22d3ee" stroke-width="3"/><line x1="90" y1="40" x2="150" y2="40" stroke="#67e8f9" stroke-width="2"/><path d="M70 15 L85 5 M75 15 L90 5" stroke="#fbbf24" stroke-width="2" fill="none"/></svg>`,
+  transistor: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="50" y2="40" stroke="#67e8f9" stroke-width="2"/><line x1="50" y1="20" x2="50" y2="60" stroke="#22d3ee" stroke-width="3"/><line x1="50" y1="30" x2="80" y2="18" stroke="#67e8f9" stroke-width="2"/><line x1="50" y1="50" x2="80" y2="62" stroke="#67e8f9" stroke-width="2"/><line x1="50" y1="40" x2="80" y2="40" stroke="#67e8f9" stroke-width="2"/><circle cx="80" cy="40" r="14" fill="#0e1a3d" stroke="#22d3ee" stroke-width="2"/><line x1="80" y1="18" x2="80" y2="6" stroke="#67e8f9" stroke-width="2"/><line x1="80" y1="62" x2="80" y2="74" stroke="#67e8f9" stroke-width="2"/></svg>`,
+  ic16: `<svg viewBox="0 0 160 80"><rect x="30" y="20" width="100" height="40" rx="4" fill="#0e1a3d" stroke="#22d3ee" stroke-width="2"/><circle cx="42" cy="26" r="3" fill="#22d3ee"/><g stroke="#67e8f9" stroke-width="2"><line x1="42" y1="20" x2="42" y2="10"/><line x1="62" y1="20" x2="62" y2="10"/><line x1="82" y1="20" x2="82" y2="10"/><line x1="102" y1="20" x2="102" y2="10"/><line x1="122" y1="20" x2="122" y2="10"/><line x1="42" y1="60" x2="42" y2="70"/><line x1="62" y1="60" x2="62" y2="70"/><line x1="82" y1="60" x2="82" y2="70"/><line x1="102" y1="60" x2="102" y2="70"/><line x1="122" y1="60" x2="122" y2="70"/></g><text x="80" y="46" text-anchor="middle" fill="#9fb2dd" font-family="monospace" font-size="11">74xx</text></svg>`,
+  mcu: `<svg viewBox="0 0 160 80"><rect x="35" y="18" width="90" height="44" rx="4" fill="#0e1a3d" stroke="#22d3ee" stroke-width="2"/><circle cx="46" cy="24" r="3" fill="#22d3ee"/><text x="80" y="46" text-anchor="middle" fill="#9fb2dd" font-family="monospace" font-size="11">8051</text><g stroke="#67e8f9" stroke-width="2"><line x1="46" y1="18" x2="46" y2="8"/><line x1="66" y1="18" x2="66" y2="8"/><line x1="86" y1="18" x2="86" y2="8"/><line x1="106" y1="18" x2="106" y2="8"/><line x1="46" y1="62" x2="46" y2="72"/><line x1="66" y1="62" x2="66" y2="72"/><line x1="86" y1="62" x2="86" y2="72"/><line x1="106" y1="62" x2="106" y2="72"/></g></svg>`,
+  sensor: `<svg viewBox="0 0 160 80"><rect x="30" y="22" width="100" height="36" rx="6" fill="#0e1a3d" stroke="#22d3ee" stroke-width="2"/><circle cx="55" cy="40" r="10" fill="none" stroke="#22d3ee" stroke-width="2"/><circle cx="55" cy="40" r="4" fill="#22d3ee"/><path d="M90 40 Q100 25 110 40 T130 40" stroke="#8b5cf6" stroke-width="2" fill="none"/><text x="100" y="72" text-anchor="middle" fill="#7d8db8" font-size="9" font-family="monospace">SENSOR</text></svg>`,
+  arduino: `<svg viewBox="0 0 160 80"><rect x="20" y="18" width="120" height="44" rx="4" fill="#0a3a5c" stroke="#22d3ee" stroke-width="2"/><text x="80" y="42" text-anchor="middle" fill="#9fb2dd" font-family="monospace" font-size="11">ARDUINO</text><circle cx="30" cy="26" r="2" fill="#fbbf24"/><circle cx="30" cy="32" r="2" fill="#22c55e"/><g stroke="#67e8f9" stroke-width="1.5"><line x1="30" y1="62" x2="30" y2="70"/><line x1="50" y1="62" x2="50" y2="70"/><line x1="70" y1="62" x2="70" y2="70"/><line x1="90" y1="62" x2="90" y2="70"/><line x1="110" y1="62" x2="110" y2="70"/><line x1="130" y1="62" x2="130" y2="70"/></g></svg>`
+};
+
 /* ==================== DATA ==================== */
 
-var machines = [
+const machines = [
+  { id:'cro', name:'CRO (Cathode Ray Oscilloscope)', category:'Measuring Instrument', purpose:'Waveform observation and signal measurement',
+    lab:'Signal and System Lab', location:'6317LA',
+    description:'A CRO graphically displays varying signal voltages as a two-dimensional plot of one or more signals as a function of time.',
+    workingPrinciple:'The CRT generates an electron beam that is deflected horizontally and vertically by electric fields to draw the waveform on a fluorescent screen.',
+    functions:['Observe waveform shape','Measure voltage (peak-to-peak, RMS)','Measure time period and frequency','Compare two signals','Measure phase difference'],
+    specifications:{Bandwidth:'20 MHz',Channels:'2',InputImpedance:'1 MΩ',Sensitivity:'5 mV/div',Screen:'5 inch CRT'},
+    safety:['Check connections before switching ON','Use appropriate input range','Avoid excessive input voltage','Do not touch the CRT face directly'],
+    datasheet:'https://www.tek.com/en/documents/product-software/tbs1000b-edu-digital-storage-oscilloscope-datasheet' },
+
+  { id:'function-generator', name:'Function Generator', category:'Signal Source', purpose:'Generate standard waveforms (sine, square, triangle)',
+    lab:'Signal and System Lab', location:'6317LA',
+    description:'A function generator is test equipment used to generate different types of electrical waveforms over a wide range of frequencies.',
+    workingPrinciple:'Uses an oscillator circuit to produce periodic waveforms. Frequency and amplitude are adjustable via controls.',
+    functions:['Generate sine wave','Generate square wave','Generate triangle wave','Adjust frequency','Adjust amplitude'],
+    specifications:{FrequencyRange:'0.1 Hz – 2 MHz',Waveforms:'Sine, Square, Triangle',Amplitude:'0–20 Vpp',Impedance:'50 Ω'},
+    safety:['Do not short the output terminals','Set amplitude before connecting to circuit','Use proper probes'],
+    datasheet:'https://www.keysight.com/us/en/assets/9018-03362/data-sheets/9018-03362.pdf' },
+
+  { id:'digital-multimeter', name:'Digital Multimeter', category:'Measuring Instrument', purpose:'Measure voltage, current, resistance and continuity',
+    lab:'EDC Lab', location:'6319LA',
+    description:'A digital multimeter measures two or more electrical values — principally voltage (V), current (A) and resistance (Ω).',
+    workingPrinciple:'An analog-to-digital converter converts the measured analog value into a digital display.',
+    functions:['Measure DC voltage','Measure AC voltage','Measure DC current','Measure AC current','Measure resistance','Check continuity','Test diodes'],
+    specifications:{Display:'3.5 digit LCD',DCVoltage:'0–1000 V',ACVoltage:'0–750 V',Resistance:'0–20 MΩ',Current:'0–10 A'},
+    safety:['Select correct function before measuring','Do not measure resistance on live circuit','Use correct range','Keep probes in good condition'],
+    datasheet:'https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-117' },
+
+  { id:'oscilloscope', name:'Digital Storage Oscilloscope', category:'Measuring Instrument', purpose:'Capture and analyze high-speed signals',
+    lab:'VLSI Lab', location:'6412LA',
+    description:'A DSO uses digital memory to store waveform data for display and analysis.',
+    workingPrinciple:'The input signal is sampled by an ADC and stored in memory. The stored data is processed and displayed on an LCD.',
+    functions:['Capture transient signals','Store waveforms','Measure rise time','FFT analysis','Protocol decoding'],
+    specifications:{Bandwidth:'100 MHz',SampleRate:'1 GS/s',Channels:'2',Display:'7 inch TFT',Memory:'1 Mpts'},
+    safety:['Do not exceed maximum input voltage','Use proper grounding','Avoid electrostatic discharge'],
+    datasheet:'https://www.tek.com/en/documents/datasheet/tbs2000b-series-digital-storage-oscilloscopes-datasheet' },
+
+  { id:'dc-power-supply', name:'DC Power Supply', category:'Power Source', purpose:'Provide regulated DC voltage to circuits',
+    lab:'EDC Lab', location:'6319LA',
+    description:'Converts AC mains voltage into a stable, regulated DC voltage for powering electronic circuits.',
+    workingPrinciple:'Steps down AC voltage using a transformer, rectifies via diodes, filters via capacitors, and regulates via a voltage regulator IC.',
+    functions:['Adjustable output voltage','Current limiting','Short circuit protection','Dual / triple output','Digital display'],
+    specifications:{OutputVoltage:'0–30 V',OutputCurrent:'0–5 A',Ripple:'<5 mV',Display:'LED',Protection:'OVP, OCP'},
+    safety:['Do not short output terminals','Set voltage before connecting','Do not exceed current limit'],
+    datasheet:'https://www.keysight.com/us/en/assets/9018-02429/data-sheets/9018-02429.pdf' },
+
+  { id:'digital-trainer', name:'Digital Trainer Kit', category:'Training Equipment', purpose:'Learn and implement digital logic circuits',
+    lab:'Digital Electronics Lab', location:'6508LA',
+    description:'A self-contained system that provides a platform for building and testing digital circuits without soldering.',
+    workingPrinciple:'Provides breadboard area, power supply, clock generator, logic switches, LEDs and components for digital experiments.',
+    functions:['Provide fixed 5V supply','Generate clock pulses','Provide logic input switches','Display output via LEDs','Mount ICs and components'],
+    specifications:{Supply:'5V, 12V',Clock:'1 Hz – 1 MHz',Switches:'8 logic switches',LEDs:'10 output LEDs',Breadboard:'Solderless'},
+    safety:['Do not short the power supply','Insert ICs correctly','Avoid static discharge','Check wiring before power ON'],
+    datasheet:'https://www.ti.com/lit/ds/symlink/sn74ls00.pdf' }
+];
+
+const components = [
+  { id:'resistor', name:'Resistor', type:'Passive', category:'Passive',
+    purpose:'Limit current and divide voltage', lab:'EDC Lab', location:'6319LA', image:'resistor',
+    description:'A passive two-terminal component that implements electrical resistance as a circuit element.',
+    workingPrinciple:'Opposes the flow of electric current, converting electrical energy into heat.',
+    applications:['Current limiting','Voltage division','Biasing','Pull-up / pull-down','Load'],
+    specifications:{Resistance:'1 Ω – 10 MΩ',Tolerance:'±5%',Power:'0.25 W',TempCoeff:'100 ppm/°C'},
+    pins:'2 terminals (no polarity)',
+    pinDiagram:'Axial — lead 1 and lead 2 are interchangeable; colour bands indicate value and tolerance.',
+    datasheet:'https://www.vishay.com/docs/28729/28729.pdf' },
+
+  { id:'capacitor', name:'Capacitor', type:'Passive', category:'Passive',
+    purpose:'Store charge and filter signals', lab:'EDC Lab', location:'6319LA', image:'capacitor',
+    description:'A passive two-terminal component that stores electrical energy in an electric field.',
+    workingPrinciple:'Two conductive plates separated by a dielectric. Applying voltage accumulates charge on the plates.',
+    applications:['Filtering','Coupling','Decoupling','Energy storage','Tuning'],
+    specifications:{Capacitance:'1 pF – 1000 µF',Voltage:'6.3 V – 450 V',Tolerance:'±10%',Type:'Ceramic, Electrolytic'},
+    pins:'2 terminals (polarized for electrolytic — observe + and – marks)',
+    pinDiagram:'Ceramic: non-polarized. Electrolytic: longer lead is +, stripe is –.',
+    datasheet:'https://www.vishay.com/docs/28321/138aml.pdf' },
+
+  { id:'diode', name:'Diode', type:'Active', category:'Active',
+    purpose:'Allow current in one direction only', lab:'EDC Lab', location:'6319LA', image:'diode',
+    description:'A two-terminal electronic component that conducts current primarily in one direction.',
+    workingPrinciple:'p-n junction — forward biased it conducts, reverse biased it blocks.',
+    applications:['Rectification','Clipping','Clamping','Protection','Switching'],
+    specifications:{ForwardVoltage:'0.7 V (Si), 0.3 V (Ge)',MaxCurrent:'1 A',ReverseVoltage:'50 V',Type:'1N4007'},
+    pins:'Anode (+, no band) and Cathode (–, band)',
+    pinDiagram:'Cathode is marked with a silver/black band; current flows from anode to cathode.',
+    datasheet:'https://www.vishay.com/docs/88503/1n4001.pdf' },
+
+  { id:'led', name:'LED', type:'Active', category:'Active',
+    purpose:'Emit light when current flows', lab:'EDC Lab', location:'6319LA', image:'led',
+    description:'A light-emitting diode emits light when current flows through it.',
+    workingPrinciple:'Electrons recombine with holes, releasing energy as photons.',
+    applications:['Indicators','Displays','Lighting','Optocouplers','Remote controls'],
+    specifications:{ForwardVoltage:'1.8–3.3 V',ForwardCurrent:'20 mA',Color:'Red, Green, Blue',LuminousIntensity:'100 mcd'},
+    pins:'Anode (longer lead) and Cathode (shorter lead)',
+    pinDiagram:'Longer lead = anode, shorter = cathode. Flat side of the casing = cathode.',
+    datasheet:'https://www.vishay.com/docs/83178/tlur640.pdf' },
+
+  { id:'transistor', name:'Transistor (BJT)', type:'Active', category:'Active',
+    purpose:'Amplify or switch electronic signals', lab:'EDC Lab', location:'6319LA', image:'transistor',
+    description:'A three-terminal semiconductor device used for amplification and switching.',
+    workingPrinciple:'A small base current controls a larger collector-emitter current.',
+    applications:['Amplification','Switching','Oscillators','Voltage regulation','Signal modulation'],
+    specifications:{Type:'NPN / PNP',MaxCurrent:'100 mA',MaxVoltage:'40 V',Gain:'100–300',Package:'TO-92'},
+    pins:'Emitter, Base, Collector',
+    pinDiagram:'TO-92 flat side facing you: E-B-C (left to right) for BC547; check datasheet for pinout.',
+    datasheet:'https://www.onsemi.com/pdf/datasheet/bc547-d.pdf' },
+
+  { id:'74153', name:'74153 Multiplexer', type:'Digital IC', category:'Digital IC',
+    purpose:'Select one of four inputs to output', lab:'Digital Electronics Lab', location:'6508LA', image:'ic16',
+    description:'A multiplexer selects one input from multiple inputs and sends it to the output.',
+    workingPrinciple:'Select lines choose which input connects to the output.',
+    applications:['Data routing','Signal selection','Function generation','Parallel to serial conversion'],
+    specifications:{Inputs:'4 (per section)',Outputs:'1 (per section)',SelectLines:'2',Supply:'5 V',Package:'DIP-16'},
+    pins:'16 pins — I0–I3, S0, S1, Y, E, VCC (16), GND (8)',
+    pinDiagram:'DIP-16: pins 1–8 along bottom (pin 1 at notch-left), pins 9–16 along top.',
+    datasheet:'https://www.ti.com/lit/ds/symlink/sn74153.pdf' },
+
+  { id:'74138', name:'74138 Decoder', type:'Digital IC', category:'Digital IC',
+    purpose:'Decode 3-bit binary to 8 outputs', lab:'Digital Electronics Lab', location:'6508LA', image:'ic16',
+    description:'A combinational circuit that converts binary information from n input lines to 2^n unique output lines.',
+    workingPrinciple:'Activates one output based on the binary input combination.',
+    applications:['Memory addressing','Demultiplexing','Seven segment display','Control systems'],
+    specifications:{Inputs:'3',Outputs:'8',Supply:'5 V',Package:'DIP-16',Enable:'Active low'},
+    pins:'16 pins — A0–A2, Y0–Y7, E1, E2, E3, VCC (16), GND (8)',
+    pinDiagram:'DIP-16: 3 enable pins (E1, E2, E3) must be active low to enable the decoder.',
+    datasheet:'https://www.ti.com/lit/ds/symlink/sn74138.pdf' },
+
+  { id:'8051', name:'8051 Microcontroller', type:'Microcontroller', category:'Microcontroller',
+    purpose:'Embedded control and processing', lab:'Microcontroller Lab', location:'6319LA', image:'mcu',
+    description:'8-bit microcontroller with 4KB ROM, 128 bytes RAM, timers and I/O ports.',
+    workingPrinciple:'Executes instructions stored in memory to control external devices through its I/O ports.',
+    applications:['Embedded systems','Automation','Robotics','Instrumentation','Control systems'],
+    specifications:{Architecture:'8-bit',ROM:'4 KB',RAM:'128 bytes',Timers:'2',IOPins:'32',Package:'DIP-40'},
+    pins:'40 pins — Ports 0–3, RXD, TXD, INT0, INT1, T0, T1, ALE, PSEN, EA, XTAL1, XTAL2, RST, VCC, GND',
+    pinDiagram:'DIP-40: pin 1 top-left, pin 40 top-right (with notch at top).',
+    datasheet:'https://www.keil.com/dd/docs/datashts/atmel/at89c51_ds.pdf' },
+
+  { id:'ir-sensor', name:'IR Sensor Module', type:'Sensor', category:'Sensor',
+    purpose:'Detect objects and obstacles using infrared light', lab:'Microcontroller Lab', location:'6319LA', image:'sensor',
+    description:'An IR sensor module emits infrared light and detects its reflection to sense objects.',
+    workingPrinciple:'An IR LED emits light; a photodiode detects the reflected light and outputs a digital HIGH/LOW signal.',
+    applications:['Obstacle detection','Line following robots','Object counters','Proximity sensing','Automation'],
+    specifications:{OperatingVoltage:'3.3–5 V',DetectionRange:'2–30 cm',Output:'Digital (0/5 V)',Adjustable:'Yes (potentiometer)'},
+    pins:'3 pins — VCC, GND, OUT (digital output)',
+    pinDiagram:'Standard 3-pin module: VCC, OUT, GND (order varies by manufacturer).',
+    datasheet:'https://www.vishay.com/docs/83760/tsts4401.pdf' },
+
+  { id:'arduino', name:'Arduino Uno', type:'Microcontroller', category:'Microcontroller',
+    purpose:'Prototyping platform for embedded projects', lab:'Microcontroller Lab', location:'6319LA', image:'arduino',
+    description:'Arduino Uno is an open-source microcontroller board based on the ATmega328P.',
+    workingPrinciple:'Programs uploaded from a PC via USB run on the ATmega328P, controlling digital and analog I/O.',
+    applications:['Prototyping','Education','Automation','Robotics','IoT'],
+    specifications:{Microcontroller:'ATmega328P',DigitalIO:'14 (6 PWM)',AnalogIn:'6',Clock:'16 MHz',Flash:'32 KB',USB:'Type-B'},
+    pins:'Digital pins 0–13, Analog A0–A5, 5V, 3.3V, GND, VIN, RESET',
+    pinDiagram:'Pin headers labelled on the board: digital on top, analog on bottom, power on left.',
+    datasheet:'https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf' }
+];
+
+const labs = [
+  { id:'edc-lab', name:'EDC Lab', location:'6319LA', description:'Basic Electronics and Devices Laboratory for studying electronic components and circuits.',
+    mainMachines:['DC Power Supply','Digital Multimeter','Function Generator','CRO'],
+    mainComponents:['Resistor','Capacitor','Diode','Transistor','LED','IR Sensor'] },
+  { id:'digital-electronics-lab', name:'Digital Electronics Lab', location:'6508LA', description:'Laboratory for digital logic design, combinational and sequential circuits.',
+    mainMachines:['Digital Trainer Kit','CRO','DC Power Supply'],
+    mainComponents:['74153 Multiplexer','74138 Decoder','Logic Gates','Flip-Flops','Counters'] },
+  { id:'signal-system-lab', name:'Signal and System Lab', location:'6317LA', description:'Laboratory for analog and digital signal analysis, waveform study and system response experiments.',
+    mainMachines:['CRO','Function Generator','Spectrum Analyzer','DSO'],
+    mainComponents:['Transistor','IC 555','Op-Amp','Filter'] },
+  { id:'network-analysis-lab', name:'Network Analysis Lab', location:'6506LA', description:'Laboratory for network theorems, filters and transmission lines.',
+    mainMachines:['CRO','Function Generator','DC Power Supply','Multimeter'],
+    mainComponents:['Resistor','Capacitor','Inductor','Transformer'] },
+  { id:'vlsi-lab', name:'VLSI Lab', location:'6412LA', description:'Laboratory for VLSI design and verification using CAD tools.',
+    mainMachines:['DSO','Workstations','FPGA Boards'],
+    mainComponents:['FPGA','ASIC','CMOS ICs'] },
+  { id:'dsp-lab', name:'DSP Lab', location:'6121LA', description:'Laboratory for digital signal processing experiments.',
+    mainMachines:['DSO','DSP Kits','PCs'],
+    mainComponents:['DSP Processor','ADC','DAC'] },
+  { id:'microcontroller-lab', name:'Microcontroller Lab', location:'6319LA', description:'Laboratory for microcontroller programming and interfacing.',
+    mainMachines:['PCs','Microcontroller Kits','CRO'],
+    mainComponents:['8051','Arduino','LCD','Keypad','Sensors'] }
+];
+
+const experiments = [
   {
-    id: 'cro',
-    name: 'CRO (Cathode Ray Oscilloscope)',
-    category: 'Measuring Instrument',
-    purpose: 'Waveform observation and signal measurement',
-    lab: 'Signal and System Lab',
-    location: '6317LA',
-    description: 'A CRO is a type of electronic test instrument that graphically displays varying signal voltages, usually as a two-dimensional plot of one or more signals as a function of time.',
-    workingPrinciple: 'The cathode ray tube generates an electron beam that is deflected horizontally and vertically by electric fields to draw the waveform on a fluorescent screen.',
-    functions: ['Observe waveform shape', 'Measure voltage (peak-to-peak, RMS)', 'Measure time period and frequency', 'Compare two signals (dual trace)', 'Measure phase difference'],
-    specifications: { Bandwidth: '20 MHz', Channels: '2', InputImpedance: '1 MΩ', Sensitivity: '5 mV/div', Screen: '5 inch CRT' },
-    safety: ['Check connections before switching ON', 'Use appropriate input range', 'Avoid excessive input voltage', 'Do not touch the CRT face directly']
+    id:'waveform-cro', name:'Waveform Observation using CRO', subject:'Signal & Systems',
+    machine:'CRO', machineId:'cro', lab:'Signal and System Lab', location:'6317LA',
+    aim:'To observe and measure different waveforms (sine, square, triangular) using a Cathode Ray Oscilloscope and determine their amplitude, time period and frequency.',
+    theory:'The CRO is a versatile instrument that displays the instantaneous value of a signal on a fluorescent screen. The horizontal axis represents time (controlled by time-base) and the vertical axis represents amplitude (controlled by vertical amplifier). The time period T is obtained by multiplying the number of horizontal divisions by the time/div setting, and frequency f = 1/T.',
+    apparatus:['CRO (20 MHz, dual trace)','Function Generator','BNC probes ×2','Connecting wires'],
+    circuitDiagram:'Function Generator → CH1 of CRO via BNC probe. Ground clip to GND. Set FG to sine, 1 kHz, 5 Vpp.',
+    procedure:[
+      'Switch ON the CRO and allow it to warm up for 2 minutes.',
+      'Connect the function generator output to CH1 of CRO using a BNC probe.',
+      'Set the function generator to output a 1 kHz sine wave of 5 V peak-to-peak.',
+      'Adjust VOLTS/DIV and TIME/DIV so that 1–2 cycles are clearly visible.',
+      'Measure the peak-to-peak voltage in vertical divisions and multiply by VOLTS/DIV.',
+      'Measure the time period in horizontal divisions and multiply by TIME/DIV.',
+      'Calculate frequency as f = 1/T.',
+      'Repeat for square and triangular waveforms.'
+    ],
+    precautions:['Check all connections before switching ON.','Do not exceed the maximum input voltage of the CRO.','Keep the intensity control at a moderate level to avoid burning the phosphor.','Use properly shielded probes to avoid noise pickup.'],
+    result:'The waveform was observed clearly. Amplitude and frequency measured from CRO matched the function generator settings within ±5% tolerance.',
+    viva:['What is the function of the time-base generator in a CRO?','Define deflection sensitivity.','What is the difference between a CRO and a DSO?','Why is a Lissajous pattern used?','What is the purpose of the trigger level control?'],
+    sample:true
   },
   {
-    id: 'function-generator',
-    name: 'Function Generator',
-    category: 'Signal Source',
-    purpose: 'Generate standard waveforms (sine, square, triangle)',
-    lab: 'Signal and System Lab',
-    location: '6317LA',
-    description: 'A function generator is a piece of electronic test equipment used to generate different types of electrical waveforms over a wide range of frequencies.',
-    workingPrinciple: 'It uses an oscillator circuit to produce periodic waveforms. The frequency and amplitude can be adjusted using controls.',
-    functions: ['Generate sine wave', 'Generate square wave', 'Generate triangle wave', 'Adjust frequency', 'Adjust amplitude'],
-    specifications: { FrequencyRange: '0.1 Hz – 2 MHz', Waveforms: 'Sine, Square, Triangle', Amplitude: '0–20 Vpp', Impedance: '50 Ω' },
-    safety: ['Do not short the output terminals', 'Set amplitude before connecting to circuit', 'Use proper probes']
+    id:'half-wave-rectifier', name:'Half-Wave Rectifier', subject:'Electronic Devices',
+    machine:'CRO', machineId:'cro', lab:'EDC Lab', location:'6319LA',
+    aim:'To study the working of a half-wave rectifier and measure its ripple factor and efficiency.',
+    theory:'A half-wave rectifier uses a single diode to allow current flow only during the positive half cycle of the input AC. The output is a pulsating DC. The ripple factor for a half-wave rectifier is approximately 1.21 and efficiency is about 40.6%.',
+    apparatus:['Step-down transformer (230 V to 12 V)','1N4007 diode','Resistor 1 kΩ','Capacitor 470 µF','CRO','Multimeter','Breadboard'],
+    circuitDiagram:'Transformer secondary → diode (anode at top) → load resistor → back to transformer. Optional filter capacitor in parallel with load.',
+    procedure:[
+      'Connect the transformer primary to AC mains and secondary to the diode.',
+      'Connect the load resistor from diode cathode to transformer secondary return.',
+      'Observe input and output waveforms on the CRO (CH1 = input, CH2 = output).',
+      'Measure DC output voltage with a multimeter.',
+      'Add the filter capacitor and observe the reduction in ripple.',
+      'Calculate ripple factor and efficiency.'
+    ],
+    precautions:['Use a step-down transformer only — never connect mains directly to the circuit.','Observe diode polarity — reversing it gives a negative output.','Do not exceed the capacitor voltage rating.','Discharge the capacitor before touching the circuit.'],
+    result:'A pulsating DC output was observed. With the filter capacitor connected, the ripple reduced significantly and the output approached a smooth DC.',
+    viva:['Define ripple factor.','Why is a capacitor used as a filter?','What is the PIV of a half-wave rectifier?','Compare half-wave and full-wave rectifiers.','What is the theoretical efficiency of a half-wave rectifier?'],
+    sample:true
   },
   {
-    id: 'digital-multimeter',
-    name: 'Digital Multimeter',
-    category: 'Measuring Instrument',
-    purpose: 'Measure voltage, current, resistance and continuity',
-    lab: 'EDC Lab',
-    location: '6319LA',
-    description: 'A digital multimeter is a test tool used to measure two or more electrical values—principally voltage (volts), current (amps) and resistance (ohms).',
-    workingPrinciple: 'It uses an analog-to-digital converter to convert the measured analog value into a digital display.',
-    functions: ['Measure DC voltage', 'Measure AC voltage', 'Measure DC current', 'Measure AC current', 'Measure resistance', 'Check continuity', 'Test diodes'],
-    specifications: { Display: '3.5 digit LCD', DCVoltage: '0–1000 V', ACVoltage: '0–750 V', Resistance: '0–20 MΩ', Current: '0–10 A' },
-    safety: ['Select correct function before measuring', 'Do not measure resistance on live circuit', 'Use correct range', 'Keep probes in good condition']
+    id:'ohms-law', name:'Verification of Ohm\'s Law', subject:'Basic Electronics',
+    machine:'DC Power Supply', machineId:'dc-power-supply', lab:'EDC Lab', location:'6319LA',
+    aim:'To verify Ohm\'s Law and determine the resistance of a given resistor.',
+    theory:'Ohm\'s Law states that the current through a conductor is directly proportional to the voltage across it, provided physical conditions remain constant: V = IR.',
+    apparatus:['DC Power Supply','Digital Multimeter','Resistor 1 kΩ','Breadboard','Connecting wires'],
+    circuitDiagram:'DC supply (+) → ammeter → resistor → back to supply (–). Voltmeter connected in parallel across the resistor.',
+    procedure:[
+      'Set up the circuit as per the diagram.',
+      'Set the DC supply to 1 V and note the ammeter reading.',
+      'Increase the voltage in steps of 1 V up to 10 V, noting current each time.',
+      'Plot a graph of V (Y-axis) vs I (X-axis).',
+      'The slope of the straight line gives the resistance.',
+      'Verify that the measured value matches the colour code of the resistor.'
+    ],
+    precautions:['Do not exceed the rated power of the resistor.','Use the correct range on the multimeter.','Polarity of ammeter and voltmeter must be observed.','Switch off the supply before changing connections.'],
+    result:'A straight-line graph through the origin was obtained, verifying Ohm\'s Law. The slope gave a resistance of approximately 1 kΩ, matching the colour code.',
+    viva:['State Ohm\'s Law.','What are the limitations of Ohm\'s Law?','What is the colour code for a 1 kΩ resistor?','How does temperature affect resistance?','Define conductivity.'],
+    sample:true
   },
   {
-    id: 'oscilloscope',
-    name: 'Digital Storage Oscilloscope',
-    category: 'Measuring Instrument',
-    purpose: 'Capture and analyze high-speed signals',
-    lab: 'VLSI Lab',
-    location: '6412LA',
-    description: 'A digital storage oscilloscope (DSO) is an oscilloscope that uses digital memory to store waveform data for display and analysis.',
-    workingPrinciple: 'The input signal is sampled by an ADC and stored in memory. The stored data is then processed and displayed on an LCD screen.',
-    functions: ['Capture transient signals', 'Store waveforms', 'Measure rise time', 'FFT analysis', 'Protocol decoding'],
-    specifications: { Bandwidth: '100 MHz', SampleRate: '1 GS/s', Channels: '2', Display: '7 inch TFT', Memory: '1 Mpts' },
-    safety: ['Do not exceed maximum input voltage', 'Use proper grounding', 'Avoid electrostatic discharge']
+    id:'multiplexer-exp', name:'Study of Multiplexer (74153)', subject:'Digital Electronics',
+    machine:'Digital Trainer Kit', machineId:'digital-trainer', lab:'Digital Electronics Lab', location:'6508LA',
+    aim:'To study the working of a 4:1 multiplexer using IC 74153 and verify its truth table.',
+    theory:'A multiplexer is a combinational circuit that selects one of several inputs and routes it to a single output, controlled by select lines. For a 4:1 MUX, two select lines (S0, S1) select one of four inputs (I0–I3).',
+    apparatus:['IC 74153','Digital Trainer Kit','LEDs','Resistors 330 Ω','Connecting wires'],
+    circuitDiagram:'IC 74153 powered by 5 V (pin 16 = VCC, pin 8 = GND). Select lines S0, S1 to switches. Inputs I0–I3 to switches. Output Y to LED via 330 Ω resistor.',
+    procedure:[
+      'Insert IC 74153 into the trainer kit.',
+      'Connect VCC (pin 16) to 5 V and GND (pin 8) to ground.',
+      'Connect select lines S0, S1 to logic switches.',
+      'Connect I0–I3 to logic switches.',
+      'Connect output Y (pin 7 for section 1) to an LED through a resistor.',
+      'Enable the section by connecting enable pin E to GND.',
+      'For each combination of S0, S1, verify that the selected input appears at the output.'
+    ],
+    precautions:['Do not insert or remove the IC with power ON.','Observe pin 1 orientation using the notch.','Avoid static discharge by touching the earth before handling the IC.','Double-check connections before powering ON.'],
+    result:'The truth table of the 4:1 multiplexer was verified successfully. The output matched the selected input for every combination of S0 and S1.',
+    viva:['What is the function of a multiplexer?','How many select lines are needed for 8:1 MUX?','What is the difference between a MUX and a DEMUX?','What is the significance of the enable pin?','List two applications of a multiplexer.'],
+    sample:true
   },
   {
-    id: 'dc-power-supply',
-    name: 'DC Power Supply',
-    category: 'Power Source',
-    purpose: 'Provide regulated DC voltage to circuits',
-    lab: 'EDC Lab',
-    location: '6319LA',
-    description: 'A DC power supply converts AC mains voltage into a stable, regulated DC voltage for powering electronic circuits.',
-    workingPrinciple: 'It steps down AC voltage using a transformer, rectifies it using diodes, filters it using capacitors, and regulates it using a voltage regulator IC.',
-    functions: ['Adjustable output voltage', 'Current limiting', 'Short circuit protection', 'Dual / triple output', 'Digital display'],
-    specifications: { OutputVoltage: '0–30 V', OutputCurrent: '0–5 A', Ripple: '<5 mV', Display: 'LED', Protection: 'OVP, OCP' },
-    safety: ['Do not short output terminals', 'Set voltage before connecting', 'Do not exceed current limit']
+    id:'decoder-exp', name:'Study of Decoder (74138)', subject:'Digital Electronics',
+    machine:'Digital Trainer Kit', machineId:'digital-trainer', lab:'Digital Electronics Lab', location:'6508LA',
+    aim:'To study the working of a 3:8 decoder using IC 74138 and verify its truth table.',
+    theory:'A decoder converts n binary inputs into 2^n unique outputs, activating exactly one output at a time. The 74138 has three active-low enable pins and produces active-low outputs.',
+    apparatus:['IC 74138','Digital Trainer Kit','LEDs','Resistors 330 Ω','Connecting wires'],
+    circuitDiagram:'VCC (16) = 5V, GND (8) = 0V. Select inputs A0, A1, A2 to switches. Enable pins E1, E2, E3 — connect E1 and E2 to GND, E3 to +5V (or as required). Outputs Y0–Y7 through LEDs.',
+    procedure:[
+      'Insert IC 74138 into the trainer kit.',
+      'Connect VCC and GND correctly.',
+      'Connect A0, A1, A2 to logic switches.',
+      'Connect all enable pins so the IC is enabled.',
+      'For each 3-bit input, observe which output LED is LOW.',
+      'Record the results and compare with the truth table.'
+    ],
+    precautions:['Do not short enable pins to the wrong logic level.','Ensure correct pin orientation.','Avoid static discharge.','Check the output LEDs with a known input before trusting them.'],
+    result:'The truth table of the 3:8 decoder was verified. For each input combination, exactly one output was active (LOW).',
+    viva:['What is a decoder?','How is a decoder different from an encoder?','Why are the outputs of 74138 active-low?','What is the use of the enable pins?','Give two applications of a decoder.'],
+    sample:true
   },
   {
-    id: 'digital-trainer',
-    name: 'Digital Trainer Kit',
-    category: 'Training Equipment',
-    purpose: 'Learn and implement digital logic circuits',
-    lab: 'Digital Electronics Lab',
-    location: '6508LA',
-    description: 'A digital trainer kit is a self-contained system that provides a platform for building and testing digital circuits without soldering.',
-    workingPrinciple: 'It provides a breadboard area, power supply, clock generator, logic switches, LEDs, and other components for digital circuit experiments.',
-    functions: ['Provide fixed 5V supply', 'Generate clock pulses', 'Provide logic input switches', 'Display output via LEDs', 'Mount ICs and components'],
-    specifications: { Supply: '5V, 12V', Clock: '1 Hz – 1 MHz', Switches: '8 logic switches', LEDs: '10 output LEDs', Breadboard: 'Solderless' },
-    safety: ['Do not short the power supply', 'Insert ICs correctly', 'Avoid static discharge', 'Check wiring before power ON']
+    id:'led-blinking', name:'LED Blinking using 8051', subject:'Microcontrollers',
+    machine:'Microcontroller Kit', machineId:'digital-trainer', lab:'Microcontroller Lab', location:'6319LA',
+    aim:'To write and execute an 8051 assembly program to blink an LED connected to Port 1.',
+    theory:'The 8051 executes instructions from ROM. Writing 1 and then 0 to a port pin alternately drives the LED ON and OFF. A software delay loop produces the visible blink.',
+    apparatus:['8051 microcontroller board','Crystal 11.0592 MHz','LED','Resistor 330 Ω','Power supply 5 V','Programmer / USB cable'],
+    circuitDiagram:'LED anode to +5 V via 330 Ω resistor, cathode to P1.0. Writing 0 to P1.0 turns the LED ON (current sinks into the pin).',
+    procedure:[
+      'Write the 8051 assembly program to toggle P1.0 with a delay loop.',
+      'Assemble the program and load it into the microcontroller.',
+      'Power the circuit and observe the LED.',
+      'Change the delay count and observe the change in blinking rate.',
+      'Record observations in the lab notebook.'
+    ],
+    precautions:['Observe correct polarity of the LED.','Do not exceed the source/sink current rating of the port pins.','Use the correct crystal frequency for the required baud rate.','Discharge static before handling the board.'],
+    result:'The LED blinked at the rate determined by the delay loop. Changing the delay counter changed the blink rate as expected.',
+    viva:['What is the reset vector of the 8051?','Explain the role of the crystal oscillator.','How many I/O ports does 8051 have?','What is the difference between a microcontroller and a microprocessor?','What is a machine cycle in 8051?'],
+    sample:true
   }
 ];
 
-var components = [
-  {
-    id: 'resistor', name: 'Resistor', type: 'Passive', category: 'Passive',
-    purpose: 'Limit current and divide voltage', lab: 'EDC Lab',
-    location: '6319LA',
-    description: 'A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element.',
-    workingPrinciple: 'It opposes the flow of electric current, converting electrical energy into heat.',
-    applications: ['Current limiting', 'Voltage division', 'Biasing', 'Pull-up / pull-down', 'Load'],
-    specifications: { Resistance: '1 Ω – 10 MΩ', Tolerance: '±5%', Power: '0.25 W', TempCoeff: '100 ppm/°C' },
-    pins: '2 terminals (no polarity)'
-  },
-  {
-    id: 'capacitor', name: 'Capacitor', type: 'Passive', category: 'Passive',
-    purpose: 'Store charge and filter signals', lab: 'EDC Lab',
-    location: '6319LA',
-    description: 'A capacitor is a passive two-terminal electrical component that stores electrical energy in an electric field.',
-    workingPrinciple: 'It consists of two conductive plates separated by a dielectric. When voltage is applied, charge accumulates on the plates.',
-    applications: ['Filtering', 'Coupling', 'Decoupling', 'Energy storage', 'Tuning'],
-    specifications: { Capacitance: '1 pF – 1000 µF', Voltage: '6.3 V – 450 V', Tolerance: '±10%', Type: 'Ceramic, Electrolytic' },
-    pins: '2 terminals (polarized for electrolytic)'
-  },
-  {
-    id: 'diode', name: 'Diode', type: 'Active', category: 'Active',
-    purpose: 'Allow current in one direction only', lab: 'EDC Lab',
-    location: '6319LA',
-    description: 'A diode is a two-terminal electronic component that conducts current primarily in one direction.',
-    workingPrinciple: 'It is a p-n junction. When forward biased, it conducts; when reverse biased, it blocks current.',
-    applications: ['Rectification', 'Clipping', 'Clamping', 'Protection', 'Switching'],
-    specifications: { ForwardVoltage: '0.7 V (Si), 0.3 V (Ge)', MaxCurrent: '1 A', ReverseVoltage: '50 V', Type: '1N4007' },
-    pins: 'Anode and Cathode (polarized)'
-  },
-  {
-    id: 'led', name: 'LED', type: 'Active', category: 'Active',
-    purpose: 'Emit light when current flows', lab: 'EDC Lab',
-    location: '6319LA',
-    description: 'A light-emitting diode (LED) is a semiconductor device that emits light when current flows through it.',
-    workingPrinciple: 'Electrons recombine with holes in the semiconductor, releasing energy in the form of photons.',
-    applications: ['Indicators', 'Displays', 'Lighting', 'Optocouplers', 'Remote controls'],
-    specifications: { ForwardVoltage: '1.8–3.3 V', ForwardCurrent: '20 mA', Color: 'Red, Green, Blue', LuminousIntensity: '100 mcd' },
-    pins: 'Anode and Cathode (polarized)'
-  },
-  {
-    id: 'transistor', name: 'Transistor (BJT)', type: 'Active', category: 'Active',
-    purpose: 'Amplify or switch electronic signals', lab: 'EDC Lab',
-    location: '6319LA',
-    description: 'A bipolar junction transistor (BJT) is a three-terminal semiconductor device used for amplification and switching.',
-    workingPrinciple: 'A small current at the base controls a larger current between collector and emitter.',
-    applications: ['Amplification', 'Switching', 'Oscillators', 'Voltage regulation', 'Signal modulation'],
-    specifications: { Type: 'NPN / PNP', MaxCurrent: '100 mA', MaxVoltage: '40 V', Gain: '100–300', Package: 'TO-92' },
-    pins: 'Emitter, Base, Collector'
-  },
-  {
-    id: '74153', name: '74153 Multiplexer', type: 'Digital IC', category: 'Digital IC',
-    purpose: 'Select one of four inputs to output', lab: 'Digital Electronics Lab',
-    location: '6508LA',
-    description: 'A multiplexer is a digital circuit that selects one input from multiple inputs and sends the selected input to the output.',
-    workingPrinciple: 'It uses select lines to choose which input is connected to the output.',
-    applications: ['Data routing', 'Signal selection', 'Function generation', 'Parallel to serial conversion'],
-    specifications: { Inputs: '4 (per section)', Outputs: '1 (per section)', SelectLines: '2', Supply: '5 V', Package: 'DIP-16' },
-    pins: '16 pins — inputs (I0–I3), select (S0, S1), output (Y), enable (E), VCC, GND'
-  },
-  {
-    id: '74138', name: '74138 Decoder', type: 'Digital IC', category: 'Digital IC',
-    purpose: 'Decode 3-bit binary to 8 outputs', lab: 'Digital Electronics Lab',
-    location: '6508LA',
-    description: 'A decoder is a combinational circuit that converts binary information from n input lines to a maximum of 2^n unique output lines.',
-    workingPrinciple: 'It activates one output based on the binary input combination.',
-    applications: ['Memory addressing', 'Demultiplexing', 'Seven segment display', 'Control systems'],
-    specifications: { Inputs: '3', Outputs: '8', Supply: '5 V', Package: 'DIP-16', Enable: 'Active low' },
-    pins: '16 pins — inputs (A0–A2), outputs (Y0–Y7), enable (E1, E2, E3), VCC, GND'
-  },
-  {
-    id: '8051', name: '8051 Microcontroller', type: 'Microcontroller', category: 'Microcontroller',
-    purpose: 'Embedded control and processing', lab: 'Microcontroller Lab',
-    location: '6319LA',
-    description: 'The 8051 is an 8-bit microcontroller with 4KB ROM, 128 bytes RAM, and various peripherals.',
-    workingPrinciple: 'It executes instructions stored in memory to control external devices through its I/O ports.',
-    applications: ['Embedded systems', 'Automation', 'Robotics', 'Instrumentation', 'Control systems'],
-    specifications: { Architecture: '8-bit', ROM: '4 KB', RAM: '128 bytes', Timers: '2', IOPins: '32', Package: 'DIP-40' },
-    pins: '40 pins — Ports 0–3, RXD, TXD, INT0, INT1, T0, T1, ALE, PSEN, EA, XTAL1, XTAL2, RST, VCC, GND'
-  }
+/* Equipment Inventory (sample data — clearly labelled) */
+const equipmentInventory = [
+  { id:'EQ-001', name:'CRO (20 MHz)', machineId:'cro', lab:'Signal and System Lab', location:'6317LA', condition:'Working', status:'Available', lastChecked:'2025-09-12', nextDue:'2026-03-12' },
+  { id:'EQ-002', name:'Function Generator 2 MHz', machineId:'function-generator', lab:'Signal and System Lab', location:'6317LA', condition:'Working', status:'In Use', lastChecked:'2025-08-30', nextDue:'2026-02-28' },
+  { id:'EQ-003', name:'Digital Multimeter', machineId:'digital-multimeter', lab:'EDC Lab', location:'6319LA', condition:'Working', status:'Available', lastChecked:'2025-09-01', nextDue:'2026-03-01' },
+  { id:'EQ-004', name:'Digital Storage Oscilloscope', machineId:'oscilloscope', lab:'VLSI Lab', location:'6412LA', condition:'Working', status:'Available', lastChecked:'2025-07-18', nextDue:'2026-01-18' },
+  { id:'EQ-005', name:'DC Power Supply (0–30 V)', machineId:'dc-power-supply', lab:'EDC Lab', location:'6319LA', condition:'Needs Repair', status:'Not Available', lastChecked:'2025-09-20', nextDue:'2025-10-20' },
+  { id:'EQ-006', name:'Digital Trainer Kit', machineId:'digital-trainer', lab:'Digital Electronics Lab', location:'6508LA', condition:'Working', status:'Available', lastChecked:'2025-09-05', nextDue:'2026-03-05' },
+  { id:'EQ-007', name:'DSP Kit', machineId:'oscilloscope', lab:'DSP Lab', location:'6121LA', condition:'Under Maintenance', status:'Not Available', lastChecked:'2025-08-15', nextDue:'2025-11-15' },
+  { id:'EQ-008', name:'Microcontroller Kit (8051)', machineId:'digital-trainer', lab:'Microcontroller Lab', location:'6319LA', condition:'Working', status:'Available', lastChecked:'2025-09-08', nextDue:'2026-03-08' },
+  { id:'EQ-009', name:'Spectrum Analyzer', machineId:'function-generator', lab:'Signal and System Lab', location:'6317LA', condition:'Working', status:'Available', lastChecked:'2025-06-25', nextDue:'2025-12-25' }
 ];
 
-var labs = [
-  {
-    id: 'edc-lab', name: 'EDC Lab',
-    location: '6319LA',
-    description: 'Basic Electronics and Devices Laboratory for studying electronic components and circuits.',
-    mainMachines: ['DC Power Supply', 'Digital Multimeter', 'Function Generator', 'CRO'],
-    mainComponents: ['Resistor', 'Capacitor', 'Diode', 'Transistor', 'LED']
-  },
-  {
-    id: 'digital-electronics-lab', name: 'Digital Electronics Lab',
-    location: '6508LA',
-    description: 'Laboratory for digital logic design, combinational and sequential circuits.',
-    mainMachines: ['Digital Trainer Kit', 'CRO', 'DC Power Supply'],
-    mainComponents: ['74153 Multiplexer', '74138 Decoder', 'Logic Gates', 'Flip-Flops', 'Counters']
-  },
-  {
-    id: 'signal-system-lab', name: 'Signal and System Lab',
-    location: '6317LA',
-    description: 'Laboratory for analog and digital signal analysis, waveform study and system response experiments.',
-    mainMachines: ['CRO', 'Function Generator', 'Spectrum Analyzer', 'DSO'],
-    mainComponents: ['Transistor', 'IC 555', 'Op-Amp', 'Filter']
-  },
-  {
-    id: 'network-analysis-lab', name: 'Network Analysis Lab',
-    location: '6506LA',
-    description: 'Laboratory for network theorems, filters and transmission lines.',
-    mainMachines: ['CRO', 'Function Generator', 'DC Power Supply', 'Multimeter'],
-    mainComponents: ['Resistor', 'Capacitor', 'Inductor', 'Transformer']
-  },
-  {
-    id: 'vlsi-lab', name: 'VLSI Lab',
-    location: '6412LA',
-    description: 'Laboratory for VLSI design and verification using CAD tools.',
-    mainMachines: ['DSO', 'Workstations', 'FPGA Boards'],
-    mainComponents: ['FPGA', 'ASIC', 'CMOS ICs']
-  },
-  {
-    id: 'dsp-lab', name: 'DSP Lab',
-    location: '6121LA',
-    description: 'Laboratory for digital signal processing experiments.',
-    mainMachines: ['DSO', 'DSP Kits', 'PCs'],
-    mainComponents: ['DSP Processor', 'ADC', 'DAC']
-  },
-  {
-    id: 'microcontroller-lab', name: 'Microcontroller Lab',
-    location: '6319LA',
-    description: 'Laboratory for microcontroller programming and interfacing.',
-    mainMachines: ['PCs', 'Microcontroller Kits', 'CRO'],
-    mainComponents: ['8051', 'Arduino', 'LCD', 'Keypad', 'Sensors']
-  }
+/* Maintenance Tracker (sample data) */
+const maintenanceRecords = [
+  { equipmentId:'EQ-005', name:'DC Power Supply (0–30 V)', history:[
+      { date:'2025-09-20', type:'Fault Report', note:'Output voltage fluctuating; suspected faulty voltage regulator IC.', technician:'Mr. S. Patil' },
+      { date:'2025-03-10', type:'Routine Check', note:'Cleaned terminals, verified calibration.', technician:'Lab Assistant' }
+    ], lastInspection:'2025-09-20', nextInspection:'2025-10-20', fault:'Voltage regulator IC needs replacement.' },
+  { equipmentId:'EQ-007', name:'DSP Kit', history:[
+      { date:'2025-08-15', type:'Under Maintenance', note:'Sent to vendor for firmware reinstallation.', technician:'Vendor Service' },
+      { date:'2025-02-20', type:'Routine Check', note:'Annual cleaning and inspection completed.', technician:'Lab Assistant' }
+    ], lastInspection:'2025-08-15', nextInspection:'2025-11-15', fault:'Firmware corruption — sent to vendor.' },
+  { equipmentId:'EQ-001', name:'CRO (20 MHz)', history:[
+      { date:'2025-09-12', type:'Routine Check', note:'Calibration verified, probes checked.', technician:'Lab Assistant' }
+    ], lastInspection:'2025-09-12', nextInspection:'2026-03-12', fault:'None' },
+  { equipmentId:'EQ-006', name:'Digital Trainer Kit', history:[
+      { date:'2025-09-05', type:'Routine Check', note:'All logic switches and LEDs functioning.', technician:'Lab Assistant' }
+    ], lastInspection:'2025-09-05', nextInspection:'2026-03-05', fault:'None' }
 ];
 
-/* ==================== DOM SHORTCUTS ==================== */
-var $ = function(id){ return document.getElementById(id); };
-var machinesGrid = $('machinesGrid');
-var componentsGrid = $('componentsGrid');
-var labsGrid = $('labsGrid');
-var searchInput = $('searchInput');
-var searchResults = $('searchResults');
-var searchForm = $('searchForm');
-var modal = $('modal');
-var modalBody = $('modalBody');
-var modalClose = $('modalClose');
-var modalOverlay = $('modalOverlay');
-var hamburger = $('hamburger');
-var navLinks = $('navLinks');
-var searchToggle = $('searchToggle');
+/* ==================== HELPERS ==================== */
+const $ = id => document.getElementById(id);
+const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-/* ==================== RENDER FUNCTIONS ==================== */
-function renderMachines(){
-  machinesGrid.innerHTML = machines.map(function(m){
-    return '<article class="card reveal">' +
-      '<span class="card__tag">' + m.category + '</span>' +
-      '<h3 class="card__title">' + m.name + '</h3>' +
-      '<p class="card__subtitle">' + m.purpose + '</p>' +
-      '<div class="card__meta">' +
-        '<span><i data-lucide="building-2"></i> ' + m.lab + '</span>' +
-        '<span><i data-lucide="map-pin"></i> ' + m.location + '</span>' +
-      '</div>' +
-      '<div class="card__actions">' +
-        '<button class="card__btn" onclick="openMachineModal(\'' + m.id + '\')">View Details <i data-lucide="arrow-right"></i></button>' +
-      '</div>' +
-    '</article>';
-  }).join('');
+const conditionBadge = c => {
+  const map = { 'Working':'badge--working', 'Needs Repair':'badge--repair', 'Under Maintenance':'badge--fault' };
+  return `<span class="badge ${map[c] || 'badge--na'}">${c}</span>`;
+};
+const statusBadge = s => {
+  const map = { 'Available':'badge--available', 'In Use':'badge--in-use', 'Not Available':'badge--na' };
+  return `<span class="badge ${map[s] || 'badge--na'}">${s}</span>`;
+};
+
+/* ==================== RENDER: DASHBOARD ==================== */
+function renderDashboard(){
+  const stats = [
+    { icon:'settings', label:'Machines', value: machines.length, trend:'+2 this term' },
+    { icon:'circuit-board', label:'Components', value: components.length, trend:'+4 this term' },
+    { icon:'building-2', label:'Laboratories', value: labs.length, trend:'stable' },
+    { icon:'flask-conical', label:'Experiments', value: experiments.length, trend:'+2 new' },
+    { icon:'package', label:'Equipment Units', value: equipmentInventory.length, trend:'+1 unit' },
+    { icon:'check-circle-2', label:'Working Units', value: equipmentInventory.filter(e => e.condition === 'Working').length, trend:'healthy' },
+    { icon:'wrench', label:'Needs Attention', value: equipmentInventory.filter(e => e.condition !== 'Working').length, trend:'action required' },
+    { icon:'map-pin', label:'Locations Mapped', value: [...new Set(equipmentInventory.map(e => e.location))].length, trend:'all floors' }
+  ];
+  $('dashboardGrid').innerHTML = stats.map(s => `
+    <div class="stat-card reveal">
+      <div class="stat-card__icon"><i data-lucide="${s.icon}"></i></div>
+      <div class="stat-card__value" data-count="${s.value}">0</div>
+      <div class="stat-card__label">${s.label}</div>
+      <div class="stat-card__trend"><i data-lucide="trending-up"></i> ${s.trend}</div>
+    </div>
+  `).join('');
 }
 
+/* ==================== RENDER: MACHINES ==================== */
+function renderMachines(){
+  $('machinesGrid').innerHTML = machines.map(m => `
+    <article class="card reveal" id="machine-${m.id}">
+      <span class="card__tag">${m.category}</span>
+      <h3 class="card__title">${m.name}</h3>
+      <p class="card__subtitle">${m.purpose}</p>
+      <div class="card__meta">
+        <span><i data-lucide="building-2"></i> ${m.lab}</span>
+        <span><i data-lucide="map-pin"></i> ${m.location}</span>
+      </div>
+      <div class="card__actions">
+        <button class="card__btn" onclick="openMachineModal('${m.id}')">View Details <i data-lucide="arrow-right"></i></button>
+        <button class="card__btn" onclick="setQr('machine','${m.id}'); document.getElementById('qr').scrollIntoView({behavior:'smooth'})">QR <i data-lucide="qr-code"></i></button>
+      </div>
+    </article>`).join('');
+}
+
+/* ==================== RENDER: COMPONENTS ==================== */
 function renderComponents(filter){
   filter = filter || 'all';
-  var filtered = filter === 'all' ? components : components.filter(function(c){ return c.category === filter; });
-  componentsGrid.innerHTML = filtered.map(function(c){
-    return '<article class="card reveal">' +
-      '<span class="card__tag">' + c.category + '</span>' +
-      '<h3 class="card__title">' + c.name + '</h3>' +
-      '<p class="card__subtitle">' + c.purpose + '</p>' +
-      '<div class="card__meta">' +
-        '<span><i data-lucide="tag"></i> ' + c.type + '</span>' +
-        '<span><i data-lucide="map-pin"></i> ' + c.location + '</span>' +
-      '</div>' +
-      '<div class="card__actions">' +
-        '<button class="card__btn" onclick="openComponentModal(\'' + c.id + '\')">View Details <i data-lucide="arrow-right"></i></button>' +
-      '</div>' +
-    '</article>';
-  }).join('');
+  const list = filter === 'all' ? components : components.filter(c => c.category === filter);
+  $('componentsGrid').innerHTML = list.map(c => `
+    <article class="card reveal" id="component-${c.id}">
+      <div class="comp-img">${SVG_IMAGES[c.image] || SVG_IMAGES.ic16}</div>
+      <span class="card__tag">${c.category}</span>
+      <h3 class="card__title">${c.name}</h3>
+      <p class="card__subtitle">${c.purpose}</p>
+      <div class="card__meta">
+        <span><i data-lucide="tag"></i> ${c.type}</span>
+        <span><i data-lucide="map-pin"></i> ${c.location}</span>
+      </div>
+      <div class="card__actions">
+        <button class="card__btn" onclick="openComponentModal('${c.id}')">View Details <i data-lucide="arrow-right"></i></button>
+        <button class="card__btn" onclick="setQr('component','${c.id}'); document.getElementById('qr').scrollIntoView({behavior:'smooth'})">QR <i data-lucide="qr-code"></i></button>
+      </div>
+    </article>`).join('');
   if (window.lucide) window.lucide.createIcons();
 }
 
+/* ==================== RENDER: LABS ==================== */
 function renderLabs(){
-  labsGrid.innerHTML = labs.map(function(l){
-    return '<article class="card reveal">' +
-      '<span class="card__tag">Laboratory</span>' +
-      '<h3 class="card__title">' + l.name + '</h3>' +
-      '<div class="lab-location"><i data-lucide="map-pin"></i> <span>Location: <strong>' + l.location + '</strong></span></div>' +
-      '<p class="card__subtitle">' + l.description + '</p>' +
-      '<div class="card__meta">' +
-        '<span><i data-lucide="settings"></i> ' + l.mainMachines.length + ' machines</span>' +
-        '<span><i data-lucide="circuit-board"></i> ' + l.mainComponents.length + ' components</span>' +
-      '</div>' +
-      '<div class="card__actions">' +
-        '<button class="card__btn" onclick="openLabModal(\'' + l.id + '\')">Explore Lab <i data-lucide="arrow-right"></i></button>' +
-      '</div>' +
-    '</article>';
-  }).join('');
+  $('labsGrid').innerHTML = labs.map(l => `
+    <article class="card reveal">
+      <span class="card__tag">Laboratory</span>
+      <h3 class="card__title">${l.name}</h3>
+      <div class="lab-location"><i data-lucide="map-pin"></i> <span>Location: <strong>${l.location}</strong></span></div>
+      <p class="card__subtitle">${l.description}</p>
+      <div class="card__meta">
+        <span><i data-lucide="settings"></i> ${l.mainMachines.length} machines</span>
+        <span><i data-lucide="circuit-board"></i> ${l.mainComponents.length} components</span>
+      </div>
+      <div class="card__actions">
+        <button class="card__btn" onclick="openLabModal('${l.id}')">Explore Lab <i data-lucide="arrow-right"></i></button>
+      </div>
+    </article>`).join('');
+}
+
+/* ==================== RENDER: EXPERIMENTS ==================== */
+function renderExperiments(){
+  $('experimentsGrid').innerHTML = experiments.map(e => `
+    <article class="card reveal">
+      <span class="card__tag">${e.subject}</span>
+      <h3 class="card__title">${e.name}</h3>
+      <p class="card__subtitle">${e.aim.slice(0, 100)}${e.aim.length > 100 ? '…' : ''}</p>
+      <div class="card__meta">
+        <span><i data-lucide="settings"></i> ${e.machine}</span>
+        <span><i data-lucide="map-pin"></i> ${e.location}</span>
+      </div>
+      <div class="card__actions">
+        <button class="card__btn" onclick="openExperimentModal('${e.id}')">Full Guide <i data-lucide="arrow-right"></i></button>
+      </div>
+    </article>`).join('');
+}
+
+/* ==================== RENDER: EQUIPMENT ==================== */
+function renderEquipment(filter){
+  filter = filter || 'all';
+  const list = filter === 'all' ? equipmentInventory : equipmentInventory.filter(e => e.condition === filter);
+  $('equipmentGrid').innerHTML = list.map(e => `
+    <article class="card reveal">
+      <span class="card__tag">${e.id}</span>
+      <h3 class="card__title">${e.name}</h3>
+      <div class="card__meta" style="flex-direction:column;gap:8px;align-items:flex-start">
+        <span><i data-lucide="building-2"></i> ${e.lab}</span>
+        <span><i data-lucide="map-pin"></i> ${e.location}</span>
+        <span>${conditionBadge(e.condition)} ${statusBadge(e.status)}</span>
+      </div>
+      <div class="card__meta" style="margin-top:8px">
+        <span><i data-lucide="calendar"></i> Checked ${e.lastChecked}</span>
+      </div>
+      <div class="card__actions">
+        <button class="card__btn" onclick="openEquipmentModal('${e.id}')">Details <i data-lucide="arrow-right"></i></button>
+      </div>
+    </article>`).join('');
+  if (window.lucide) window.lucide.createIcons();
+}
+
+/* ==================== RENDER: MAINTENANCE ==================== */
+function renderMaintenance(){
+  $('maintenanceGrid').innerHTML = maintenanceRecords.map(r => `
+    <article class="card reveal">
+      <span class="card__tag">${r.equipmentId}</span>
+      <h3 class="card__title">${r.name}</h3>
+      <div class="card__meta" style="flex-direction:column;gap:6px;align-items:flex-start">
+        <span><i data-lucide="calendar-check"></i> Last: <strong>${r.lastInspection}</strong></span>
+        <span><i data-lucide="calendar-clock"></i> Next: <strong>${r.nextInspection}</strong></span>
+      </div>
+      <div style="margin:12px 0;padding:12px;background:rgba(255,255,255,0.04);border-radius:8px;font-size:0.85rem">
+        <strong style="color:var(--cyan-300);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em">Current Fault</strong>
+        <p style="margin-top:4px;color:var(--text-secondary)">${escapeHtml(r.fault)}</p>
+      </div>
+      <div class="card__actions">
+        <button class="card__btn" onclick="openMaintenanceModal('${r.equipmentId}')">History <i data-lucide="arrow-right"></i></button>
+      </div>
+    </article>`).join('');
 }
 
 /* ==================== MODAL FUNCTIONS ==================== */
-function openModal(content){
-  modalBody.innerHTML = content;
-  modal.classList.add('open');
-  modal.setAttribute('aria-hidden','false');
+function openModal(content, narrow){
+  $('modalBody').innerHTML = content;
+  $('modalContent').classList.toggle('modal__content--narrow', !!narrow);
+  $('modal').classList.add('open');
+  $('modal').setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
   if (window.lucide) window.lucide.createIcons();
 }
-
 function closeModal(){
-  modal.classList.remove('open');
-  modal.setAttribute('aria-hidden','true');
+  $('modal').classList.remove('open');
+  $('modal').setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
 }
-
 function specsToHtml(specs){
-  return Object.keys(specs).map(function(k){
-    return '<div class="modal__spec"><strong>' + k + '</strong>' + specs[k] + '</div>';
-  }).join('');
+  return Object.keys(specs).map(k => `<div class="modal__spec"><strong>${k}</strong>${specs[k]}</div>`).join('');
+}
+function listToHtml(arr){
+  return arr.map(x => `<li>${escapeHtml(x)}</li>`).join('');
 }
 
 function openMachineModal(id){
-  var m = machines.find(function(x){ return x.id === id; });
-  if (!m) return;
-  var content =
-    '<h2>' + m.name + '</h2>' +
-    '<p class="modal-subtitle">' + m.category + ' — ' + m.lab + '</p>' +
-    '<div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>' + m.location + ' (' + m.lab + ')</p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="target"></i> Purpose</h4><p>' + m.purpose + '</p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="file-text"></i> Description</h4><p>' + m.description + '</p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="cog"></i> Working Principle</h4><p>' + m.workingPrinciple + '</p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="list"></i> Main Functions</h4><ul>' + m.functions.map(function(f){ return '<li>' + f + '</li>'; }).join('') + '</ul></div>' +
-    '<div class="modal__section"><h4><i data-lucide="bar-chart-3"></i> Specifications</h4><div class="modal__specs">' + specsToHtml(m.specifications) + '</div></div>' +
-    '<div class="modal__section"><h4><i data-lucide="shield-alert"></i> Safety Precautions</h4><ul>' + m.safety.map(function(s){ return '<li>' + s + '</li>'; }).join('') + '</ul></div>';
+  const m = machines.find(x => x.id === id); if (!m) return;
+  const content = `
+    <h2>${m.name}</h2>
+    <p class="modal-subtitle">${m.category} — ${m.lab}</p>
+    <div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>${m.location} (${m.lab})</p></div>
+    <div class="modal__section"><h4><i data-lucide="target"></i> Purpose</h4><p>${m.purpose}</p></div>
+    <div class="modal__section"><h4><i data-lucide="file-text"></i> Description</h4><p>${m.description}</p></div>
+    <div class="modal__section"><h4><i data-lucide="cog"></i> Working Principle</h4><p>${m.workingPrinciple}</p></div>
+    <div class="modal__section"><h4><i data-lucide="list"></i> Main Functions</h4><ul>${listToHtml(m.functions)}</ul></div>
+    <div class="modal__section"><h4><i data-lucide="bar-chart-3"></i> Specifications</h4><div class="modal__specs">${specsToHtml(m.specifications)}</div></div>
+    <div class="modal__section"><h4><i data-lucide="shield-alert"></i> Safety Precautions</h4><ul>${listToHtml(m.safety)}</ul></div>
+    <div class="modal__section"><h4><i data-lucide="file-badge"></i> Datasheet</h4>
+      <a class="ds-link" href="${m.datasheet}" target="_blank" rel="noopener">Open official datasheet <i data-lucide="external-link"></i></a>
+    </div>
+    <div class="modal__actions">
+      <button class="btn btn--outline" onclick="setQr('machine','${m.id}'); closeModal(); document.getElementById('qr').scrollIntoView({behavior:'smooth'})"><i data-lucide="qr-code"></i> Show QR</button>
+      <button class="btn btn--primary" onclick="closeModal()">Close</button>
+    </div>`;
   openModal(content);
 }
 
 function openComponentModal(id){
-  var c = components.find(function(x){ return x.id === id; });
-  if (!c) return;
-  var content =
-    '<h2>' + c.name + '</h2>' +
-    '<p class="modal-subtitle">' + c.type + ' — ' + c.lab + '</p>' +
-    '<div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>' + c.location + ' (' + c.lab + ')</p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="target"></i> Purpose</h4><p>' + c.purpose + '</p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="file-text"></i> Description</h4><p>' + c.description + '</p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="cog"></i> Working Principle</h4><p>' + c.workingPrinciple + '</p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="list"></i> Applications</h4><ul>' + c.applications.map(function(a){ return '<li>' + a + '</li>'; }).join('') + '</ul></div>' +
-    '<div class="modal__section"><h4><i data-lucide="bar-chart-3"></i> Specifications</h4><div class="modal__specs">' + specsToHtml(c.specifications) + '</div></div>' +
-    '<div class="modal__section"><h4><i data-lucide="git-branch"></i> Pin Information</h4><p>' + c.pins + '</p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="file"></i> Datasheet</h4><p><em>Datasheet placeholder — add link to actual PDF.</em></p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="layout"></i> Pin Diagram</h4><div class="modal__placeholder">Pin diagram placeholder — use SVG or image here.</div></div>';
+  const c = components.find(x => x.id === id); if (!c) return;
+  const content = `
+    <h2>${c.name}</h2>
+    <p class="modal-subtitle">${c.type} — ${c.lab}</p>
+    <div style="margin-bottom:20px;padding:16px;background:rgba(255,255,255,0.03);border-radius:12px;border:1px solid var(--border-subtle);display:flex;justify-content:center">
+      <div style="width:220px">${SVG_IMAGES[c.image] || SVG_IMAGES.ic16}</div>
+    </div>
+    <div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>${c.location} (${c.lab})</p></div>
+    <div class="modal__section"><h4><i data-lucide="target"></i> Purpose</h4><p>${c.purpose}</p></div>
+    <div class="modal__section"><h4><i data-lucide="file-text"></i> Description</h4><p>${c.description}</p></div>
+    <div class="modal__section"><h4><i data-lucide="cog"></i> Working Principle</h4><p>${c.workingPrinciple}</p></div>
+    <div class="modal__section"><h4><i data-lucide="list"></i> Applications</h4><ul>${listToHtml(c.applications)}</ul></div>
+    <div class="modal__section"><h4><i data-lucide="bar-chart-3"></i> Specifications</h4><div class="modal__specs">${specsToHtml(c.specifications)}</div></div>
+    <div class="modal__section"><h4><i data-lucide="git-branch"></i> Pin Information</h4><p>${c.pins}</p></div>
+    <div class="modal__section"><h4><i data-lucide="layout"></i> Pin Diagram</h4><div class="modal__placeholder">${c.pinDiagram}</div></div>
+    <div class="modal__section"><h4><i data-lucide="file-badge"></i> Datasheet</h4>
+      <a class="ds-link" href="${c.datasheet}" target="_blank" rel="noopener">Open official datasheet <i data-lucide="external-link"></i></a>
+    </div>
+    <div class="modal__actions">
+      <button class="btn btn--outline" onclick="setQr('component','${c.id}'); closeModal(); document.getElementById('qr').scrollIntoView({behavior:'smooth'})"><i data-lucide="qr-code"></i> Show QR</button>
+      <button class="btn btn--primary" onclick="closeModal()">Close</button>
+    </div>`;
   openModal(content);
 }
 
 function openLabModal(id){
-  var l = labs.find(function(x){ return x.id === id; });
-  if (!l) return;
-  var content =
-    '<h2>' + l.name + '</h2>' +
-    '<p class="modal-subtitle">Laboratory</p>' +
-    '<div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>' + l.location + '</p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="info"></i> Description</h4><p>' + l.description + '</p></div>' +
-    '<div class="modal__section"><h4><i data-lucide="settings"></i> Main Machines</h4><ul>' + l.mainMachines.map(function(m){ return '<li>' + m + '</li>'; }).join('') + '</ul></div>' +
-    '<div class="modal__section"><h4><i data-lucide="circuit-board"></i> Main Components</h4><ul>' + l.mainComponents.map(function(c){ return '<li>' + c + '</li>'; }).join('') + '</ul></div>';
+  const l = labs.find(x => x.id === id); if (!l) return;
+  const content = `
+    <h2>${l.name}</h2>
+    <p class="modal-subtitle">Laboratory</p>
+    <div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>${l.location}</p></div>
+    <div class="modal__section"><h4><i data-lucide="info"></i> Description</h4><p>${l.description}</p></div>
+    <div class="modal__section"><h4><i data-lucide="settings"></i> Main Machines</h4><ul>${listToHtml(l.mainMachines)}</ul></div>
+    <div class="modal__section"><h4><i data-lucide="circuit-board"></i> Main Components</h4><ul>${listToHtml(l.mainComponents)}</ul></div>`;
+  openModal(content);
+}
+
+function openExperimentModal(id){
+  const e = experiments.find(x => x.id === id); if (!e) return;
+  const content = `
+    <h2>${e.name}</h2>
+    <p class="modal-subtitle">${e.subject} — ${e.lab} — ${e.location}</p>
+    ${e.sample ? '<span class="badge badge--sample" style="margin-bottom:14px">Sample data</span>' : ''}
+    <div class="modal__section"><h4><i data-lucide="target"></i> Aim</h4><p>${e.aim}</p></div>
+    <div class="modal__section"><h4><i data-lucide="book-open"></i> Theory</h4><p>${e.theory}</p></div>
+    <div class="modal__section"><h4><i data-lucide="wrench"></i> Required Apparatus</h4><ul>${listToHtml(e.apparatus)}</ul></div>
+    <div class="modal__section"><h4><i data-lucide="git-branch"></i> Circuit Diagram</h4><div class="modal__placeholder">${e.circuitDiagram}</div></div>
+    <div class="modal__section"><h4><i data-lucide="list-ordered"></i> Procedure</h4><ol>${e.procedure.map(p => `<li>${escapeHtml(p)}</li>`).join('')}</ol></div>
+    <div class="modal__section"><h4><i data-lucide="shield-alert"></i> Precautions</h4><ul>${listToHtml(e.precautions)}</ul></div>
+    <div class="modal__section"><h4><i data-lucide="check-circle"></i> Result</h4><p>${e.result}</p></div>
+    <div class="modal__section"><h4><i data-lucide="help-circle"></i> Viva Questions</h4><ul>${listToHtml(e.viva)}</ul></div>`;
+  openModal(content);
+}
+
+function openEquipmentModal(id){
+  const e = equipmentInventory.find(x => x.id === id); if (!e) return;
+  const content = `
+    <h2>${e.name}</h2>
+    <p class="modal-subtitle">Equipment ID: ${e.id}</p>
+    <div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>${e.lab} — ${e.location}</p></div>
+    <div class="modal__section"><h4><i data-lucide="activity"></i> Condition & Status</h4><p>${conditionBadge(e.condition)} &nbsp; ${statusBadge(e.status)}</p></div>
+    <div class="modal__section"><h4><i data-lucide="calendar-check"></i> Last Checked</h4><p>${e.lastChecked}</p></div>
+    <div class="modal__section"><h4><i data-lucide="calendar-clock"></i> Next Inspection Due</h4><p>${e.nextDue}</p></div>`;
+  openModal(content);
+}
+
+function openMaintenanceModal(equipmentId){
+  const r = maintenanceRecords.find(x => x.equipmentId === equipmentId); if (!r) return;
+  const historyHtml = r.history.map(h => `
+    <div style="padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:8px;border-left:2px solid var(--cyan-400)">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:0.8rem;color:var(--text-muted)">
+        <span>${h.date}</span><span style="color:var(--cyan-300);font-weight:600">${h.type}</span>
+      </div>
+      <p style="font-size:0.88rem;color:var(--text-secondary);margin-top:6px">${escapeHtml(h.note)}</p>
+      <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px">Technician: ${escapeHtml(h.technician)}</p>
+    </div>`).join('');
+  const content = `
+    <h2>${r.name}</h2>
+    <p class="modal-subtitle">Maintenance History — ${r.equipmentId}</p>
+    <div class="modal__section"><h4><i data-lucide="calendar"></i> Last Inspection</h4><p>${r.lastInspection}</p></div>
+    <div class="modal__section"><h4><i data-lucide="calendar-clock"></i> Next Inspection</h4><p>${r.nextInspection}</p></div>
+    <div class="modal__section"><h4><i data-lucide="alert-triangle"></i> Current Fault</h4><p>${escapeHtml(r.fault)}</p></div>
+    <div class="modal__section"><h4><i data-lucide="history"></i> History</h4>${historyHtml}</div>`;
   openModal(content);
 }
 
 /* ==================== SEARCH ==================== */
-function performSearch(query){
-  if (!query || !query.trim()){
-    searchResults.hidden = true;
-    searchResults.innerHTML = '';
+function performSearch(){
+  const q = $('searchInput').value.toLowerCase().trim();
+  const cat = $('searchCategory').value;
+  const loc = $('searchLocation').value;
+  if (!q && cat === 'all' && loc === 'all'){ $('searchResults').hidden = true; $('searchResults').innerHTML = ''; return; }
+
+  const matches = (obj, fields) => fields.some(f => String(obj[f] || '').toLowerCase().includes(q));
+  const locMatch = obj => loc === 'all' || (obj.location || '').toLowerCase().includes(loc.toLowerCase());
+
+  const mM = (cat === 'all' || cat === 'machine') ? machines.filter(m => (!q || matches(m, ['name','purpose','category','lab','location'])) && locMatch(m)) : [];
+  const mC = (cat === 'all' || cat === 'component') ? components.filter(c => (!q || matches(c, ['name','purpose','type','category','lab','location'])) && locMatch(c)) : [];
+  const mL = (cat === 'all' || cat === 'lab') ? labs.filter(l => (!q || matches(l, ['name','description','location'])) && locMatch(l)) : [];
+  const mE = (cat === 'all' || cat === 'experiment') ? experiments.filter(e => (!q || matches(e, ['name','subject','machine','lab','location'])) && locMatch(e)) : [];
+  const mQ = (cat === 'all' || cat === 'equipment') ? equipmentInventory.filter(e => (!q || matches(e, ['id','name','lab','location','condition','status'])) && locMatch(e)) : [];
+
+  const total = mM.length + mC.length + mL.length + mE.length + mQ.length;
+  if (total === 0){ $('searchResults').innerHTML = `<div class="no-results">No results found.</div>`; $('searchResults').hidden = false; return; }
+
+  let html = '';
+  if (mM.length) html += `<div class="search-results__group"><h4>Machines (${mM.length})</h4>${mM.map(m => `<div class="search-result-item" onclick="openMachineModal('${m.id}'); document.getElementById('searchResults').hidden=true"><span>${m.name}</span><span>${m.location}</span></div>`).join('')}</div>`;
+  if (mC.length) html += `<div class="search-results__group"><h4>Components (${mC.length})</h4>${mC.map(c => `<div class="search-result-item" onclick="openComponentModal('${c.id}'); document.getElementById('searchResults').hidden=true"><span>${c.name}</span><span>${c.location}</span></div>`).join('')}</div>`;
+  if (mL.length) html += `<div class="search-results__group"><h4>Laboratories (${mL.length})</h4>${mL.map(l => `<div class="search-result-item" onclick="openLabModal('${l.id}'); document.getElementById('searchResults').hidden=true"><span>${l.name}</span><span>${l.location}</span></div>`).join('')}</div>`;
+  if (mE.length) html += `<div class="search-results__group"><h4>Experiments (${mE.length})</h4>${mE.map(e => `<div class="search-result-item" onclick="openExperimentModal('${e.id}'); document.getElementById('searchResults').hidden=true"><span>${e.name}</span><span>${e.location}</span></div>`).join('')}</div>`;
+  if (mQ.length) html += `<div class="search-results__group"><h4>Equipment (${mQ.length})</h4>${mQ.map(e => `<div class="search-result-item" onclick="openEquipmentModal('${e.id}'); document.getElementById('searchResults').hidden=true"><span>${e.name} (${e.id})</span><span>${e.location}</span></div>`).join('')}</div>`;
+
+  $('searchResults').innerHTML = html;
+  $('searchResults').hidden = false;
+}
+
+/* ==================== QR ==================== */
+function buildUrl(anchor){
+  const base = location.href.split('#')[0];
+  return base + '#' + anchor;
+}
+
+function setQr(type, id){
+  $('qrTypeSelect').value = type;
+  populateQrItems();
+  $('qrItemSelect').value = id;
+  generateQr();
+}
+
+function populateQrItems(){
+  const type = $('qrTypeSelect').value;
+  const list = type === 'machine' ? machines : components;
+  $('qrItemSelect').innerHTML = list.map(i => `<option value="${i.id}">${i.name}</option>`).join('');
+}
+
+function generateQr(){
+  const type = $('qrTypeSelect').value;
+  const id = $('qrItemSelect').value;
+  const item = type === 'machine' ? machines.find(m => m.id === id) : components.find(c => c.id === id);
+  if (!item) return;
+
+  const anchor = (type === 'machine' ? 'machine-' : 'component-') + id;
+  const url = buildUrl(anchor);
+
+  const wrap = $('qrCanvasWrap');
+  wrap.innerHTML = '';
+
+  if (typeof qrcode !== 'function'){
+    wrap.innerHTML = '<div style="color:#0a1228;font-size:0.8rem;padding:20px;text-align:center">QR library loading…</div>';
     return;
   }
-  var q = query.toLowerCase().trim();
 
-  var matchedMachines = machines.filter(function(m){
-    return m.name.toLowerCase().indexOf(q) !== -1 ||
-           m.purpose.toLowerCase().indexOf(q) !== -1 ||
-           m.category.toLowerCase().indexOf(q) !== -1 ||
-           m.lab.toLowerCase().indexOf(q) !== -1 ||
-           m.location.toLowerCase().indexOf(q) !== -1;
-  });
-
-  var matchedComponents = components.filter(function(c){
-    return c.name.toLowerCase().indexOf(q) !== -1 ||
-           c.purpose.toLowerCase().indexOf(q) !== -1 ||
-           c.type.toLowerCase().indexOf(q) !== -1 ||
-           c.category.toLowerCase().indexOf(q) !== -1 ||
-           c.lab.toLowerCase().indexOf(q) !== -1 ||
-           c.location.toLowerCase().indexOf(q) !== -1;
-  });
-
-  var matchedLabs = labs.filter(function(l){
-    return l.name.toLowerCase().indexOf(q) !== -1 ||
-           l.description.toLowerCase().indexOf(q) !== -1 ||
-           l.location.toLowerCase().indexOf(q) !== -1;
-  });
-
-  var total = matchedMachines.length + matchedComponents.length + matchedLabs.length;
-
-  if (total === 0){
-    searchResults.innerHTML = '<div class="no-results">No results found for "<strong>' + query + '</strong>"</div>';
-    searchResults.hidden = false;
-    return;
+  try {
+    const qr = qrcode(0, 'M');
+    qr.addData(url);
+    qr.make();
+    wrap.innerHTML = qr.createImgTag(6, 0);
+    const img = wrap.querySelector('img');
+    img.style.width = '200px';
+    img.style.height = '200px';
+    img.style.borderRadius = '8px';
+    img.alt = 'QR code for ' + item.name;
+  } catch(err){
+    wrap.innerHTML = '<div style="color:#0a1228;padding:20px">QR error</div>';
   }
 
-  var html = '';
+  $('qrTargetLabel').textContent = item.name + ' — ' + item.location;
+}
 
-  if (matchedMachines.length){
-    html += '<div class="search-results__group"><h4>Machines (' + matchedMachines.length + ')</h4>' +
-      matchedMachines.map(function(m){
-        return '<div class="search-result-item" onclick="openMachineModal(\'' + m.id + '\'); document.getElementById(\'searchResults\').hidden=true;">' +
-          '<span>' + m.name + '</span><span>' + m.location + '</span></div>';
-      }).join('') + '</div>';
+/* ==================== AUTH (localStorage demo) ==================== */
+const AUTH_KEY = 'entc_explorer_users';
+const SESSION_KEY = 'entc_explorer_session';
+
+function getUsers(){ try { return JSON.parse(localStorage.getItem(AUTH_KEY) || '{}'); } catch(e){ return {}; } }
+function saveUsers(u){ localStorage.setItem(AUTH_KEY, JSON.stringify(u)); }
+function getSession(){ try { return JSON.parse(localStorage.getItem(SESSION_KEY) || 'null'); } catch(e){ return null; } }
+function saveSession(s){ if (s) localStorage.setItem(SESSION_KEY, JSON.stringify(s)); else localStorage.removeItem(SESSION_KEY); }
+
+function refreshAuthUi(){
+  const s = getSession();
+  const btn = $('loginBtn');
+  if (s){
+    btn.innerHTML = `<span class="user-pill"><span class="user-pill__avatar">${(s.name||'U')[0].toUpperCase()}</span>${s.name.split(' ')[0]}</span>`;
+  } else {
+    btn.innerHTML = `<i data-lucide="user"></i> <span>Login</span>`;
   }
+  if (window.lucide) window.lucide.createIcons();
+}
 
-  if (matchedComponents.length){
-    html += '<div class="search-results__group"><h4>Components (' + matchedComponents.length + ')</h4>' +
-      matchedComponents.map(function(c){
-        return '<div class="search-result-item" onclick="openComponentModal(\'' + c.id + '\'); document.getElementById(\'searchResults\').hidden=true;">' +
-          '<span>' + c.name + '</span><span>' + c.location + '</span></div>';
-      }).join('') + '</div>';
+function openLoginModal(){
+  const s = getSession();
+  $('loginView').style.display = s ? 'none' : 'block';
+  $('userView').style.display = s ? 'block' : 'none';
+  if (s){
+    $('userName').textContent = s.name;
+    $('userEmail').textContent = s.email;
+    $('userAvatar').textContent = s.name[0].toUpperCase();
   }
-
-  if (matchedLabs.length){
-    html += '<div class="search-results__group"><h4>Laboratories (' + matchedLabs.length + ')</h4>' +
-      matchedLabs.map(function(l){
-        return '<div class="search-result-item" onclick="openLabModal(\'' + l.id + '\'); document.getElementById(\'searchResults\').hidden=true;">' +
-          '<span>' + l.name + '</span><span>' + l.location + '</span></div>';
-      }).join('') + '</div>';
-  }
-
-  searchResults.innerHTML = html;
-  searchResults.hidden = false;
+  $('loginModal').classList.add('open');
+  $('loginModal').setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  if (window.lucide) window.lucide.createIcons();
+}
+function closeLoginModal(){
+  $('loginModal').classList.remove('open');
+  $('loginModal').setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
 }
 
 /* ==================== INIT ==================== */
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', () => {
+  // Loader hide
+  setTimeout(() => $('loader').classList.add('hidden'), 700);
+
+  // Render sections
+  renderDashboard();
   renderMachines();
   renderComponents();
   renderLabs();
+  renderExperiments();
+  renderEquipment();
+  renderMaintenance();
 
   if (window.lucide) window.lucide.createIcons();
 
-  // Reveal on scroll
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
+  // Reveal animation
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+  // Number counter animation
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting){
+        const el = en.target;
+        const target = parseInt(el.dataset.count || '0', 10);
+        let current = 0;
+        const step = Math.max(1, Math.ceil(target / 30));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target){ current = target; clearInterval(timer); }
+          el.textContent = current;
+        }, 30);
+        counterObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
 
   // Search
-  searchInput.addEventListener('input', function(e){ performSearch(e.target.value); });
-  searchForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    performSearch(searchInput.value);
-  });
+  $('searchInput').addEventListener('input', performSearch);
+  $('searchCategory').addEventListener('change', performSearch);
+  $('searchLocation').addEventListener('change', performSearch);
+  $('searchForm').addEventListener('submit', e => { e.preventDefault(); performSearch(); });
 
   // Popular searches
-  document.querySelectorAll('[data-search]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      searchInput.value = btn.getAttribute('data-search');
-      performSearch(searchInput.value);
-      searchInput.focus();
+  document.querySelectorAll('[data-search]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $('searchInput').value = btn.dataset.search;
+      performSearch();
     });
   });
 
-  // Component filters
-  document.querySelectorAll('.filter-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  // Component filter
+  document.querySelectorAll('#componentFilters .filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#componentFilters .filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      renderComponents(btn.getAttribute('data-filter'));
-      document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+      renderComponents(btn.dataset.filter);
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    });
+  });
+
+  // Equipment filter
+  document.querySelectorAll('#equipmentFilters .filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#equipmentFilters .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderEquipment(btn.dataset.filter);
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     });
   });
 
   // Modal
-  modalClose.addEventListener('click', closeModal);
-  modalOverlay.addEventListener('click', closeModal);
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  $('modalClose').addEventListener('click', closeModal);
+  $('modalOverlay').addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape'){
+      if ($('modal').classList.contains('open')) closeModal();
+      if ($('loginModal').classList.contains('open')) closeLoginModal();
+    }
   });
 
-  // Mobile menu
-  hamburger.addEventListener('click', function(){
-    navLinks.classList.toggle('open');
-    hamburger.classList.toggle('open');
-  });
+  // Login modal
+  $('loginBtn').addEventListener('click', openLoginModal);
+  $('loginClose').addEventListener('click', closeLoginModal);
+  $('loginOverlay').addEventListener('click', closeLoginModal);
 
-  document.querySelectorAll('.nav-link').forEach(function(link){
-    link.addEventListener('click', function(){
-      navLinks.classList.remove('open');
-      hamburger.classList.remove('open');
+  // Auth form tabs
+  document.querySelectorAll('.form-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const isSignup = tab.dataset.tab === 'signup';
+      $('nameField').style.display = isSignup ? 'block' : 'none';
+      $('authSubmit').textContent = isSignup ? 'Create Account' : 'Sign In';
     });
   });
 
-  // Search toggle in navbar
-  searchToggle.addEventListener('click', function(){
-    var searchSection = document.querySelector('.search-section');
-    if (searchSection){
-      searchSection.scrollIntoView({ behavior: 'smooth' });
-      setTimeout(function(){ searchInput.focus(); }, 600);
+  // Auth form submit
+  $('authForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const mode = document.querySelector('.form-tab.active').dataset.tab;
+    const email = $('authEmail').value.trim().toLowerCase();
+    const password = $('authPassword').value;
+    const name = $('authName').value.trim();
+    const users = getUsers();
+
+    if (mode === 'signup'){
+      if (!name){ alert('Please enter your full name.'); return; }
+      if (users[email]){ alert('An account with this email already exists.'); return; }
+      users[email] = { name, email, password };
+      saveUsers(users);
+      saveSession({ name, email });
+      alert('Account created successfully!');
+    } else {
+      if (!users[email] || users[email].password !== password){
+        alert('Invalid email or password.');
+        return;
+      }
+      saveSession({ name: users[email].name, email });
     }
+
+    refreshAuthUi();
+    closeLoginModal();
+    $('authForm').reset();
+  });
+
+  // Logout
+  $('logoutBtn').addEventListener('click', () => {
+    saveSession(null);
+    refreshAuthUi();
+    closeLoginModal();
+  });
+
+  refreshAuthUi();
+
+  // QR controls
+  populateQrItems();
+  $('qrTypeSelect').addEventListener('change', () => { populateQrItems(); generateQr(); });
+  $('qrItemSelect').addEventListener('change', generateQr);
+  // wait for QR library
+  if (typeof qrcode === 'function') generateQr();
+  else {
+    let tries = 0;
+    const t = setInterval(() => { if (typeof qrcode === 'function' || tries > 40){ clearInterval(t); generateQr(); } tries++; }, 100);
+  }
+
+  // Navbar mobile menu
+  $('hamburger').addEventListener('click', () => {
+    $('navLinks').classList.toggle('open');
+    $('hamburger').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      $('navLinks').classList.remove('open');
+      $('hamburger').classList.remove('open');
+    });
+  });
+
+  // Search toggle → scroll to search
+  $('searchToggle').addEventListener('click', () => {
+    document.getElementById('search-section').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => $('searchInput').focus(), 500);
   });
 
   // Active nav link on scroll
-  var sections = document.querySelectorAll('section[id]');
-  window.addEventListener('scroll', function(){
-    var current = '';
-    sections.forEach(function(section){
-      var sectionTop = section.offsetTop - 120;
-      if (window.scrollY >= sectionTop) current = section.getAttribute('id');
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 130) current = sec.id;
     });
-    document.querySelectorAll('.nav-link').forEach(function(link){
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    document.querySelectorAll('.nav-link').forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
     });
   });
 
-  // Hide search results when clicking outside
-  document.addEventListener('click', function(e){
-    if (!searchResults.hidden){
-      var box = document.querySelector('.search-box');
-      if (box && !box.contains(e.target)) searchResults.hidden = true;
+  // Auto-open modal from hash on page load (so QR scans work)
+  function handleHash(){
+    const h = location.hash.replace('#','');
+    if (!h) return;
+    if (h.startsWith('machine-')) openMachineModal(h.replace('machine-',''));
+    else if (h.startsWith('component-')) openComponentModal(h.replace('component-',''));
+  }
+  if (location.hash) setTimeout(handleHash, 900);
+  window.addEventListener('hashchange', handleHash);
+
+  // Close search results on outside click
+  document.addEventListener('click', e => {
+    if (!$('searchResults').hidden){
+      const box = document.querySelector('.search-box');
+      if (box && !box.contains(e.target)) $('searchResults').hidden = true;
     }
   });
+
+  // Set first QR item
+  setTimeout(() => { populateQrItems(); generateQr(); }, 400);
 });
 
-/* Expose functions globally for inline onclick handlers */
+// Expose for inline onclick
 window.openMachineModal = openMachineModal;
 window.openComponentModal = openComponentModal;
 window.openLabModal = openLabModal;
+window.openExperimentModal = openExperimentModal;
+window.openEquipmentModal = openEquipmentModal;
+window.openMaintenanceModal = openMaintenanceModal;
+window.setQr = setQr;
+window.closeModal = closeModal;
 </script>
 </body>
 </html>
-
