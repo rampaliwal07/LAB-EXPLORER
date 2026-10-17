@@ -13,42 +13,19 @@
 <style>
 /* ==================== LIGHT THEME VARIABLES ==================== */
 :root{
-  --bg-primary:#f8fafc;
-  --bg-secondary:#ffffff;
-  --bg-tertiary:#f1f5f9;
-  --bg-accent:#eff6ff;
-  --text-primary:#0f172a;
-  --text-secondary:#475569;
-  --text-muted:#94a3b8;
-  --border-subtle:#e2e8f0;
-  --border-medium:#cbd5e1;
-  --card-bg:#ffffff;
-  --primary:#1e40af;
-  --primary-light:#3b82f6;
-  --primary-soft:#dbeafe;
-  --accent:#0891b2;
-  --accent-light:#06b6d4;
-  --accent-soft:#cffafe;
-  --purple:#7c3aed;
-  --purple-soft:#ede9fe;
-  --green-500:#16a34a;
-  --green-soft:#dcfce7;
-  --amber-500:#d97706;
-  --amber-soft:#fef3c7;
-  --red-500:#dc2626;
-  --red-soft:#fee2e2;
-  --font-body:'Inter',system-ui,-apple-system,sans-serif;
-  --font-heading:'Space Grotesk',system-ui,sans-serif;
-  --radius-sm:8px;
-  --radius-md:12px;
-  --radius-lg:16px;
-  --radius-xl:22px;
-  --shadow-sm:0 1px 3px rgba(15,23,42,0.06);
-  --shadow-md:0 4px 12px rgba(15,23,42,0.08);
-  --shadow-lg:0 12px 28px rgba(15,23,42,0.1);
-  --shadow-glow:0 8px 30px rgba(8,145,178,0.18);
-  --transition:0.25s cubic-bezier(0.4,0,0.2,1);
-  --header-height:118px;
+  --bg-primary:#f8fafc;--bg-secondary:#ffffff;--bg-tertiary:#f1f5f9;--bg-accent:#eff6ff;
+  --text-primary:#0f172a;--text-secondary:#475569;--text-muted:#94a3b8;
+  --border-subtle:#e2e8f0;--border-medium:#cbd5e1;--card-bg:#ffffff;
+  --primary:#1e40af;--primary-light:#3b82f6;--primary-soft:#dbeafe;
+  --accent:#0891b2;--accent-light:#06b6d4;--accent-soft:#cffafe;
+  --purple:#7c3aed;--purple-soft:#ede9fe;
+  --green-500:#16a34a;--green-soft:#dcfce7;
+  --amber-500:#d97706;--amber-soft:#fef3c7;
+  --red-500:#dc2626;--red-soft:#fee2e2;
+  --font-body:'Inter',system-ui,-apple-system,sans-serif;--font-heading:'Space Grotesk',system-ui,sans-serif;
+  --radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-xl:22px;
+  --shadow-sm:0 1px 3px rgba(15,23,42,0.06);--shadow-md:0 4px 12px rgba(15,23,42,0.08);--shadow-lg:0 12px 28px rgba(15,23,42,0.1);
+  --shadow-glow:0 8px 30px rgba(8,145,178,0.18);--transition:0.25s cubic-bezier(0.4,0,0.2,1);--header-height:118px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:var(--header-height)}
@@ -60,7 +37,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 ul{list-style:none}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--bg-tertiary);padding:1px 6px;border-radius:4px;font-size:0.88em;color:var(--primary)}
 
-/* ==================== UTILITIES ==================== */
 .container{width:100%;max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
 .section{padding:80px 0;position:relative;z-index:1}
 .section--alt{background:var(--bg-secondary)}
@@ -85,7 +61,6 @@ ul{list-style:none}
 .chip{display:inline-flex;align-items:center;padding:5px 13px;border-radius:100px;font-size:0.76rem;font-weight:500;background:#fff;color:var(--text-secondary);border:1px solid var(--border-subtle);transition:var(--transition)}
 .chip:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-1px)}
 
-/* ==================== TOP HEADER (COLLEGE BAR + NAVBAR) ==================== */
 .top-header{position:fixed;top:0;left:0;right:0;z-index:1000;box-shadow:0 2px 12px rgba(15,23,42,0.06)}
 .college-bar{background:linear-gradient(90deg,#0f172a 0%,#1e3a8a 50%,#0891b2 100%);color:#fff;padding:10px 0}
 .college-bar__inner{display:flex;align-items:center;gap:14px}
@@ -117,7 +92,6 @@ ul{list-style:none}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
-/* ==================== HERO ==================== */
 .hero{position:relative;overflow:hidden;padding-top:var(--header-height);background:linear-gradient(180deg,#eff6ff 0%,#f8fafc 100%)}
 .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(30,64,175,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(30,64,175,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,black 30%,transparent 90%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,black 30%,transparent 90%);pointer-events:none}
 .hero::after{content:'';position:absolute;top:-10%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(8,145,178,0.12) 0%,transparent 60%);pointer-events:none}
@@ -137,7 +111,6 @@ ul{list-style:none}
 .float-b{animation:float 6s ease-in-out infinite 3s}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
-/* ==================== DASHBOARD ==================== */
 .dashboard-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .stat-card{position:relative;background:#fff;border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:22px;transition:var(--transition);overflow:hidden;box-shadow:var(--shadow-sm)}
 .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));opacity:0.85}
@@ -149,7 +122,6 @@ ul{list-style:none}
 .stat-card__trend{font-size:0.74rem;color:var(--green-500);margin-top:6px;display:flex;align-items:center;gap:4px;font-weight:500}
 .stat-card__trend i{width:13px;height:13px}
 
-/* ==================== SEARCH ==================== */
 .search-box{max-width:820px;margin:0 auto;background:#fff;border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:36px 30px;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
 .search-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent))}
 .search-box__title{font-family:var(--font-heading);font-size:1.55rem;font-weight:700;color:var(--text-primary);margin-bottom:6px;text-align:center}
@@ -174,7 +146,6 @@ ul{list-style:none}
 .search-result-item span:last-child{font-size:0.75rem;color:var(--text-muted);white-space:nowrap}
 .no-results{padding:26px;text-align:center;color:var(--text-muted);font-size:0.88rem}
 
-/* ==================== CARDS ==================== */
 .card{background:#fff;border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:22px;transition:var(--transition);display:flex;flex-direction:column;height:100%;position:relative;overflow:hidden;box-shadow:var(--shadow-sm)}
 .card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));opacity:0;transition:var(--transition)}
 .card:hover{transform:translateY(-4px);border-color:var(--primary-light);box-shadow:var(--shadow-lg)}
@@ -193,7 +164,6 @@ ul{list-style:none}
 .comp-img{width:100%;height:110px;background:linear-gradient(135deg,var(--bg-accent),#fff);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--border-subtle);overflow:hidden}
 .comp-img svg{width:100%;height:100%;max-width:170px}
 
-/* ==================== BADGES ==================== */
 .badge{display:inline-flex;align-items:center;gap:4px;font-size:0.66rem;font-weight:700;padding:3px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:0.04em;white-space:nowrap}
 .badge--working{background:var(--green-soft);color:var(--green-500)}
 .badge--repair{background:var(--amber-soft);color:var(--amber-500)}
@@ -203,18 +173,15 @@ ul{list-style:none}
 .badge--na{background:var(--bg-tertiary);color:var(--text-muted)}
 .badge--sample{background:var(--purple-soft);color:var(--purple)}
 
-/* ==================== FILTER BAR ==================== */
 .filter-bar{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:30px}
 .filter-btn{padding:8px 18px;border-radius:100px;font-size:0.82rem;font-weight:500;color:var(--text-secondary);background:#fff;border:1px solid var(--border-medium);transition:var(--transition)}
 .filter-btn:hover{background:var(--primary-soft);color:var(--primary);border-color:var(--primary-light)}
 .filter-btn.active{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(30,64,175,0.3)}
 
-/* ==================== LAB location bar ==================== */
 .lab-location{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--accent-soft);border:1px solid #a5f3fc;border-radius:var(--radius-sm);font-size:0.78rem;color:var(--accent);margin-bottom:12px;font-weight:600}
 .lab-location i{width:14px;height:14px;flex-shrink:0}
 .lab-location span strong{color:var(--text-primary);font-weight:700}
 
-/* ==================== QR SECTION ==================== */
 .qr-content{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;background:#fff;border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:40px 36px;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
 .qr-content::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent),var(--purple))}
 .qr-text p{color:var(--text-secondary);margin-top:12px;font-size:0.95rem;line-height:1.7}
@@ -227,7 +194,6 @@ ul{list-style:none}
 .qr-display__label{font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;font-weight:700}
 .qr-display__target{font-size:0.88rem;color:var(--primary);font-weight:600;text-align:center}
 
-/* ==================== MODAL ==================== */
 .modal{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}
 .modal.open{display:flex}
 .modal__overlay{position:absolute;inset:0;background:rgba(15,23,42,0.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
@@ -259,7 +225,6 @@ ul{list-style:none}
 .ds-link:hover{background:var(--accent);color:#fff;gap:10px}
 .ds-link i{width:14px;height:14px}
 
-/* ==================== FORMS / AUTH ==================== */
 .form-field{margin-bottom:14px}
 .form-field label{display:block;font-size:0.78rem;color:var(--text-secondary);font-weight:600;margin-bottom:6px}
 .form-field input{width:100%;padding:11px 14px;border-radius:var(--radius-sm);background:#fff;border:1px solid var(--border-medium);color:var(--text-primary);font-family:inherit;font-size:0.92rem;outline:none;transition:var(--transition)}
@@ -270,7 +235,11 @@ ul{list-style:none}
 .form-tab{flex:1;padding:8px;border-radius:100px;font-size:0.84rem;font-weight:600;color:var(--text-secondary);transition:var(--transition);text-align:center}
 .form-tab.active{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;box-shadow:0 3px 10px rgba(30,64,175,0.25)}
 
-/* ==================== AUTH GATE ==================== */
+/* Small toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--text-primary);color:#fff;padding:12px 22px;border-radius:100px;font-size:0.86rem;font-weight:500;box-shadow:0 12px 32px rgba(15,23,42,0.3);z-index:7000;display:flex;align-items:center;gap:8px;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);max-width:calc(100% - 40px);text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast i{width:16px;height:16px;color:var(--accent-light);flex-shrink:0}
+
 .auth-gate{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 55%,#0891b2 100%);overflow-y:auto}
 .auth-gate.hidden{display:none}
 .auth-gate::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
@@ -283,7 +252,6 @@ ul{list-style:none}
 .auth-gate__subtitle{text-align:center;font-size:0.85rem;color:var(--text-secondary);margin-bottom:22px}
 .auth-gate__subtitle strong{color:var(--accent)}
 
-/* ==================== FOOTER ==================== */
 .footer{background:#0f172a;color:rgba(255,255,255,0.75);padding:50px 0 26px;position:relative;z-index:1}
 .footer__inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px}
 .footer__brand .logo-icon{margin:0 auto 10px}
@@ -297,7 +265,6 @@ ul{list-style:none}
 .footer__bottom .btn--outline{color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.2)}
 .footer__bottom .btn--outline:hover{color:#fff;border-color:var(--accent-light);background:rgba(8,145,178,0.15)}
 
-/* ==================== REVEAL & LOADER ==================== */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.65s ease,transform 0.65s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .loader{position:fixed;inset:0;z-index:6000;background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 55%,#0891b2 100%);display:flex;align-items:center;justify-content:center;transition:opacity 0.5s ease,visibility 0.5s ease}
@@ -311,7 +278,6 @@ ul{list-style:none}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 @keyframes loaderBar{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
 
-/* ==================== RESPONSIVE ==================== */
 @media (max-width:1024px){
   :root{--header-height:114px}
   .hero__inner{grid-template-columns:1fr;text-align:center;gap:40px}
@@ -361,7 +327,6 @@ ul{list-style:none}
 </head>
 <body class="auth-locked">
 
-<!-- ==================== LOADER ==================== -->
 <div class="loader" id="loader">
   <div class="loader__inner">
     <div class="loader__logo"><i data-lucide="cpu"></i></div>
@@ -370,7 +335,10 @@ ul{list-style:none}
   </div>
 </div>
 
-<!-- ==================== AUTH GATE (blocks site until logged in) ==================== -->
+<!-- Toast -->
+<div class="toast" id="toast"><i data-lucide="check-circle"></i><span id="toastMsg"></span></div>
+
+<!-- Auth Gate -->
 <div class="auth-gate" id="authGate">
   <div class="auth-gate__card">
     <div class="auth-gate__brand">
@@ -400,12 +368,12 @@ ul{list-style:none}
         <input type="password" id="gatePassword" placeholder="Minimum 6 characters" required minlength="6">
       </div>
       <button type="submit" class="btn btn--primary" style="width:100%;margin-top:8px" id="gateSubmit">Sign In</button>
-      <p class="form-hint">Demo login — <strong>demo@pccoe.edu</strong> / <strong>demo123</strong><br>Accounts are stored in your browser only.</p>
+      <p class="form-hint" id="gateHint">Demo account — <strong>demo@pccoe.edu</strong> / <strong>demo123</strong><br>Or create your own account — you can sign in with it anytime on this browser.</p>
     </form>
   </div>
 </div>
 
-<!-- ==================== TOP HEADER ==================== -->
+<!-- Top Header -->
 <div class="top-header">
   <div class="college-bar">
     <div class="container college-bar__inner">
@@ -442,7 +410,7 @@ ul{list-style:none}
   </nav>
 </div>
 
-<!-- ==================== HERO ==================== -->
+<!-- Hero -->
 <section class="hero" id="home">
   <div class="container hero__inner">
     <div class="hero__content">
@@ -457,7 +425,7 @@ ul{list-style:none}
       <div class="hero__stats">
         <div><strong>7</strong> Labs</div>
         <div><strong>6</strong> Machines</div>
-        <div><strong>15</strong> Components</div>
+        <div><strong>16</strong> Components</div>
         <div><strong>15</strong> Equipment</div>
       </div>
     </div>
@@ -485,19 +453,13 @@ ul{list-style:none}
   </div>
 </section>
 
-<!-- ==================== DASHBOARD ==================== -->
 <section class="section section--alt" id="dashboard">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Live Overview</span>
-      <h2 class="section-title">Smart Dashboard</h2>
-      <p class="section-lead">Live statistics for machines, components, laboratories, experiments and equipment health across the ENTC department.</p>
-    </div>
+    <div class="section-head reveal"><span class="eyebrow">Live Overview</span><h2 class="section-title">Smart Dashboard</h2><p class="section-lead">Live statistics for machines, components, laboratories, experiments and equipment health across the ENTC department.</p></div>
     <div class="dashboard-grid" id="dashboardGrid"></div>
   </div>
 </section>
 
-<!-- ==================== SEARCH ==================== -->
 <section class="section" id="search-section">
   <div class="container">
     <div class="search-box reveal">
@@ -540,26 +502,16 @@ ul{list-style:none}
   </div>
 </section>
 
-<!-- ==================== MACHINES ==================== -->
 <section class="section section--alt" id="machines">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Instruments</span>
-      <h2 class="section-title">Laboratory Machines</h2>
-      <p class="section-lead">The core instruments used across the ENTC laboratories. Every machine links to its experiment, location, datasheet and QR code.</p>
-    </div>
+    <div class="section-head reveal"><span class="eyebrow">Instruments</span><h2 class="section-title">Laboratory Machines</h2><p class="section-lead">The core instruments used across ENTC laboratories. Every machine links to its experiment, location, datasheet and QR code.</p></div>
     <div class="grid grid-3" id="machinesGrid"></div>
   </div>
 </section>
 
-<!-- ==================== COMPONENTS ==================== -->
 <section class="section" id="components">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Component Knowledge Hub</span>
-      <h2 class="section-title">Electronic Components &amp; ICs</h2>
-      <p class="section-lead">15 components with specifications, pin diagrams, working principles, applications and official datasheet links.</p>
-    </div>
+    <div class="section-head reveal"><span class="eyebrow">Component Knowledge Hub</span><h2 class="section-title">Electronic Components &amp; ICs</h2><p class="section-lead">16 components with specifications, pin diagrams, working principles, applications and official datasheet links.</p></div>
     <div class="filter-bar reveal" id="componentFilters">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="Passive">Passive</button>
@@ -573,38 +525,23 @@ ul{list-style:none}
   </div>
 </section>
 
-<!-- ==================== LABS ==================== -->
 <section class="section section--alt" id="labs">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Where it lives</span>
-      <h2 class="section-title">Explore ENTC Laboratories</h2>
-      <p class="section-lead">Discover resources available in each laboratory, along with its exact room location.</p>
-    </div>
+    <div class="section-head reveal"><span class="eyebrow">Where it lives</span><h2 class="section-title">Explore ENTC Laboratories</h2><p class="section-lead">Discover resources available in each laboratory, along with its exact room location.</p></div>
     <div class="grid grid-3" id="labsGrid"></div>
   </div>
 </section>
 
-<!-- ==================== EXPERIMENTS ==================== -->
 <section class="section" id="experiments">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Practical Guide</span>
-      <h2 class="section-title">Experiment Explorer</h2>
-      <p class="section-lead">Complete experiment documentation — aim, theory, apparatus, procedure, precautions, expected results and viva questions.</p>
-    </div>
+    <div class="section-head reveal"><span class="eyebrow">Practical Guide</span><h2 class="section-title">Experiment Explorer</h2><p class="section-lead">Complete experiment documentation — aim, theory, apparatus, procedure, precautions, expected results and viva questions.</p></div>
     <div class="grid grid-3" id="experimentsGrid"></div>
   </div>
 </section>
 
-<!-- ==================== EQUIPMENT ==================== -->
 <section class="section section--alt" id="equipment">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Inventory</span>
-      <h2 class="section-title">Equipment Inventory</h2>
-      <p class="section-lead">15 equipment units — Equipment ID, name, laboratory location, condition and availability status.</p>
-    </div>
+    <div class="section-head reveal"><span class="eyebrow">Inventory</span><h2 class="section-title">Equipment Inventory</h2><p class="section-lead">15 equipment units — Equipment ID, name, laboratory location, condition and availability status.</p></div>
     <div class="filter-bar reveal" id="equipmentFilters">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="Working">Working</button>
@@ -615,19 +552,13 @@ ul{list-style:none}
   </div>
 </section>
 
-<!-- ==================== MAINTENANCE ==================== -->
 <section class="section" id="maintenance">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Health &amp; Safety</span>
-      <h2 class="section-title">Maintenance Tracker</h2>
-      <p class="section-lead">Maintenance history, last inspection date, next inspection date and fault reports.</p>
-    </div>
+    <div class="section-head reveal"><span class="eyebrow">Health &amp; Safety</span><h2 class="section-title">Maintenance Tracker</h2><p class="section-lead">Maintenance history, last inspection date, next inspection date and fault reports.</p></div>
     <div class="grid grid-2" id="maintenanceGrid"></div>
   </div>
 </section>
 
-<!-- ==================== QR ==================== -->
 <section class="section section--alt" id="qr">
   <div class="container">
     <div class="qr-content reveal">
@@ -636,10 +567,7 @@ ul{list-style:none}
         <h2 class="section-title">Real scannable QR codes</h2>
         <p>Every machine and component has a live QR code. Scan with any phone camera and the corresponding detail page opens instantly — no app required. On GitHub Pages the QR points to the live URL; locally it points to an anchor that auto-opens the correct modal after login.</p>
         <div class="qr-controls">
-          <select id="qrTypeSelect" aria-label="QR resource type">
-            <option value="machine">Machines</option>
-            <option value="component">Components</option>
-          </select>
+          <select id="qrTypeSelect" aria-label="QR resource type"><option value="machine">Machines</option><option value="component">Components</option></select>
           <select id="qrItemSelect" aria-label="QR resource item"></select>
         </div>
       </div>
@@ -652,7 +580,6 @@ ul{list-style:none}
   </div>
 </section>
 
-<!-- ==================== FOOTER ==================== -->
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
@@ -668,14 +595,11 @@ ul{list-style:none}
     </div>
     <div class="footer__bottom">
       <p>ENTC Department — Academic Project — PCCOE Nigdi</p>
-      <a href="https://github.com/your-username/entc-lab-explorer" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
-        <i data-lucide="github"></i> View on GitHub
-      </a>
+      <a href="https://github.com/your-username/entc-lab-explorer" target="_blank" rel="noopener" class="btn btn--outline btn--sm"><i data-lucide="github"></i> View on GitHub</a>
     </div>
   </div>
 </footer>
 
-<!-- ==================== DETAIL MODAL ==================== -->
 <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="modal__overlay" id="modalOverlay"></div>
   <div class="modal__content" id="modalContent">
@@ -684,7 +608,6 @@ ul{list-style:none}
   </div>
 </div>
 
-<!-- ==================== LOGOUT MODAL ==================== -->
 <div id="logoutModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="modal__overlay" id="logoutOverlay"></div>
   <div class="modal__content modal__content--narrow">
@@ -703,303 +626,97 @@ ul{list-style:none}
 </div>
 
 <script>
-/* ====================================================================
-   ENTC LAB EXPLORER — MAIN SCRIPT
-   ==================================================================== */
-
-/* ==================== COMPONENT SVG IMAGES ==================== */
+/* ==================== SVG IMAGES ==================== */
 const SVG_IMAGES = {
   resistor: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="40" y2="40" stroke="#0891b2" stroke-width="2"/><rect x="40" y="28" width="80" height="24" rx="3" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><rect x="48" y="28" width="6" height="24" fill="#7c3aed"/><rect x="62" y="28" width="6" height="24" fill="#f59e0b"/><rect x="76" y="28" width="6" height="24" fill="#06b6d4"/><rect x="90" y="28" width="6" height="24" fill="#3b82f6"/><line x1="120" y1="40" x2="150" y2="40" stroke="#0891b2" stroke-width="2"/></svg>`,
-  capacitor: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="70" y2="40" stroke="#0891b2" stroke-width="2"/><line x1="70" y1="20" x2="70" y2="60" stroke="#1e40af" stroke-width="3"/><line x1="90" y1="20" x2="90" y2="60" stroke="#1e40af" stroke-width="3"/><line x1="90" y1="40" x2="150" y2="40" stroke="#0891b2" stroke-width="2"/><text x="80" y="18" text-anchor="middle" fill="#1e40af" font-size="10" font-family="monospace" font-weight="bold">+</text></svg>`,
+  capacitor: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="70" y2="40" stroke="#0891b2" stroke-width="2"/><line x1="70" y1="20" x2="70" y2="60" stroke="#1e40af" stroke-width="3"/><line x1="90" y1="20" x2="90" y2="60" stroke="#1e40af" stroke-width="3"/><line x1="90" y1="40" x2="150" y2="40" stroke="#0891b2" stroke-width="2"/></svg>`,
   diode: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="60" y2="40" stroke="#0891b2" stroke-width="2"/><polygon points="60,22 60,58 90,40" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><line x1="90" y1="22" x2="90" y2="58" stroke="#1e40af" stroke-width="3"/><line x1="90" y1="40" x2="150" y2="40" stroke="#0891b2" stroke-width="2"/></svg>`,
-  zener: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="60" y2="40" stroke="#0891b2" stroke-width="2"/><polygon points="60,22 60,58 90,40" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><line x1="90" y1="22" x2="90" y2="58" stroke="#1e40af" stroke-width="3"/><path d="M90 22 L82 14 M90 58 L98 66" stroke="#1e40af" stroke-width="2" fill="none"/><line x1="90" y1="40" x2="150" y2="40" stroke="#0891b2" stroke-width="2"/><text x="110" y="18" fill="#7c3aed" font-size="9" font-family="monospace">ZENER</text></svg>`,
+  zener: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="60" y2="40" stroke="#0891b2" stroke-width="2"/><polygon points="60,22 60,58 90,40" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><line x1="90" y1="22" x2="90" y2="58" stroke="#1e40af" stroke-width="3"/><path d="M90 22 L82 14 M90 58 L98 66" stroke="#1e40af" stroke-width="2" fill="none"/><line x1="90" y1="40" x2="150" y2="40" stroke="#0891b2" stroke-width="2"/></svg>`,
   led: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="60" y2="40" stroke="#0891b2" stroke-width="2"/><polygon points="60,22 60,58 90,40" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><line x1="90" y1="22" x2="90" y2="58" stroke="#1e40af" stroke-width="3"/><line x1="90" y1="40" x2="150" y2="40" stroke="#0891b2" stroke-width="2"/><path d="M70 15 L85 5 M75 15 L90 5" stroke="#f59e0b" stroke-width="2" fill="none"/></svg>`,
   transistor: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="50" y2="40" stroke="#0891b2" stroke-width="2"/><line x1="50" y1="20" x2="50" y2="60" stroke="#1e40af" stroke-width="3"/><line x1="50" y1="30" x2="80" y2="18" stroke="#0891b2" stroke-width="2"/><line x1="50" y1="50" x2="80" y2="62" stroke="#0891b2" stroke-width="2"/><line x1="50" y1="40" x2="80" y2="40" stroke="#0891b2" stroke-width="2"/><circle cx="80" cy="40" r="14" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><line x1="80" y1="18" x2="80" y2="6" stroke="#0891b2" stroke-width="2"/><line x1="80" y1="62" x2="80" y2="74" stroke="#0891b2" stroke-width="2"/></svg>`,
-  mosfet: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="45" y2="40" stroke="#0891b2" stroke-width="2"/><line x1="45" y1="18" x2="45" y2="62" stroke="#1e40af" stroke-width="2.5"/><line x1="55" y1="18" x2="55" y2="62" stroke="#1e40af" stroke-width="2.5" stroke-dasharray="3 3"/><line x1="55" y1="25" x2="80" y2="25" stroke="#0891b2" stroke-width="2"/><line x1="55" y1="40" x2="80" y2="40" stroke="#0891b2" stroke-width="2"/><line x1="55" y1="55" x2="80" y2="55" stroke="#0891b2" stroke-width="2"/><line x1="80" y1="25" x2="80" y2="55" stroke="#0891b2" stroke-width="2"/><line x1="80" y1="40" x2="110" y2="40" stroke="#0891b2" stroke-width="2"/><circle cx="45" cy="40" r="3" fill="#0891b2"/><text x="100" y="70" fill="#7c3aed" font-size="8" font-family="monospace">MOSFET</text></svg>`,
+  mosfet: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="45" y2="40" stroke="#0891b2" stroke-width="2"/><line x1="45" y1="18" x2="45" y2="62" stroke="#1e40af" stroke-width="2.5"/><line x1="55" y1="18" x2="55" y2="62" stroke="#1e40af" stroke-width="2.5" stroke-dasharray="3 3"/><line x1="55" y1="25" x2="80" y2="25" stroke="#0891b2" stroke-width="2"/><line x1="55" y1="40" x2="80" y2="40" stroke="#0891b2" stroke-width="2"/><line x1="55" y1="55" x2="80" y2="55" stroke="#0891b2" stroke-width="2"/><line x1="80" y1="25" x2="80" y2="55" stroke="#0891b2" stroke-width="2"/><line x1="80" y1="40" x2="110" y2="40" stroke="#0891b2" stroke-width="2"/><circle cx="45" cy="40" r="3" fill="#0891b2"/></svg>`,
   inductor: `<svg viewBox="0 0 160 80"><line x1="10" y1="40" x2="35" y2="40" stroke="#0891b2" stroke-width="2"/><path d="M35 40 Q42 20 49 40 Q56 20 63 40 Q70 20 77 40 Q84 20 91 40 Q98 20 105 40" fill="none" stroke="#1e40af" stroke-width="2.5"/><line x1="105" y1="40" x2="150" y2="40" stroke="#0891b2" stroke-width="2"/></svg>`,
   ic16: `<svg viewBox="0 0 160 80"><rect x="30" y="20" width="100" height="40" rx="4" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><circle cx="42" cy="26" r="3" fill="#0891b2"/><g stroke="#0891b2" stroke-width="2"><line x1="42" y1="20" x2="42" y2="10"/><line x1="62" y1="20" x2="62" y2="10"/><line x1="82" y1="20" x2="82" y2="10"/><line x1="102" y1="20" x2="102" y2="10"/><line x1="122" y1="20" x2="122" y2="10"/><line x1="42" y1="60" x2="42" y2="70"/><line x1="62" y1="60" x2="62" y2="70"/><line x1="82" y1="60" x2="82" y2="70"/><line x1="102" y1="60" x2="102" y2="70"/><line x1="122" y1="60" x2="122" y2="70"/></g><text x="80" y="46" text-anchor="middle" fill="#1e40af" font-family="monospace" font-size="11" font-weight="bold">74xx</text></svg>`,
   ic8: `<svg viewBox="0 0 160 80"><rect x="40" y="20" width="80" height="40" rx="4" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><circle cx="52" cy="26" r="3" fill="#0891b2"/><g stroke="#0891b2" stroke-width="2"><line x1="52" y1="20" x2="52" y2="10"/><line x1="72" y1="20" x2="72" y2="10"/><line x1="92" y1="20" x2="92" y2="10"/><line x1="112" y1="20" x2="112" y2="10"/><line x1="52" y1="60" x2="52" y2="70"/><line x1="72" y1="60" x2="72" y2="70"/><line x1="92" y1="60" x2="92" y2="70"/><line x1="112" y1="60" x2="112" y2="70"/></g><text x="80" y="46" text-anchor="middle" fill="#1e40af" font-family="monospace" font-size="11" font-weight="bold">8-PIN</text></svg>`,
-  opamp: `<svg viewBox="0 0 160 80"><polygon points="40,15 40,65 130,40" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><line x1="10" y1="30" x2="40" y2="30" stroke="#0891b2" stroke-width="2"/><line x1="10" y1="50" x2="40" y2="50" stroke="#0891b2" stroke-width="2"/><line x1="130" y1="40" x2="150" y2="40" stroke="#0891b2" stroke-width="2"/><text x="30" y="34" text-anchor="end" fill="#1e40af" font-family="monospace" font-size="11" font-weight="bold">+</text><text x="30" y="54" text-anchor="end" fill="#1e40af" font-family="monospace" font-size="11" font-weight="bold">−</text><text x="90" y="44" fill="#7c3aed" font-family="monospace" font-size="9">OP-AMP</text></svg>`,
+  opamp: `<svg viewBox="0 0 160 80"><polygon points="40,15 40,65 130,40" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><line x1="10" y1="30" x2="40" y2="30" stroke="#0891b2" stroke-width="2"/><line x1="10" y1="50" x2="40" y2="50" stroke="#0891b2" stroke-width="2"/><line x1="130" y1="40" x2="150" y2="40" stroke="#0891b2" stroke-width="2"/><text x="30" y="34" text-anchor="end" fill="#1e40af" font-family="monospace" font-size="11" font-weight="bold">+</text><text x="30" y="54" text-anchor="end" fill="#1e40af" font-family="monospace" font-size="11" font-weight="bold">−</text></svg>`,
   mcu: `<svg viewBox="0 0 160 80"><rect x="35" y="18" width="90" height="44" rx="4" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><circle cx="46" cy="24" r="3" fill="#0891b2"/><text x="80" y="46" text-anchor="middle" fill="#1e40af" font-family="monospace" font-size="11" font-weight="bold">8051</text><g stroke="#0891b2" stroke-width="2"><line x1="46" y1="18" x2="46" y2="8"/><line x1="66" y1="18" x2="66" y2="8"/><line x1="86" y1="18" x2="86" y2="8"/><line x1="106" y1="18" x2="106" y2="8"/><line x1="46" y1="62" x2="46" y2="72"/><line x1="66" y1="62" x2="66" y2="72"/><line x1="86" y1="62" x2="86" y2="72"/><line x1="106" y1="62" x2="106" y2="72"/></g></svg>`,
-  sensor: `<svg viewBox="0 0 160 80"><rect x="30" y="22" width="100" height="36" rx="6" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><circle cx="55" cy="40" r="10" fill="none" stroke="#1e40af" stroke-width="2"/><circle cx="55" cy="40" r="4" fill="#0891b2"/><path d="M90 40 Q100 25 110 40 T130 40" stroke="#7c3aed" stroke-width="2" fill="none"/><text x="100" y="72" text-anchor="middle" fill="#7c3aed" font-size="9" font-family="monospace" font-weight="bold">SENSOR</text></svg>`,
+  sensor: `<svg viewBox="0 0 160 80"><rect x="30" y="22" width="100" height="36" rx="6" fill="#f8fafc" stroke="#1e40af" stroke-width="2"/><circle cx="55" cy="40" r="10" fill="none" stroke="#1e40af" stroke-width="2"/><circle cx="55" cy="40" r="4" fill="#0891b2"/><path d="M90 40 Q100 25 110 40 T130 40" stroke="#7c3aed" stroke-width="2" fill="none"/></svg>`,
   arduino: `<svg viewBox="0 0 160 80"><rect x="20" y="18" width="120" height="44" rx="4" fill="#e0f2fe" stroke="#1e40af" stroke-width="2"/><text x="80" y="42" text-anchor="middle" fill="#1e40af" font-family="monospace" font-size="11" font-weight="bold">ARDUINO UNO</text><circle cx="30" cy="26" r="2" fill="#f59e0b"/><circle cx="30" cy="32" r="2" fill="#16a34a"/><g stroke="#0891b2" stroke-width="1.5"><line x1="30" y1="62" x2="30" y2="70"/><line x1="50" y1="62" x2="50" y2="70"/><line x1="70" y1="62" x2="70" y2="70"/><line x1="90" y1="62" x2="90" y2="70"/><line x1="110" y1="62" x2="110" y2="70"/><line x1="130" y1="62" x2="130" y2="70"/></g></svg>`
 };
 
 /* ==================== DATA ==================== */
-
 const machines = [
-  { id:'cro', name:'CRO (Cathode Ray Oscilloscope)', category:'Measuring Instrument', purpose:'Waveform observation and signal measurement', lab:'Signal and System Lab', location:'6317LA',
-    description:'A CRO graphically displays varying signal voltages as a two-dimensional plot of one or more signals as a function of time.',
-    workingPrinciple:'The CRT generates an electron beam that is deflected horizontally and vertically by electric fields to draw the waveform on a fluorescent screen.',
-    functions:['Observe waveform shape','Measure voltage (peak-to-peak, RMS)','Measure time period and frequency','Compare two signals','Measure phase difference'],
-    specifications:{Bandwidth:'20 MHz',Channels:'2',InputImpedance:'1 MΩ',Sensitivity:'5 mV/div',Screen:'5 inch CRT'},
-    safety:['Check connections before switching ON','Use appropriate input range','Avoid excessive input voltage','Do not touch the CRT face directly'],
-    datasheet:'https://www.tek.com/en/documents/product-software/tbs1000b-edu-digital-storage-oscilloscope-datasheet' },
-  { id:'function-generator', name:'Function Generator', category:'Signal Source', purpose:'Generate standard waveforms (sine, square, triangle)', lab:'Signal and System Lab', location:'6317LA',
-    description:'Test equipment used to generate different types of electrical waveforms over a wide range of frequencies.',
-    workingPrinciple:'Uses an oscillator circuit to produce periodic waveforms. Frequency and amplitude are adjustable via controls.',
-    functions:['Generate sine wave','Generate square wave','Generate triangle wave','Adjust frequency','Adjust amplitude'],
-    specifications:{FrequencyRange:'0.1 Hz – 2 MHz',Waveforms:'Sine, Square, Triangle',Amplitude:'0–20 Vpp',Impedance:'50 Ω'},
-    safety:['Do not short the output terminals','Set amplitude before connecting to circuit','Use proper probes'],
-    datasheet:'https://www.keysight.com/us/en/assets/9018-03362/data-sheets/9018-03362.pdf' },
-  { id:'digital-multimeter', name:'Digital Multimeter', category:'Measuring Instrument', purpose:'Measure voltage, current, resistance and continuity', lab:'EDC Lab', location:'6319LA',
-    description:'Measures two or more electrical values — principally voltage (V), current (A) and resistance (Ω).',
-    workingPrinciple:'An analog-to-digital converter converts the measured analog value into a digital display.',
-    functions:['Measure DC voltage','Measure AC voltage','Measure DC current','Measure AC current','Measure resistance','Check continuity','Test diodes'],
-    specifications:{Display:'3.5 digit LCD',DCVoltage:'0–1000 V',ACVoltage:'0–750 V',Resistance:'0–20 MΩ',Current:'0–10 A'},
-    safety:['Select correct function before measuring','Do not measure resistance on live circuit','Use correct range','Keep probes in good condition'],
-    datasheet:'https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-117' },
-  { id:'oscilloscope', name:'Digital Storage Oscilloscope', category:'Measuring Instrument', purpose:'Capture and analyze high-speed signals', lab:'VLSI Lab', location:'6412LA',
-    description:'A DSO uses digital memory to store waveform data for display and analysis.',
-    workingPrinciple:'The input signal is sampled by an ADC and stored in memory. The stored data is processed and displayed on an LCD.',
-    functions:['Capture transient signals','Store waveforms','Measure rise time','FFT analysis','Protocol decoding'],
-    specifications:{Bandwidth:'100 MHz',SampleRate:'1 GS/s',Channels:'2',Display:'7 inch TFT',Memory:'1 Mpts'},
-    safety:['Do not exceed maximum input voltage','Use proper grounding','Avoid electrostatic discharge'],
-    datasheet:'https://www.tek.com/en/documents/datasheet/tbs2000b-series-digital-storage-oscilloscopes-datasheet' },
-  { id:'dc-power-supply', name:'DC Power Supply', category:'Power Source', purpose:'Provide regulated DC voltage to circuits', lab:'EDC Lab', location:'6319LA',
-    description:'Converts AC mains voltage into a stable, regulated DC voltage for powering electronic circuits.',
-    workingPrinciple:'Steps down AC voltage using a transformer, rectifies via diodes, filters via capacitors, and regulates via a voltage regulator IC.',
-    functions:['Adjustable output voltage','Current limiting','Short circuit protection','Dual / triple output','Digital display'],
-    specifications:{OutputVoltage:'0–30 V',OutputCurrent:'0–5 A',Ripple:'<5 mV',Display:'LED',Protection:'OVP, OCP'},
-    safety:['Do not short output terminals','Set voltage before connecting','Do not exceed current limit'],
-    datasheet:'https://www.keysight.com/us/en/assets/9018-02429/data-sheets/9018-02429.pdf' },
-  { id:'digital-trainer', name:'Digital Trainer Kit', category:'Training Equipment', purpose:'Learn and implement digital logic circuits', lab:'Digital Electronics Lab', location:'6508LA',
-    description:'A self-contained system that provides a platform for building and testing digital circuits without soldering.',
-    workingPrinciple:'Provides breadboard area, power supply, clock generator, logic switches, LEDs and components for digital experiments.',
-    functions:['Provide fixed 5V supply','Generate clock pulses','Provide logic input switches','Display output via LEDs','Mount ICs and components'],
-    specifications:{Supply:'5V, 12V',Clock:'1 Hz – 1 MHz',Switches:'8 logic switches',LEDs:'10 output LEDs',Breadboard:'Solderless'},
-    safety:['Do not short the power supply','Insert ICs correctly','Avoid static discharge','Check wiring before power ON'],
-    datasheet:'https://www.ti.com/lit/ds/symlink/sn74ls00.pdf' }
+  { id:'cro', name:'CRO (Cathode Ray Oscilloscope)', category:'Measuring Instrument', purpose:'Waveform observation and signal measurement', lab:'Signal and System Lab', location:'6317LA', description:'A CRO graphically displays varying signal voltages as a two-dimensional plot.', workingPrinciple:'The CRT generates an electron beam deflected horizontally and vertically by electric fields.', functions:['Observe waveform','Measure voltage','Measure frequency','Compare signals','Measure phase'], specifications:{Bandwidth:'20 MHz',Channels:'2',InputImpedance:'1 MΩ',Sensitivity:'5 mV/div'}, safety:['Check connections first','Use appropriate range','Avoid excessive voltage'], datasheet:'https://www.tek.com/en/documents/product-software/tbs1000b-edu-digital-storage-oscilloscope-datasheet' },
+  { id:'function-generator', name:'Function Generator', category:'Signal Source', purpose:'Generate sine, square, triangle waveforms', lab:'Signal and System Lab', location:'6317LA', description:'Test equipment for generating electrical waveforms over a wide frequency range.', workingPrinciple:'Oscillator circuit produces periodic waveforms; frequency and amplitude adjustable.', functions:['Generate sine','Generate square','Generate triangle','Adjust frequency','Adjust amplitude'], specifications:{FrequencyRange:'0.1 Hz – 2 MHz',Waveforms:'Sine/Square/Triangle',Amplitude:'0–20 Vpp',Impedance:'50 Ω'}, safety:['Do not short output','Set amplitude first','Use proper probes'], datasheet:'https://www.keysight.com/us/en/assets/9018-03362/data-sheets/9018-03362.pdf' },
+  { id:'digital-multimeter', name:'Digital Multimeter', category:'Measuring Instrument', purpose:'Measure voltage, current, resistance', lab:'EDC Lab', location:'6319LA', description:'Measures voltage, current, resistance and continuity digitally.', workingPrinciple:'ADC converts measured analog value to digital display.', functions:['DC voltage','AC voltage','DC current','AC current','Resistance','Continuity'], specifications:{Display:'3.5 digit LCD',DCVoltage:'0–1000 V',ACVoltage:'0–750 V',Resistance:'0–20 MΩ'}, safety:['Select correct function','Do not measure on live circuit','Use correct range'], datasheet:'https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-117' },
+  { id:'oscilloscope', name:'Digital Storage Oscilloscope', category:'Measuring Instrument', purpose:'Capture and analyze high-speed signals', lab:'VLSI Lab', location:'6412LA', description:'A DSO uses digital memory to store waveform data.', workingPrinciple:'Input sampled by ADC and stored in memory, then displayed on LCD.', functions:['Capture transients','Store waveforms','Measure rise time','FFT','Protocol decode'], specifications:{Bandwidth:'100 MHz',SampleRate:'1 GS/s',Channels:'2',Display:'7 inch TFT'}, safety:['Do not exceed input voltage','Use proper grounding','Avoid ESD'], datasheet:'https://www.tek.com/en/documents/datasheet/tbs2000b-series-digital-storage-oscilloscopes-datasheet' },
+  { id:'dc-power-supply', name:'DC Power Supply', category:'Power Source', purpose:'Provide regulated DC voltage', lab:'EDC Lab', location:'6319LA', description:'Converts AC mains to stable, regulated DC voltage.', workingPrinciple:'Step-down transformer, rectifier, filter, regulator.', functions:['Adjustable voltage','Current limiting','Short circuit protection','Digital display'], specifications:{OutputVoltage:'0–30 V',OutputCurrent:'0–5 A',Ripple:'<5 mV',Protection:'OVP/OCP'}, safety:['Do not short output','Set voltage first','Do not exceed current limit'], datasheet:'https://www.keysight.com/us/en/assets/9018-02429/data-sheets/9018-02429.pdf' },
+  { id:'digital-trainer', name:'Digital Trainer Kit', category:'Training Equipment', purpose:'Build and test digital circuits', lab:'Digital Electronics Lab', location:'6508LA', description:'Self-contained system for building and testing digital circuits.', workingPrinciple:'Provides breadboard, power, clock, logic switches, LEDs.', functions:['Fixed 5V supply','Clock generator','Logic switches','LED display','Breadboard'], specifications:{Supply:'5V, 12V',Clock:'1 Hz – 1 MHz',Switches:'8',LEDs:'10',Breadboard:'Solderless'}, safety:['Do not short supply','Insert ICs correctly','Check wiring first'], datasheet:'https://www.ti.com/lit/ds/symlink/sn74ls00.pdf' }
 ];
 
 const components = [
-  { id:'resistor', name:'Resistor', type:'Passive', category:'Passive', purpose:'Limit current and divide voltage', lab:'EDC Lab', location:'6319LA', image:'resistor',
-    description:'A passive two-terminal component that implements electrical resistance as a circuit element.',
-    workingPrinciple:'Opposes the flow of electric current, converting electrical energy into heat.',
-    applications:['Current limiting','Voltage division','Biasing','Pull-up / pull-down','Load'],
-    specifications:{Resistance:'1 Ω – 10 MΩ',Tolerance:'±5%',Power:'0.25 W',TempCoeff:'100 ppm/°C'},
-    pins:'2 terminals (no polarity)', pinDiagram:'Axial — lead 1 and lead 2 interchangeable; colour bands indicate value and tolerance.',
-    datasheet:'https://www.vishay.com/docs/28729/28729.pdf' },
-  { id:'capacitor', name:'Capacitor', type:'Passive', category:'Passive', purpose:'Store charge and filter signals', lab:'EDC Lab', location:'6319LA', image:'capacitor',
-    description:'A passive two-terminal component that stores electrical energy in an electric field.',
-    workingPrinciple:'Two conductive plates separated by a dielectric. Applying voltage accumulates charge on the plates.',
-    applications:['Filtering','Coupling','Decoupling','Energy storage','Tuning'],
-    specifications:{Capacitance:'1 pF – 1000 µF',Voltage:'6.3 V – 450 V',Tolerance:'±10%',Type:'Ceramic, Electrolytic'},
-    pins:'2 terminals (polarized for electrolytic — observe + and – marks)', pinDiagram:'Ceramic: non-polarized. Electrolytic: longer lead is +, stripe is –.',
-    datasheet:'https://www.vishay.com/docs/28321/138aml.pdf' },
-  { id:'inductor', name:'Inductor', type:'Passive', category:'Passive', purpose:'Store energy in a magnetic field', lab:'Network Analysis Lab', location:'6506LA', image:'inductor',
-    description:'A passive two-terminal component that stores energy in a magnetic field when current flows through it.',
-    workingPrinciple:'Current through a coil produces a magnetic field, opposing changes in current (Lenz\'s law).',
-    applications:['Filtering','Tuning','Energy storage','Chokes','Transformers'],
-    specifications:{Inductance:'1 µH – 100 mH',Tolerance:'±10%',Current:'Up to 1 A',Type:'Air-core, Ferrite'},
-    pins:'2 terminals (no polarity)', pinDiagram:'No polarity. Colour bands (on some types) indicate value.',
-    datasheet:'https://www.bourns.com/docs/Product-Datasheets/RLB.pdf' },
-  { id:'diode', name:'Diode', type:'Active', category:'Active', purpose:'Allow current in one direction only', lab:'EDC Lab', location:'6319LA', image:'diode',
-    description:'A two-terminal electronic component that conducts current primarily in one direction.',
-    workingPrinciple:'p-n junction — forward biased it conducts, reverse biased it blocks.',
-    applications:['Rectification','Clipping','Clamping','Protection','Switching'],
-    specifications:{ForwardVoltage:'0.7 V (Si), 0.3 V (Ge)',MaxCurrent:'1 A',ReverseVoltage:'50 V',Type:'1N4007'},
-    pins:'Anode (+, no band) and Cathode (–, band)', pinDiagram:'Cathode is marked with a silver/black band; current flows from anode to cathode.',
-    datasheet:'https://www.vishay.com/docs/88503/1n4001.pdf' },
-  { id:'zener', name:'Zener Diode', type:'Active', category:'Active', purpose:'Voltage regulation and reference', lab:'EDC Lab', location:'6319LA', image:'zener',
-    description:'A diode that allows current to flow in the reverse direction when a specific breakdown voltage is reached.',
-    workingPrinciple:'Operates in reverse breakdown region; maintains a nearly constant voltage across its terminals.',
-    applications:['Voltage regulation','Voltage reference','Clipping','Protection circuits'],
-    specifications:{ZenerVoltage:'3.3 V – 24 V',Power:'0.5 W',Type:'1N4733A (5.1 V)',Tolerance:'±5%'},
-    pins:'Anode and Cathode (polarized)', pinDiagram:'Cathode band with a small bent tab; used in reverse bias for regulation.',
-    datasheet:'https://www.onsemi.com/pdf/datasheet/1n4728a-d.pdf' },
-  { id:'led', name:'LED', type:'Active', category:'Active', purpose:'Emit light when current flows', lab:'EDC Lab', location:'6319LA', image:'led',
-    description:'A light-emitting diode emits light when current flows through it.',
-    workingPrinciple:'Electrons recombine with holes, releasing energy as photons.',
-    applications:['Indicators','Displays','Lighting','Optocouplers','Remote controls'],
-    specifications:{ForwardVoltage:'1.8–3.3 V',ForwardCurrent:'20 mA',Color:'Red, Green, Blue',LuminousIntensity:'100 mcd'},
-    pins:'Anode (longer lead) and Cathode (shorter lead)', pinDiagram:'Longer lead = anode, shorter = cathode. Flat side of casing = cathode.',
-    datasheet:'https://www.vishay.com/docs/83178/tlur640.pdf' },
-  { id:'transistor', name:'Transistor (BJT)', type:'Active', category:'Active', purpose:'Amplify or switch electronic signals', lab:'EDC Lab', location:'6319LA', image:'transistor',
-    description:'A three-terminal semiconductor device used for amplification and switching.',
-    workingPrinciple:'A small base current controls a larger collector-emitter current.',
-    applications:['Amplification','Switching','Oscillators','Voltage regulation','Signal modulation'],
-    specifications:{Type:'NPN / PNP',MaxCurrent:'100 mA',MaxVoltage:'40 V',Gain:'100–300',Package:'TO-92'},
-    pins:'Emitter, Base, Collector', pinDiagram:'TO-92 flat side facing you: E-B-C (left to right) for BC547; check datasheet for pinout.',
-    datasheet:'https://www.onsemi.com/pdf/datasheet/bc547-d.pdf' },
-  { id:'mosfet', name:'MOSFET (IRF540)', type:'Active', category:'Active', purpose:'High-speed switching and power control', lab:'VLSI Lab', location:'6412LA', image:'mosfet',
-    description:'A Metal-Oxide-Semiconductor Field-Effect Transistor used for high-speed switching and power amplification.',
-    workingPrinciple:'Gate voltage controls channel conductivity between drain and source with very low gate current.',
-    applications:['Power switching','Motor drivers','PWM control','Amplifiers','Voltage regulation'],
-    specifications:{Type:'N-Channel',Vds:'100 V',Id:'33 A',Rds_on:'44 mΩ',Package:'TO-220'},
-    pins:'Gate (G), Drain (D), Source (S)', pinDiagram:'TO-220: pin 1 = Gate, pin 2 = Drain, pin 3 = Source (tab = Drain).',
-    datasheet:'https://www.infineon.com/dgdl/irf540n.pdf?fileId=5546d462533600a4015355e3f8ab1f9b' },
-  { id:'74153', name:'74153 Multiplexer', type:'Digital IC', category:'Digital IC', purpose:'Select one of four inputs to output', lab:'Digital Electronics Lab', location:'6508LA', image:'ic16',
-    description:'A multiplexer selects one input from multiple inputs and sends it to the output.',
-    workingPrinciple:'Select lines choose which input connects to the output.',
-    applications:['Data routing','Signal selection','Function generation','Parallel to serial conversion'],
-    specifications:{Inputs:'4 (per section)',Outputs:'1 (per section)',SelectLines:'2',Supply:'5 V',Package:'DIP-16'},
-    pins:'16 pins — I0–I3, S0, S1, Y, E, VCC (16), GND (8)', pinDiagram:'DIP-16: pins 1–8 along bottom (pin 1 at notch-left), pins 9–16 along top.',
-    datasheet:'https://www.ti.com/lit/ds/symlink/sn74153.pdf' },
-  { id:'74138', name:'74138 Decoder', type:'Digital IC', category:'Digital IC', purpose:'Decode 3-bit binary to 8 outputs', lab:'Digital Electronics Lab', location:'6508LA', image:'ic16',
-    description:'A combinational circuit that converts binary information from n input lines to 2^n unique output lines.',
-    workingPrinciple:'Activates one output based on the binary input combination.',
-    applications:['Memory addressing','Demultiplexing','Seven segment display','Control systems'],
-    specifications:{Inputs:'3',Outputs:'8',Supply:'5 V',Package:'DIP-16',Enable:'Active low'},
-    pins:'16 pins — A0–A2, Y0–Y7, E1, E2, E3, VCC (16), GND (8)', pinDiagram:'DIP-16: 3 enable pins (E1, E2, E3) must be active low to enable the decoder.',
-    datasheet:'https://www.ti.com/lit/ds/symlink/sn74138.pdf' },
-  { id:'ic555', name:'IC 555 Timer', type:'Analog IC', category:'Analog IC', purpose:'Generate timers, delays and oscillator pulses', lab:'Signal and System Lab', location:'6317LA', image:'ic8',
-    description:'A versatile 8-pin IC used to generate precise time delays and oscillations.',
-    workingPrinciple:'Internal comparators and flip-flop charge/discharge an external capacitor to set timing.',
-    applications:['Astable multivibrator','Monostable delay','PWM generation','Tone generator','Timer circuits'],
-    specifications:{Supply:'4.5–16 V',OutputCurrent:'200 mA',MaxFrequency:'~500 kHz',Package:'DIP-8',Modes:'Astable, Monostable, Bistable'},
-    pins:'8 pins — GND(1), TRIG(2), OUT(3), RESET(4), CTRL(5), THR(6), DIS(7), VCC(8)', pinDiagram:'DIP-8: pin 1 at notch-left, count counter-clockwise.',
-    datasheet:'https://www.ti.com/lit/ds/symlink/ne555.pdf' },
-  { id:'opamp741', name:'Op-Amp 741', type:'Analog IC', category:'Analog IC', purpose:'Amplify, filter and process analog signals', lab:'Signal and System Lab', location:'6317LA', image:'opamp',
-    description:'A general-purpose operational amplifier with very high gain and differential inputs.',
-    workingPrinciple:'Differential voltage between + and – inputs is amplified by the open-loop gain; feedback sets the overall response.',
-    applications:['Amplifiers','Filters','Comparators','Oscillators','Signal conditioning'],
-    specifications:{Supply:'±3 V to ±18 V',Gain:'200,000 (open-loop)',SlewRate:'0.5 V/µs',Package:'DIP-8'},
-    pins:'8 pins — OFFSET(1,5), IN-(2), IN+(3), V-(4), OUT(6), V+(7), NC(8)', pinDiagram:'DIP-8: pin 1 at notch-left. IN- on pin 2, IN+ on pin 3, OUT on pin 6.',
-    datasheet:'https://www.ti.com/lit/ds/symlink/lm741.pdf' },
-  { id:'7805', name:'7805 Voltage Regulator', type:'Analog IC', category:'Analog IC', purpose:'Provide a fixed +5V regulated output', lab:'EDC Lab', location:'6319LA', image:'ic8',
-    description:'A 3-terminal linear voltage regulator that provides a stable +5 V output from a higher input voltage.',
-    workingPrinciple:'Internal reference and series pass transistor maintain output at 5 V while input varies and load changes.',
-    applications:['Power supplies','Digital circuit powering','Battery chargers','Embedded systems'],
-    specifications:{Input:'7–35 V',Output:'5 V',MaxCurrent:'1 A',Dropout:'~2 V',Package:'TO-220'},
-    pins:'3 pins — IN(1), GND(2), OUT(3)', pinDiagram:'TO-220 front view: pin 1 = IN, pin 2 = GND, pin 3 = OUT.',
-    datasheet:'https://www.ti.com/lit/ds/symlink/lm7805.pdf' },
-  { id:'8051', name:'8051 Microcontroller', type:'Microcontroller', category:'Microcontroller', purpose:'Embedded control and processing', lab:'Microcontroller Lab', location:'6319LA', image:'mcu',
-    description:'8-bit microcontroller with 4KB ROM, 128 bytes RAM, timers and I/O ports.',
-    workingPrinciple:'Executes instructions stored in memory to control external devices through its I/O ports.',
-    applications:['Embedded systems','Automation','Robotics','Instrumentation','Control systems'],
-    specifications:{Architecture:'8-bit',ROM:'4 KB',RAM:'128 bytes',Timers:'2',IOPins:'32',Package:'DIP-40'},
-    pins:'40 pins — Ports 0–3, RXD, TXD, INT0, INT1, T0, T1, ALE, PSEN, EA, XTAL1, XTAL2, RST, VCC, GND', pinDiagram:'DIP-40: pin 1 top-left, pin 40 top-right (with notch at top).',
-    datasheet:'https://www.keil.com/dd/docs/datashts/atmel/at89c51_ds.pdf' },
-  { id:'ir-sensor', name:'IR Sensor Module', type:'Sensor', category:'Sensor', purpose:'Detect objects and obstacles using infrared light', lab:'Microcontroller Lab', location:'6319LA', image:'sensor',
-    description:'An IR sensor module emits infrared light and detects its reflection to sense objects.',
-    workingPrinciple:'An IR LED emits light; a photodiode detects the reflected light and outputs a digital HIGH/LOW signal.',
-    applications:['Obstacle detection','Line following robots','Object counters','Proximity sensing','Automation'],
-    specifications:{OperatingVoltage:'3.3–5 V',DetectionRange:'2–30 cm',Output:'Digital (0/5 V)',Adjustable:'Yes (potentiometer)'},
-    pins:'3 pins — VCC, GND, OUT (digital output)', pinDiagram:'Standard 3-pin module: VCC, OUT, GND (order varies by manufacturer).',
-    datasheet:'https://www.vishay.com/docs/83760/tsts4401.pdf' }
+  { id:'resistor', name:'Resistor', type:'Passive', category:'Passive', purpose:'Limit current and divide voltage', lab:'EDC Lab', location:'6319LA', image:'resistor', description:'Passive two-terminal component implementing electrical resistance.', workingPrinciple:'Opposes current flow, converting energy to heat.', applications:['Current limiting','Voltage division','Biasing','Pull-up/down'], specifications:{Resistance:'1 Ω – 10 MΩ',Tolerance:'±5%',Power:'0.25 W'}, pins:'2 terminals (no polarity)', pinDiagram:'Axial — leads interchangeable.', datasheet:'https://www.vishay.com/docs/28729/28729.pdf' },
+  { id:'capacitor', name:'Capacitor', type:'Passive', category:'Passive', purpose:'Store charge and filter signals', lab:'EDC Lab', location:'6319LA', image:'capacitor', description:'Passive two-terminal component storing energy in an electric field.', workingPrinciple:'Two plates separated by dielectric; voltage accumulates charge.', applications:['Filtering','Coupling','Decoupling','Tuning'], specifications:{Capacitance:'1 pF – 1000 µF',Voltage:'6.3–450 V',Tolerance:'±10%'}, pins:'2 terminals (polarized for electrolytic)', pinDiagram:'Ceramic: non-polarized. Electrolytic: longer lead = +.', datasheet:'https://www.vishay.com/docs/28321/138aml.pdf' },
+  { id:'inductor', name:'Inductor', type:'Passive', category:'Passive', purpose:'Store energy in a magnetic field', lab:'Network Analysis Lab', location:'6506LA', image:'inductor', description:'Passive two-terminal component storing energy in a magnetic field.', workingPrinciple:'Current through a coil produces a magnetic field (Lenz\'s law).', applications:['Filtering','Tuning','Energy storage','Chokes'], specifications:{Inductance:'1 µH – 100 mH',Tolerance:'±10%',Current:'Up to 1 A'}, pins:'2 terminals (no polarity)', pinDiagram:'No polarity. Colour bands on some types.', datasheet:'https://www.bourns.com/docs/Product-Datasheets/RLB.pdf' },
+  { id:'diode', name:'Diode', type:'Active', category:'Active', purpose:'Allow current in one direction', lab:'EDC Lab', location:'6319LA', image:'diode', description:'Two-terminal component that conducts current in one direction.', workingPrinciple:'p-n junction — forward conducts, reverse blocks.', applications:['Rectification','Clipping','Clamping','Protection'], specifications:{ForwardVoltage:'0.7 V (Si)',MaxCurrent:'1 A',ReverseVoltage:'50 V'}, pins:'Anode (+) and Cathode (−)', pinDiagram:'Cathode marked with a band.', datasheet:'https://www.vishay.com/docs/88503/1n4001.pdf' },
+  { id:'zener', name:'Zener Diode', type:'Active', category:'Active', purpose:'Voltage regulation and reference', lab:'EDC Lab', location:'6319LA', image:'zener', description:'Diode that allows reverse current at a specific breakdown voltage.', workingPrinciple:'Operates in reverse breakdown; maintains constant voltage.', applications:['Voltage regulation','Voltage reference','Clipping','Protection'], specifications:{ZenerVoltage:'3.3–24 V',Power:'0.5 W',Type:'1N4733A'}, pins:'Anode and Cathode (polarized)', pinDiagram:'Cathode band with bent tab. Used in reverse bias.', datasheet:'https://www.onsemi.com/pdf/datasheet/1n4728a-d.pdf' },
+  { id:'led', name:'LED', type:'Active', category:'Active', purpose:'Emit light when current flows', lab:'EDC Lab', location:'6319LA', image:'led', description:'Light-emitting diode emits light when current flows.', workingPrinciple:'Electrons recombine with holes releasing photons.', applications:['Indicators','Displays','Lighting','Optocouplers'], specifications:{ForwardVoltage:'1.8–3.3 V',ForwardCurrent:'20 mA',Colors:'R/G/B'}, pins:'Anode (long lead), Cathode (short lead)', pinDiagram:'Longer lead = anode; flat side = cathode.', datasheet:'https://www.vishay.com/docs/83178/tlur640.pdf' },
+  { id:'transistor', name:'Transistor (BJT)', type:'Active', category:'Active', purpose:'Amplify or switch signals', lab:'EDC Lab', location:'6319LA', image:'transistor', description:'Three-terminal semiconductor for amplification and switching.', workingPrinciple:'Small base current controls larger collector-emitter current.', applications:['Amplification','Switching','Oscillators','Regulation'], specifications:{Type:'NPN/PNP',MaxCurrent:'100 mA',MaxVoltage:'40 V',Gain:'100–300'}, pins:'Emitter, Base, Collector', pinDiagram:'TO-92 flat side: E-B-C (BC547).', datasheet:'https://www.onsemi.com/pdf/datasheet/bc547-d.pdf' },
+  { id:'mosfet', name:'MOSFET (IRF540)', type:'Active', category:'Active', purpose:'High-speed switching and power control', lab:'VLSI Lab', location:'6412LA', image:'mosfet', description:'MOSFET for high-speed switching and power amplification.', workingPrinciple:'Gate voltage controls channel conductivity between drain and source.', applications:['Power switching','Motor drivers','PWM','Amplifiers'], specifications:{Type:'N-Channel',Vds:'100 V',Id:'33 A',Package:'TO-220'}, pins:'Gate, Drain, Source', pinDiagram:'TO-220: pin 1=G, 2=D, 3=S (tab=D).', datasheet:'https://www.infineon.com/dgdl/irf540n.pdf?fileId=5546d462533600a4015355e3f8ab1f9b' },
+  { id:'74153', name:'74153 Multiplexer', type:'Digital IC', category:'Digital IC', purpose:'Select one of four inputs to output', lab:'Digital Electronics Lab', location:'6508LA', image:'ic16', description:'Multiplexer selects one input from multiple inputs.', workingPrinciple:'Select lines choose which input connects to output.', applications:['Data routing','Signal selection','Function generation'], specifications:{Inputs:'4 per section',Outputs:'1 per section',SelectLines:'2',Package:'DIP-16'}, pins:'I0–I3, S0, S1, Y, E, VCC(16), GND(8)', pinDiagram:'DIP-16: pins 1–8 bottom, 9–16 top.', datasheet:'https://www.ti.com/lit/ds/symlink/sn74153.pdf' },
+  { id:'74138', name:'74138 Decoder', type:'Digital IC', category:'Digital IC', purpose:'Decode 3-bit binary to 8 outputs', lab:'Digital Electronics Lab', location:'6508LA', image:'ic16', description:'Combinational circuit converting n inputs to 2^n outputs.', workingPrinciple:'Activates one output based on binary input combination.', applications:['Memory addressing','Demultiplexing','Seven segment display'], specifications:{Inputs:'3',Outputs:'8',Enable:'Active low',Package:'DIP-16'}, pins:'A0–A2, Y0–Y7, E1, E2, E3, VCC(16), GND(8)', pinDiagram:'DIP-16: 3 enable pins active low.', datasheet:'https://www.ti.com/lit/ds/symlink/sn74138.pdf' },
+  { id:'ic555', name:'IC 555 Timer', type:'Analog IC', category:'Analog IC', purpose:'Generate timers, delays and oscillator pulses', lab:'Signal and System Lab', location:'6317LA', image:'ic8', description:'Versatile 8-pin IC for precise time delays and oscillations.', workingPrinciple:'Internal comparators and flip-flop charge/discharge an external capacitor.', applications:['Astable multivibrator','Monostable delay','PWM generation','Tone generator'], specifications:{Supply:'4.5–16 V',OutputCurrent:'200 mA',Package:'DIP-8',Modes:'Astable/Monostable/Bistable'}, pins:'GND(1), TRIG(2), OUT(3), RESET(4), CTRL(5), THR(6), DIS(7), VCC(8)', pinDiagram:'DIP-8: pin 1 at notch-left, counter-clockwise.', datasheet:'https://www.ti.com/lit/ds/symlink/ne555.pdf' },
+  { id:'opamp741', name:'Op-Amp 741', type:'Analog IC', category:'Analog IC', purpose:'Amplify, filter and process analog signals', lab:'Signal and System Lab', location:'6317LA', image:'opamp', description:'General-purpose operational amplifier with very high gain.', workingPrinciple:'Differential voltage between + and − inputs is amplified by open-loop gain.', applications:['Amplifiers','Filters','Comparators','Oscillators'], specifications:{Supply:'±3 to ±18 V',Gain:'200,000 (open-loop)',SlewRate:'0.5 V/µs',Package:'DIP-8'}, pins:'OFFSET(1,5), IN-(2), IN+(3), V-(4), OUT(6), V+(7)', pinDiagram:'DIP-8: pin 1 at notch-left.', datasheet:'https://www.ti.com/lit/ds/symlink/lm741.pdf' },
+  { id:'7805', name:'7805 Voltage Regulator', type:'Analog IC', category:'Analog IC', purpose:'Provide fixed +5V regulated output', lab:'EDC Lab', location:'6319LA', image:'ic8', description:'3-terminal linear regulator providing stable +5 V output.', workingPrinciple:'Internal reference and series pass transistor maintain output.', applications:['Power supplies','Digital circuit powering','Embedded systems'], specifications:{Input:'7–35 V',Output:'5 V',MaxCurrent:'1 A',Package:'TO-220'}, pins:'IN(1), GND(2), OUT(3)', pinDiagram:'TO-220 front: 1=IN, 2=GND, 3=OUT.', datasheet:'https://www.ti.com/lit/ds/symlink/lm7805.pdf' },
+  { id:'8051', name:'8051 Microcontroller', type:'Microcontroller', category:'Microcontroller', purpose:'Embedded control and processing', lab:'Microcontroller Lab', location:'6319LA', image:'mcu', description:'8-bit microcontroller with 4KB ROM, 128 bytes RAM.', workingPrinciple:'Executes instructions from ROM to control I/O ports.', applications:['Embedded systems','Automation','Robotics','Instrumentation'], specifications:{Architecture:'8-bit',ROM:'4 KB',RAM:'128 bytes',IOPins:'32',Package:'DIP-40'}, pins:'Ports 0–3, RXD, TXD, INT0, INT1, T0, T1, ALE, PSEN, EA, XTAL1, XTAL2, RST, VCC, GND', pinDiagram:'DIP-40: pin 1 top-left, pin 40 top-right.', datasheet:'https://www.keil.com/dd/docs/datashts/atmel/at89c51_ds.pdf' },
+  { id:'ir-sensor', name:'IR Sensor Module', type:'Sensor', category:'Sensor', purpose:'Detect objects using infrared light', lab:'Microcontroller Lab', location:'6319LA', image:'sensor', description:'IR sensor emits and detects infrared reflection.', workingPrinciple:'IR LED emits light; photodiode detects reflection; outputs digital signal.', applications:['Obstacle detection','Line following','Object counting','Proximity'], specifications:{Voltage:'3.3–5 V',Range:'2–30 cm',Output:'Digital'}, pins:'VCC, GND, OUT', pinDiagram:'3-pin module; order varies by manufacturer.', datasheet:'https://www.vishay.com/docs/83760/tsts4401.pdf' },
+  { id:'arduino', name:'Arduino Uno', type:'Microcontroller', category:'Microcontroller', purpose:'Prototyping platform for embedded projects', lab:'Microcontroller Lab', location:'6319LA', image:'arduino', description:'Open-source ATmega328P-based microcontroller board.', workingPrinciple:'Uploaded programs run on ATmega328P controlling I/O pins.', applications:['Prototyping','Education','Automation','Robotics','IoT'], specifications:{MCU:'ATmega328P',DigitalIO:'14 (6 PWM)',AnalogIn:'6',Clock:'16 MHz',Flash:'32 KB'}, pins:'Digital 0–13, Analog A0–A5, 5V, 3.3V, GND, VIN, RESET', pinDiagram:'Headers labelled on board.', datasheet:'https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf' }
 ];
 
 const labs = [
-  { id:'edc-lab', name:'EDC Lab', location:'6319LA', description:'Basic Electronics and Devices Laboratory — electronic components and circuits.',
-    mainMachines:['DC Power Supply','Digital Multimeter','Function Generator','CRO'],
-    mainComponents:['Resistor','Capacitor','Diode','Transistor','LED','Zener','7805'] },
-  { id:'digital-electronics-lab', name:'Digital Electronics Lab', location:'6508LA', description:'Digital logic design, combinational and sequential circuits.',
-    mainMachines:['Digital Trainer Kit','CRO','DC Power Supply'],
-    mainComponents:['74153 Multiplexer','74138 Decoder','Logic Gates','Flip-Flops','Counters'] },
-  { id:'signal-system-lab', name:'Signal and System Lab', location:'6317LA', description:'Analog and digital signal analysis, waveform study and system response experiments.',
-    mainMachines:['CRO','Function Generator','Spectrum Analyzer','DSO'],
-    mainComponents:['Transistor','IC 555','Op-Amp 741','Filter'] },
-  { id:'network-analysis-lab', name:'Network Analysis Lab', location:'6506LA', description:'Network theorems, filters and transmission lines.',
-    mainMachines:['CRO','Function Generator','DC Power Supply','Multimeter'],
-    mainComponents:['Resistor','Capacitor','Inductor','Transformer'] },
-  { id:'vlsi-lab', name:'VLSI Lab', location:'6412LA', description:'VLSI design and verification using CAD tools.',
-    mainMachines:['DSO','Workstations','FPGA Boards'],
-    mainComponents:['FPGA','ASIC','CMOS ICs','MOSFET'] },
-  { id:'dsp-lab', name:'DSP Lab', location:'6121LA', description:'Digital signal processing experiments.',
-    mainMachines:['DSO','DSP Kits','PCs'],
-    mainComponents:['DSP Processor','ADC','DAC'] },
-  { id:'microcontroller-lab', name:'Microcontroller Lab', location:'6319LA', description:'Microcontroller programming and interfacing.',
-    mainMachines:['PCs','Microcontroller Kits','CRO'],
-    mainComponents:['8051','Arduino','LCD','Keypad','IR Sensor'] }
+  { id:'edc-lab', name:'EDC Lab', location:'6319LA', description:'Basic Electronics and Devices Laboratory.', mainMachines:['DC Power Supply','Digital Multimeter','Function Generator','CRO'], mainComponents:['Resistor','Capacitor','Diode','Transistor','LED','Zener','7805'] },
+  { id:'digital-electronics-lab', name:'Digital Electronics Lab', location:'6508LA', description:'Digital logic design, combinational and sequential circuits.', mainMachines:['Digital Trainer Kit','CRO','DC Power Supply'], mainComponents:['74153 Multiplexer','74138 Decoder','Logic Gates','Flip-Flops','Counters'] },
+  { id:'signal-system-lab', name:'Signal and System Lab', location:'6317LA', description:'Analog and digital signal analysis, waveform study.', mainMachines:['CRO','Function Generator','Spectrum Analyzer','DSO'], mainComponents:['Transistor','IC 555','Op-Amp 741','Filter'] },
+  { id:'network-analysis-lab', name:'Network Analysis Lab', location:'6506LA', description:'Network theorems, filters and transmission lines.', mainMachines:['CRO','Function Generator','DC Power Supply','Multimeter'], mainComponents:['Resistor','Capacitor','Inductor','Transformer'] },
+  { id:'vlsi-lab', name:'VLSI Lab', location:'6412LA', description:'VLSI design and verification using CAD tools.', mainMachines:['DSO','Workstations','FPGA Boards'], mainComponents:['FPGA','ASIC','CMOS ICs','MOSFET'] },
+  { id:'dsp-lab', name:'DSP Lab', location:'6121LA', description:'Digital signal processing experiments.', mainMachines:['DSO','DSP Kits','PCs'], mainComponents:['DSP Processor','ADC','DAC'] },
+  { id:'microcontroller-lab', name:'Microcontroller Lab', location:'6319LA', description:'Microcontroller programming and interfacing.', mainMachines:['PCs','Microcontroller Kits','CRO'], mainComponents:['8051','Arduino','LCD','Keypad','IR Sensor'] }
 ];
 
 const experiments = [
-  { id:'waveform-cro', name:'Waveform Observation using CRO', subject:'Signal & Systems', machine:'CRO', machineId:'cro', lab:'Signal and System Lab', location:'6317LA',
-    aim:'To observe and measure different waveforms (sine, square, triangular) using a Cathode Ray Oscilloscope and determine their amplitude, time period and frequency.',
-    theory:'The CRO displays the instantaneous value of a signal on a fluorescent screen. The horizontal axis is time (controlled by the time-base) and the vertical axis is amplitude. The time period T is number of horizontal divisions × time/div; frequency f = 1/T.',
-    apparatus:['CRO (20 MHz, dual trace)','Function Generator','BNC probes ×2','Connecting wires'],
-    circuitDiagram:'Function Generator → CH1 of CRO via BNC probe. Ground clip to GND. Set FG to sine, 1 kHz, 5 Vpp.',
-    procedure:['Switch ON the CRO and warm up 2 minutes.','Connect FG output to CH1 using a BNC probe.','Set FG to 1 kHz sine wave, 5 V peak-to-peak.','Adjust VOLTS/DIV and TIME/DIV so 1–2 cycles are visible.','Measure peak-to-peak voltage in divisions × VOLTS/DIV.','Measure time period in divisions × TIME/DIV.','Calculate f = 1/T.','Repeat for square and triangular waveforms.'],
-    precautions:['Check connections before switching ON.','Do not exceed the CRO input voltage rating.','Keep intensity moderate to avoid phosphor burn.','Use shielded probes to reduce noise.'],
-    result:'Amplitude and frequency measured from CRO matched the function generator settings within ±5% tolerance.',
-    viva:['What is the function of the time-base generator?','Define deflection sensitivity.','Differentiate CRO and DSO.','Why are Lissajous patterns used?','Purpose of the trigger level control?'], sample:true },
-  { id:'half-wave-rectifier', name:'Half-Wave Rectifier', subject:'Electronic Devices', machine:'CRO', machineId:'cro', lab:'EDC Lab', location:'6319LA',
-    aim:'To study the working of a half-wave rectifier and measure its ripple factor and efficiency.',
-    theory:'A half-wave rectifier uses a single diode to allow current flow only during the positive half cycle. The ripple factor is approximately 1.21 and theoretical efficiency is about 40.6%.',
-    apparatus:['Step-down transformer (230 V to 12 V)','1N4007 diode','Resistor 1 kΩ','Capacitor 470 µF','CRO','Multimeter','Breadboard'],
-    circuitDiagram:'Transformer secondary → diode (anode at top) → load resistor → back to transformer. Optional filter capacitor in parallel with load.',
-    procedure:['Connect transformer primary to AC mains and secondary to diode.','Connect load resistor from diode cathode to secondary return.','Observe input and output waveforms on CRO.','Measure DC output voltage with multimeter.','Add filter capacitor and observe reduced ripple.','Calculate ripple factor and efficiency.'],
-    precautions:['Use a step-down transformer only — never connect mains directly.','Observe diode polarity.','Do not exceed the capacitor voltage rating.','Discharge capacitor before touching the circuit.'],
-    result:'A pulsating DC output was observed. With the filter capacitor, the output approached smooth DC.',
-    viva:['Define ripple factor.','Why is a capacitor used as a filter?','What is PIV of a half-wave rectifier?','Compare half-wave and full-wave rectifiers.','Theoretical efficiency of a half-wave rectifier?'], sample:true },
-  { id:'ohms-law', name:'Verification of Ohm\'s Law', subject:'Basic Electronics', machine:'DC Power Supply', machineId:'dc-power-supply', lab:'EDC Lab', location:'6319LA',
-    aim:'To verify Ohm\'s Law and determine the resistance of a given resistor.',
-    theory:'Ohm\'s Law: V = IR when physical conditions remain constant.',
-    apparatus:['DC Power Supply','Digital Multimeter','Resistor 1 kΩ','Breadboard','Connecting wires'],
-    circuitDiagram:'DC supply (+) → ammeter → resistor → back to supply (–). Voltmeter in parallel across resistor.',
-    procedure:['Set up the circuit as per the diagram.','Set DC supply to 1 V, note ammeter reading.','Increase in steps of 1 V up to 10 V, noting current.','Plot V vs I.','Slope gives resistance.','Verify against resistor colour code.'],
-    precautions:['Do not exceed the resistor\'s rated power.','Use correct multimeter range.','Observe ammeter/voltmeter polarity.','Switch off before changing connections.'],
-    result:'Straight-line graph through origin — Ohm\'s Law verified. Slope ≈ 1 kΩ, matches colour code.',
-    viva:['State Ohm\'s Law.','Limitations of Ohm\'s Law.','Colour code for 1 kΩ.','Effect of temperature on resistance.','Define conductivity.'], sample:true },
-  { id:'multiplexer-exp', name:'Study of Multiplexer (74153)', subject:'Digital Electronics', machine:'Digital Trainer Kit', machineId:'digital-trainer', lab:'Digital Electronics Lab', location:'6508LA',
-    aim:'To study the working of a 4:1 multiplexer using IC 74153 and verify its truth table.',
-    theory:'A multiplexer routes one of several inputs to a single output, controlled by select lines. For 4:1 MUX, two select lines select one of four inputs.',
-    apparatus:['IC 74153','Digital Trainer Kit','LEDs','Resistors 330 Ω','Connecting wires'],
-    circuitDiagram:'IC 74153 powered by 5 V. Select lines S0, S1 to switches. Inputs I0–I3 to switches. Output Y to LED via 330 Ω resistor.',
-    procedure:['Insert IC 74153 into the trainer kit.','Connect VCC (pin 16) and GND (pin 8).','Connect S0, S1 to logic switches.','Connect I0–I3 to logic switches.','Connect output Y to an LED through a resistor.','Enable the section (E to GND).','For each S0, S1, verify the selected input appears at the output.'],
-    precautions:['Do not insert/remove the IC with power ON.','Observe pin 1 orientation.','Avoid static discharge.','Double-check connections before powering ON.'],
-    result:'Truth table verified. Output matched the selected input for every S0/S1 combination.',
-    viva:['Function of a multiplexer?','Select lines needed for 8:1 MUX?','MUX vs DEMUX.','Significance of the enable pin.','Two applications of a multiplexer.'], sample:true },
-  { id:'decoder-exp', name:'Study of Decoder (74138)', subject:'Digital Electronics', machine:'Digital Trainer Kit', machineId:'digital-trainer', lab:'Digital Electronics Lab', location:'6508LA',
-    aim:'To study the working of a 3:8 decoder using IC 74138 and verify its truth table.',
-    theory:'A decoder converts n binary inputs into 2^n unique outputs, activating exactly one output at a time. The 74138 has three active-low enable pins and produces active-low outputs.',
-    apparatus:['IC 74138','Digital Trainer Kit','LEDs','Resistors 330 Ω','Connecting wires'],
-    circuitDiagram:'VCC (16) = 5V, GND (8) = 0V. A0, A1, A2 to switches. Enable pins E1, E2, E3 configured to enable. Outputs Y0–Y7 through LEDs.',
-    procedure:['Insert IC 74138 into the trainer kit.','Connect VCC and GND.','Connect A0, A1, A2 to logic switches.','Connect all enable pins so the IC is enabled.','For each 3-bit input, observe which output LED is LOW.','Record and compare with the truth table.'],
-    precautions:['Do not short enable pins to the wrong logic level.','Ensure correct pin orientation.','Avoid static discharge.','Check output LEDs with a known input.'],
-    result:'Truth table verified. For each input combination, exactly one output was active (LOW).',
-    viva:['What is a decoder?','Decoder vs encoder.','Why are 74138 outputs active-low?','Use of enable pins.','Two applications of a decoder.'], sample:true },
-  { id:'led-blinking', name:'LED Blinking using 8051', subject:'Microcontrollers', machine:'Microcontroller Kit', machineId:'digital-trainer', lab:'Microcontroller Lab', location:'6319LA',
-    aim:'To write and execute an 8051 assembly program to blink an LED connected to Port 1.',
-    theory:'The 8051 executes instructions from ROM. Writing 1 then 0 to a port pin alternately drives the LED ON and OFF. A software delay loop produces the visible blink.',
-    apparatus:['8051 microcontroller board','Crystal 11.0592 MHz','LED','Resistor 330 Ω','Power supply 5 V','Programmer / USB cable'],
-    circuitDiagram:'LED anode to +5 V via 330 Ω resistor, cathode to P1.0. Writing 0 to P1.0 turns the LED ON (current sinks into the pin).',
-    procedure:['Write 8051 assembly to toggle P1.0 with a delay loop.','Assemble and load into the microcontroller.','Power the circuit and observe the LED.','Change delay count, observe blink rate.','Record observations.'],
-    precautions:['Observe correct LED polarity.','Do not exceed port pin current ratings.','Use correct crystal frequency.','Discharge static before handling the board.'],
-    result:'LED blinked at the rate set by the delay loop. Changing the delay counter changed the blink rate as expected.',
-    viva:['Reset vector of the 8051?','Role of the crystal oscillator.','How many I/O ports does 8051 have?','Microcontroller vs microprocessor.','What is a machine cycle?'], sample:true }
+  { id:'waveform-cro', name:'Waveform Observation using CRO', subject:'Signal & Systems', machine:'CRO', lab:'Signal and System Lab', location:'6317LA', aim:'To observe and measure waveforms using a CRO.', theory:'CRO displays instantaneous value of a signal on a fluorescent screen.', apparatus:['CRO','Function Generator','BNC probes','Wires'], circuitDiagram:'FG → CH1 of CRO. Set FG to 1 kHz sine, 5 Vpp.', procedure:['Switch ON CRO.','Connect FG to CH1.','Set 1 kHz sine, 5 Vpp.','Adjust VOLTS/DIV and TIME/DIV.','Measure Vpp and period.','Calculate f = 1/T.','Repeat for square and triangle.'], precautions:['Check connections first.','Do not exceed input voltage.','Keep intensity moderate.'], result:'Measured values matched FG settings within ±5%.', viva:['Function of time-base?','Define deflection sensitivity.','CRO vs DSO?'], sample:true },
+  { id:'half-wave-rectifier', name:'Half-Wave Rectifier', subject:'Electronic Devices', machine:'CRO', lab:'EDC Lab', location:'6319LA', aim:'Study half-wave rectifier ripple factor and efficiency.', theory:'Single diode rectifies positive half cycle only. Ripple ≈1.21, η≈40.6%.', apparatus:['Transformer 12V','1N4007','1 kΩ','470 µF','CRO','Multimeter'], circuitDiagram:'Transformer → diode → load → return. Filter cap across load.', procedure:['Connect transformer to diode.','Connect load.','Observe waveforms.','Measure DC.','Add filter cap.','Calculate ripple & efficiency.'], precautions:['Use step-down transformer.','Observe polarity.','Discharge capacitor.'], result:'Pulsating DC observed; filter smoothed output.', viva:['Define ripple factor.','Why capacitor filter?','PIV of HWR?'], sample:true },
+  { id:'ohms-law', name:'Verification of Ohm\'s Law', subject:'Basic Electronics', machine:'DC Power Supply', lab:'EDC Lab', location:'6319LA', aim:'Verify Ohm\'s Law and determine resistance.', theory:'V = IR when conditions constant.', apparatus:['DC Supply','Multimeter','1 kΩ Resistor','Breadboard'], circuitDiagram:'Supply → ammeter → resistor → return. Voltmeter across R.', procedure:['Set up circuit.','Set 1 V, note current.','Increase to 10 V.','Plot V vs I.','Slope = R.'], precautions:['Respect power rating.','Use correct range.','Observe polarity.'], result:'Linear graph through origin. Slope ≈1 kΩ.', viva:['State Ohm\'s Law.','Limitations.','Temperature effect.'], sample:true },
+  { id:'multiplexer-exp', name:'Study of Multiplexer (74153)', subject:'Digital Electronics', machine:'Digital Trainer Kit', lab:'Digital Electronics Lab', location:'6508LA', aim:'Verify 4:1 MUX truth table using IC 74153.', theory:'MUX routes one of several inputs to output via select lines.', apparatus:['74153','Trainer Kit','LEDs','330 Ω resistors'], circuitDiagram:'VCC=5V. S0,S1 to switches. I0–I3 to switches. Y to LED.', procedure:['Insert IC.','Connect VCC,GND.','Connect S0,S1.','Connect I0–I3.','Connect Y to LED.','Enable section.','Test all S0,S1 combos.'], precautions:['Do not insert/remove with power.','Observe pin 1.','Avoid ESD.'], result:'Truth table verified.', viva:['Function of MUX?','Select lines for 8:1?','MUX vs DEMUX.'], sample:true },
+  { id:'decoder-exp', name:'Study of Decoder (74138)', subject:'Digital Electronics', machine:'Digital Trainer Kit', lab:'Digital Electronics Lab', location:'6508LA', aim:'Verify 3:8 decoder truth table using IC 74138.', theory:'Decoder converts n inputs to 2^n outputs.', apparatus:['74138','Trainer Kit','LEDs','330 Ω resistors'], circuitDiagram:'VCC=5V. A0,A1,A2 to switches. Enable pins set. Y0–Y7 to LEDs.', procedure:['Insert IC.','Connect VCC,GND.','Connect A0–A2.','Enable IC.','Test all input combos.','Compare with truth table.'], precautions:['Set enable pins correctly.','Check orientation.','Verify with known input.'], result:'Exactly one output active per input.', viva:['What is a decoder?','Decoder vs encoder?','Applications?'], sample:true },
+  { id:'led-blinking', name:'LED Blinking using 8051', subject:'Microcontrollers', machine:'Microcontroller Kit', lab:'Microcontroller Lab', location:'6319LA', aim:'Blink an LED using 8051 Port 1.', theory:'8051 executes ROM instructions. Toggling P1.0 with delay produces blink.', apparatus:['8051 board','11.0592 MHz crystal','LED','330 Ω','5V supply'], circuitDiagram:'LED anode to +5V via 330Ω, cathode to P1.0.', procedure:['Write assembly.','Assemble and load.','Power circuit.','Observe LED.','Vary delay, observe rate.'], precautions:['Observe LED polarity.','Port pin current limits.','Avoid ESD.'], result:'LED blinked as programmed.', viva:['Reset vector?','Crystal role?','Machine cycle?'], sample:true }
 ];
 
 const equipmentInventory = [
-  { id:'EQ-001', name:'CRO (20 MHz)', machineId:'cro', lab:'Signal and System Lab', location:'6317LA', condition:'Working', status:'Available', lastChecked:'2025-09-12', nextDue:'2026-03-12' },
-  { id:'EQ-002', name:'Function Generator 2 MHz', machineId:'function-generator', lab:'Signal and System Lab', location:'6317LA', condition:'Working', status:'In Use', lastChecked:'2025-08-30', nextDue:'2026-02-28' },
-  { id:'EQ-003', name:'Digital Multimeter', machineId:'digital-multimeter', lab:'EDC Lab', location:'6319LA', condition:'Working', status:'Available', lastChecked:'2025-09-01', nextDue:'2026-03-01' },
-  { id:'EQ-004', name:'Digital Storage Oscilloscope', machineId:'oscilloscope', lab:'VLSI Lab', location:'6412LA', condition:'Working', status:'Available', lastChecked:'2025-07-18', nextDue:'2026-01-18' },
-  { id:'EQ-005', name:'DC Power Supply (0–30 V)', machineId:'dc-power-supply', lab:'EDC Lab', location:'6319LA', condition:'Needs Repair', status:'Not Available', lastChecked:'2025-09-20', nextDue:'2025-10-20' },
-  { id:'EQ-006', name:'Digital Trainer Kit', machineId:'digital-trainer', lab:'Digital Electronics Lab', location:'6508LA', condition:'Working', status:'Available', lastChecked:'2025-09-05', nextDue:'2026-03-05' },
-  { id:'EQ-007', name:'DSP Kit', machineId:'oscilloscope', lab:'DSP Lab', location:'6121LA', condition:'Under Maintenance', status:'Not Available', lastChecked:'2025-08-15', nextDue:'2025-11-15' },
-  { id:'EQ-008', name:'Microcontroller Kit (8051)', machineId:'digital-trainer', lab:'Microcontroller Lab', location:'6319LA', condition:'Working', status:'Available', lastChecked:'2025-09-08', nextDue:'2026-03-08' },
-  { id:'EQ-009', name:'Spectrum Analyzer', machineId:'function-generator', lab:'Signal and System Lab', location:'6317LA', condition:'Working', status:'Available', lastChecked:'2025-06-25', nextDue:'2025-12-25' },
-  { id:'EQ-010', name:'Logic Analyzer (16-Ch)', machineId:'oscilloscope', lab:'Digital Electronics Lab', location:'6508LA', condition:'Working', status:'Available', lastChecked:'2025-09-02', nextDue:'2026-03-02' },
-  { id:'EQ-011', name:'LCR Meter', machineId:'digital-multimeter', lab:'Network Analysis Lab', location:'6506LA', condition:'Working', status:'Available', lastChecked:'2025-08-22', nextDue:'2026-02-22' },
-  { id:'EQ-012', name:'RF Signal Generator', machineId:'function-generator', lab:'Signal and System Lab', location:'6317LA', condition:'Needs Repair', status:'Not Available', lastChecked:'2025-09-15', nextDue:'2025-10-15' },
-  { id:'EQ-013', name:'FPGA Development Board', machineId:'oscilloscope', lab:'VLSI Lab', location:'6412LA', condition:'Working', status:'In Use', lastChecked:'2025-09-10', nextDue:'2026-03-10' },
-  { id:'EQ-014', name:'IC Tester (Digital)', machineId:'digital-trainer', lab:'Digital Electronics Lab', location:'6508LA', condition:'Working', status:'Available', lastChecked:'2025-09-18', nextDue:'2026-03-18' },
-  { id:'EQ-015', name:'Breadboard Station (Set of 10)', machineId:'digital-trainer', lab:'EDC Lab', location:'6319LA', condition:'Working', status:'Available', lastChecked:'2025-09-06', nextDue:'2026-03-06' }
+  { id:'EQ-001', name:'CRO (20 MHz)', lab:'Signal and System Lab', location:'6317LA', condition:'Working', status:'Available', lastChecked:'2025-09-12', nextDue:'2026-03-12' },
+  { id:'EQ-002', name:'Function Generator 2 MHz', lab:'Signal and System Lab', location:'6317LA', condition:'Working', status:'In Use', lastChecked:'2025-08-30', nextDue:'2026-02-28' },
+  { id:'EQ-003', name:'Digital Multimeter', lab:'EDC Lab', location:'6319LA', condition:'Working', status:'Available', lastChecked:'2025-09-01', nextDue:'2026-03-01' },
+  { id:'EQ-004', name:'Digital Storage Oscilloscope', lab:'VLSI Lab', location:'6412LA', condition:'Working', status:'Available', lastChecked:'2025-07-18', nextDue:'2026-01-18' },
+  { id:'EQ-005', name:'DC Power Supply (0–30 V)', lab:'EDC Lab', location:'6319LA', condition:'Needs Repair', status:'Not Available', lastChecked:'2025-09-20', nextDue:'2025-10-20' },
+  { id:'EQ-006', name:'Digital Trainer Kit', lab:'Digital Electronics Lab', location:'6508LA', condition:'Working', status:'Available', lastChecked:'2025-09-05', nextDue:'2026-03-05' },
+  { id:'EQ-007', name:'DSP Kit', lab:'DSP Lab', location:'6121LA', condition:'Under Maintenance', status:'Not Available', lastChecked:'2025-08-15', nextDue:'2025-11-15' },
+  { id:'EQ-008', name:'Microcontroller Kit (8051)', lab:'Microcontroller Lab', location:'6319LA', condition:'Working', status:'Available', lastChecked:'2025-09-08', nextDue:'2026-03-08' },
+  { id:'EQ-009', name:'Spectrum Analyzer', lab:'Signal and System Lab', location:'6317LA', condition:'Working', status:'Available', lastChecked:'2025-06-25', nextDue:'2025-12-25' },
+  { id:'EQ-010', name:'Logic Analyzer (16-Ch)', lab:'Digital Electronics Lab', location:'6508LA', condition:'Working', status:'Available', lastChecked:'2025-09-02', nextDue:'2026-03-02' },
+  { id:'EQ-011', name:'LCR Meter', lab:'Network Analysis Lab', location:'6506LA', condition:'Working', status:'Available', lastChecked:'2025-08-22', nextDue:'2026-02-22' },
+  { id:'EQ-012', name:'RF Signal Generator', lab:'Signal and System Lab', location:'6317LA', condition:'Needs Repair', status:'Not Available', lastChecked:'2025-09-15', nextDue:'2025-10-15' },
+  { id:'EQ-013', name:'FPGA Development Board', lab:'VLSI Lab', location:'6412LA', condition:'Working', status:'In Use', lastChecked:'2025-09-10', nextDue:'2026-03-10' },
+  { id:'EQ-014', name:'IC Tester (Digital)', lab:'Digital Electronics Lab', location:'6508LA', condition:'Working', status:'Available', lastChecked:'2025-09-18', nextDue:'2026-03-18' },
+  { id:'EQ-015', name:'Breadboard Station (Set of 10)', lab:'EDC Lab', location:'6319LA', condition:'Working', status:'Available', lastChecked:'2025-09-06', nextDue:'2026-03-06' }
 ];
 
 const maintenanceRecords = [
-  { equipmentId:'EQ-005', name:'DC Power Supply (0–30 V)', history:[
-      { date:'2025-09-20', type:'Fault Report', note:'Output voltage fluctuating; suspected faulty voltage regulator IC.', technician:'Mr. S. Patil' },
-      { date:'2025-03-10', type:'Routine Check', note:'Cleaned terminals, verified calibration.', technician:'Lab Assistant' }
-    ], lastInspection:'2025-09-20', nextInspection:'2025-10-20', fault:'Voltage regulator IC needs replacement.' },
-  { equipmentId:'EQ-007', name:'DSP Kit', history:[
-      { date:'2025-08-15', type:'Under Maintenance', note:'Sent to vendor for firmware reinstallation.', technician:'Vendor Service' },
-      { date:'2025-02-20', type:'Routine Check', note:'Annual cleaning and inspection completed.', technician:'Lab Assistant' }
-    ], lastInspection:'2025-08-15', nextInspection:'2025-11-15', fault:'Firmware corruption — sent to vendor.' },
-  { equipmentId:'EQ-012', name:'RF Signal Generator', history:[
-      { date:'2025-09-15', type:'Fault Report', note:'Output amplitude unstable above 100 MHz.', technician:'Mr. A. Kulkarni' }
-    ], lastInspection:'2025-09-15', nextInspection:'2025-10-15', fault:'RF amplifier stage needs servicing.' },
-  { equipmentId:'EQ-001', name:'CRO (20 MHz)', history:[
-      { date:'2025-09-12', type:'Routine Check', note:'Calibration verified, probes checked.', technician:'Lab Assistant' }
-    ], lastInspection:'2025-09-12', nextInspection:'2026-03-12', fault:'None' },
-  { equipmentId:'EQ-006', name:'Digital Trainer Kit', history:[
-      { date:'2025-09-05', type:'Routine Check', note:'All logic switches and LEDs functioning.', technician:'Lab Assistant' }
-    ], lastInspection:'2025-09-05', nextInspection:'2026-03-05', fault:'None' },
-  { equipmentId:'EQ-013', name:'FPGA Development Board', history:[
-      { date:'2025-09-10', type:'Routine Check', note:'JTAG interface verified, reflowed one header pin.', technician:'Mr. R. Deshmukh' }
-    ], lastInspection:'2025-09-10', nextInspection:'2026-03-10', fault:'None' }
+  { equipmentId:'EQ-005', name:'DC Power Supply (0–30 V)', history:[{ date:'2025-09-20', type:'Fault Report', note:'Output fluctuating; faulty regulator IC.', technician:'Mr. S. Patil' },{ date:'2025-03-10', type:'Routine Check', note:'Cleaned, calibrated.', technician:'Lab Assistant' }], lastInspection:'2025-09-20', nextInspection:'2025-10-20', fault:'Regulator IC needs replacement.' },
+  { equipmentId:'EQ-007', name:'DSP Kit', history:[{ date:'2025-08-15', type:'Under Maintenance', note:'Sent to vendor for firmware.', technician:'Vendor' },{ date:'2025-02-20', type:'Routine Check', note:'Annual cleaning.', technician:'Lab Assistant' }], lastInspection:'2025-08-15', nextInspection:'2025-11-15', fault:'Firmware corruption.' },
+  { equipmentId:'EQ-012', name:'RF Signal Generator', history:[{ date:'2025-09-15', type:'Fault Report', note:'Output unstable above 100 MHz.', technician:'Mr. A. Kulkarni' }], lastInspection:'2025-09-15', nextInspection:'2025-10-15', fault:'RF amplifier stage needs servicing.' },
+  { equipmentId:'EQ-001', name:'CRO (20 MHz)', history:[{ date:'2025-09-12', type:'Routine Check', note:'Calibration verified.', technician:'Lab Assistant' }], lastInspection:'2025-09-12', nextInspection:'2026-03-12', fault:'None' },
+  { equipmentId:'EQ-006', name:'Digital Trainer Kit', history:[{ date:'2025-09-05', type:'Routine Check', note:'All switches and LEDs functioning.', technician:'Lab Assistant' }], lastInspection:'2025-09-05', nextInspection:'2026-03-05', fault:'None' },
+  { equipmentId:'EQ-013', name:'FPGA Development Board', history:[{ date:'2025-09-10', type:'Routine Check', note:'JTAG verified, header reflowed.', technician:'Mr. R. Deshmukh' }], lastInspection:'2025-09-10', nextInspection:'2026-03-10', fault:'None' }
 ];
 
 /* ==================== HELPERS ==================== */
@@ -1008,11 +725,20 @@ const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&l
 const conditionBadge = c => { const map = {'Working':'badge--working','Needs Repair':'badge--repair','Under Maintenance':'badge--fault'}; return `<span class="badge ${map[c]||'badge--na'}">${c}</span>`; };
 const statusBadge = s => { const map = {'Available':'badge--available','In Use':'badge--in-use','Not Available':'badge--na'}; return `<span class="badge ${map[s]||'badge--na'}">${s}</span>`; };
 
+function showToast(msg){
+  const t = $('toast');
+  $('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3200);
+  if (window.lucide) window.lucide.createIcons();
+}
+
 /* ==================== RENDER ==================== */
 function renderDashboard(){
   const stats = [
     { icon:'settings', label:'Machines', value: machines.length, trend:'+2 this term' },
-    { icon:'circuit-board', label:'Components', value: components.length, trend:'+5 this term' },
+    { icon:'circuit-board', label:'Components', value: components.length, trend:'+6 this term' },
     { icon:'building-2', label:'Laboratories', value: labs.length, trend:'stable' },
     { icon:'flask-conical', label:'Experiments', value: experiments.length, trend:'+2 new' },
     { icon:'package', label:'Equipment Units', value: equipmentInventory.length, trend:'+6 this term' },
@@ -1035,10 +761,7 @@ function renderMachines(){
       <span class="card__tag">${m.category}</span>
       <h3 class="card__title">${m.name}</h3>
       <p class="card__subtitle">${m.purpose}</p>
-      <div class="card__meta">
-        <span><i data-lucide="building-2"></i> ${m.lab}</span>
-        <span><i data-lucide="map-pin"></i> ${m.location}</span>
-      </div>
+      <div class="card__meta"><span><i data-lucide="building-2"></i> ${m.lab}</span><span><i data-lucide="map-pin"></i> ${m.location}</span></div>
       <div class="card__actions">
         <button class="card__btn" onclick="openMachineModal('${m.id}')">View Details <i data-lucide="arrow-right"></i></button>
         <button class="card__btn" onclick="setQr('machine','${m.id}'); document.getElementById('qr').scrollIntoView({behavior:'smooth'})">QR <i data-lucide="qr-code"></i></button>
@@ -1055,10 +778,7 @@ function renderComponents(filter){
       <span class="card__tag">${c.category}</span>
       <h3 class="card__title">${c.name}</h3>
       <p class="card__subtitle">${c.purpose}</p>
-      <div class="card__meta">
-        <span><i data-lucide="tag"></i> ${c.type}</span>
-        <span><i data-lucide="map-pin"></i> ${c.location}</span>
-      </div>
+      <div class="card__meta"><span><i data-lucide="tag"></i> ${c.type}</span><span><i data-lucide="map-pin"></i> ${c.location}</span></div>
       <div class="card__actions">
         <button class="card__btn" onclick="openComponentModal('${c.id}')">Details <i data-lucide="arrow-right"></i></button>
         <button class="card__btn" onclick="setQr('component','${c.id}'); document.getElementById('qr').scrollIntoView({behavior:'smooth'})">QR <i data-lucide="qr-code"></i></button>
@@ -1074,13 +794,8 @@ function renderLabs(){
       <h3 class="card__title">${l.name}</h3>
       <div class="lab-location"><i data-lucide="map-pin"></i> <span>Location: <strong>${l.location}</strong></span></div>
       <p class="card__subtitle">${l.description}</p>
-      <div class="card__meta">
-        <span><i data-lucide="settings"></i> ${l.mainMachines.length} machines</span>
-        <span><i data-lucide="circuit-board"></i> ${l.mainComponents.length} components</span>
-      </div>
-      <div class="card__actions">
-        <button class="card__btn" onclick="openLabModal('${l.id}')">Explore Lab <i data-lucide="arrow-right"></i></button>
-      </div>
+      <div class="card__meta"><span><i data-lucide="settings"></i> ${l.mainMachines.length} machines</span><span><i data-lucide="circuit-board"></i> ${l.mainComponents.length} components</span></div>
+      <div class="card__actions"><button class="card__btn" onclick="openLabModal('${l.id}')">Explore Lab <i data-lucide="arrow-right"></i></button></div>
     </article>`).join('');
 }
 
@@ -1090,13 +805,8 @@ function renderExperiments(){
       <span class="card__tag">${e.subject}</span>
       <h3 class="card__title">${e.name}</h3>
       <p class="card__subtitle">${e.aim.slice(0, 100)}${e.aim.length > 100 ? '…' : ''}</p>
-      <div class="card__meta">
-        <span><i data-lucide="settings"></i> ${e.machine}</span>
-        <span><i data-lucide="map-pin"></i> ${e.location}</span>
-      </div>
-      <div class="card__actions">
-        <button class="card__btn" onclick="openExperimentModal('${e.id}')">Full Guide <i data-lucide="arrow-right"></i></button>
-      </div>
+      <div class="card__meta"><span><i data-lucide="settings"></i> ${e.machine}</span><span><i data-lucide="map-pin"></i> ${e.location}</span></div>
+      <div class="card__actions"><button class="card__btn" onclick="openExperimentModal('${e.id}')">Full Guide <i data-lucide="arrow-right"></i></button></div>
     </article>`).join('');
 }
 
@@ -1113,9 +823,7 @@ function renderEquipment(filter){
         <span>${conditionBadge(e.condition)} ${statusBadge(e.status)}</span>
         <span><i data-lucide="calendar"></i> Checked ${e.lastChecked}</span>
       </div>
-      <div class="card__actions">
-        <button class="card__btn" onclick="openEquipmentModal('${e.id}')">Details <i data-lucide="arrow-right"></i></button>
-      </div>
+      <div class="card__actions"><button class="card__btn" onclick="openEquipmentModal('${e.id}')">Details <i data-lucide="arrow-right"></i></button></div>
     </article>`).join('');
   if (window.lucide) window.lucide.createIcons();
 }
@@ -1133,9 +841,7 @@ function renderMaintenance(){
         <strong style="color:var(--primary);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em">Current Fault</strong>
         <p style="margin-top:3px;color:var(--text-secondary)">${escapeHtml(r.fault)}</p>
       </div>
-      <div class="card__actions">
-        <button class="card__btn" onclick="openMaintenanceModal('${r.equipmentId}')">History <i data-lucide="arrow-right"></i></button>
-      </div>
+      <div class="card__actions"><button class="card__btn" onclick="openMaintenanceModal('${r.equipmentId}')">History <i data-lucide="arrow-right"></i></button></div>
     </article>`).join('');
 }
 
@@ -1155,8 +861,7 @@ function listToHtml(arr){ return arr.map(x => `<li>${escapeHtml(x)}</li>`).join(
 function openMachineModal(id){
   const m = machines.find(x => x.id === id); if (!m) return;
   openModal(`
-    <h2>${m.name}</h2>
-    <p class="modal-subtitle">${m.category} — ${m.lab}</p>
+    <h2>${m.name}</h2><p class="modal-subtitle">${m.category} — ${m.lab}</p>
     <div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>${m.location} (${m.lab})</p></div>
     <div class="modal__section"><h4><i data-lucide="target"></i> Purpose</h4><p>${m.purpose}</p></div>
     <div class="modal__section"><h4><i data-lucide="file-text"></i> Description</h4><p>${m.description}</p></div>
@@ -1164,9 +869,7 @@ function openMachineModal(id){
     <div class="modal__section"><h4><i data-lucide="list"></i> Main Functions</h4><ul>${listToHtml(m.functions)}</ul></div>
     <div class="modal__section"><h4><i data-lucide="bar-chart-3"></i> Specifications</h4><div class="modal__specs">${specsToHtml(m.specifications)}</div></div>
     <div class="modal__section"><h4><i data-lucide="shield-alert"></i> Safety Precautions</h4><ul>${listToHtml(m.safety)}</ul></div>
-    <div class="modal__section"><h4><i data-lucide="file-badge"></i> Datasheet</h4>
-      <a class="ds-link" href="${m.datasheet}" target="_blank" rel="noopener">Open official datasheet <i data-lucide="external-link"></i></a>
-    </div>
+    <div class="modal__section"><h4><i data-lucide="file-badge"></i> Datasheet</h4><a class="ds-link" href="${m.datasheet}" target="_blank" rel="noopener">Open official datasheet <i data-lucide="external-link"></i></a></div>
     <div class="modal__actions">
       <button class="btn btn--outline" onclick="setQr('machine','${m.id}'); closeModal(); document.getElementById('qr').scrollIntoView({behavior:'smooth'})"><i data-lucide="qr-code"></i> Show QR</button>
       <button class="btn btn--primary" onclick="closeModal()">Close</button>
@@ -1176,8 +879,7 @@ function openMachineModal(id){
 function openComponentModal(id){
   const c = components.find(x => x.id === id); if (!c) return;
   openModal(`
-    <h2>${c.name}</h2>
-    <p class="modal-subtitle">${c.type} — ${c.lab}</p>
+    <h2>${c.name}</h2><p class="modal-subtitle">${c.type} — ${c.lab}</p>
     <div style="margin-bottom:18px;padding:14px;background:var(--bg-primary);border-radius:12px;border:1px solid var(--border-subtle);display:flex;justify-content:center">
       <div style="width:220px">${SVG_IMAGES[c.image] || SVG_IMAGES.ic16}</div>
     </div>
@@ -1189,9 +891,7 @@ function openComponentModal(id){
     <div class="modal__section"><h4><i data-lucide="bar-chart-3"></i> Specifications</h4><div class="modal__specs">${specsToHtml(c.specifications)}</div></div>
     <div class="modal__section"><h4><i data-lucide="git-branch"></i> Pin Information</h4><p>${c.pins}</p></div>
     <div class="modal__section"><h4><i data-lucide="layout"></i> Pin Diagram</h4><div class="modal__placeholder">${c.pinDiagram}</div></div>
-    <div class="modal__section"><h4><i data-lucide="file-badge"></i> Datasheet</h4>
-      <a class="ds-link" href="${c.datasheet}" target="_blank" rel="noopener">Open official datasheet <i data-lucide="external-link"></i></a>
-    </div>
+    <div class="modal__section"><h4><i data-lucide="file-badge"></i> Datasheet</h4><a class="ds-link" href="${c.datasheet}" target="_blank" rel="noopener">Open official datasheet <i data-lucide="external-link"></i></a></div>
     <div class="modal__actions">
       <button class="btn btn--outline" onclick="setQr('component','${c.id}'); closeModal(); document.getElementById('qr').scrollIntoView({behavior:'smooth'})"><i data-lucide="qr-code"></i> Show QR</button>
       <button class="btn btn--primary" onclick="closeModal()">Close</button>
@@ -1201,8 +901,7 @@ function openComponentModal(id){
 function openLabModal(id){
   const l = labs.find(x => x.id === id); if (!l) return;
   openModal(`
-    <h2>${l.name}</h2>
-    <p class="modal-subtitle">Laboratory</p>
+    <h2>${l.name}</h2><p class="modal-subtitle">Laboratory</p>
     <div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>${l.location}</p></div>
     <div class="modal__section"><h4><i data-lucide="info"></i> Description</h4><p>${l.description}</p></div>
     <div class="modal__section"><h4><i data-lucide="settings"></i> Main Machines</h4><ul>${listToHtml(l.mainMachines)}</ul></div>
@@ -1212,8 +911,7 @@ function openLabModal(id){
 function openExperimentModal(id){
   const e = experiments.find(x => x.id === id); if (!e) return;
   openModal(`
-    <h2>${e.name}</h2>
-    <p class="modal-subtitle">${e.subject} — ${e.lab} — ${e.location}</p>
+    <h2>${e.name}</h2><p class="modal-subtitle">${e.subject} — ${e.lab} — ${e.location}</p>
     ${e.sample ? '<span class="badge badge--sample" style="margin-bottom:14px">Sample data</span>' : ''}
     <div class="modal__section"><h4><i data-lucide="target"></i> Aim</h4><p>${e.aim}</p></div>
     <div class="modal__section"><h4><i data-lucide="book-open"></i> Theory</h4><p>${e.theory}</p></div>
@@ -1228,8 +926,7 @@ function openExperimentModal(id){
 function openEquipmentModal(id){
   const e = equipmentInventory.find(x => x.id === id); if (!e) return;
   openModal(`
-    <h2>${e.name}</h2>
-    <p class="modal-subtitle">Equipment ID: ${e.id}</p>
+    <h2>${e.name}</h2><p class="modal-subtitle">Equipment ID: ${e.id}</p>
     <div class="modal__section"><h4><i data-lucide="map-pin"></i> Location</h4><p>${e.lab} — ${e.location}</p></div>
     <div class="modal__section"><h4><i data-lucide="activity"></i> Condition &amp; Status</h4><p>${conditionBadge(e.condition)} &nbsp; ${statusBadge(e.status)}</p></div>
     <div class="modal__section"><h4><i data-lucide="calendar-check"></i> Last Checked</h4><p>${e.lastChecked}</p></div>
@@ -1240,15 +937,12 @@ function openMaintenanceModal(equipmentId){
   const r = maintenanceRecords.find(x => x.equipmentId === equipmentId); if (!r) return;
   const historyHtml = r.history.map(h => `
     <div style="padding:11px 13px;background:var(--bg-primary);border-radius:8px;margin-bottom:8px;border-left:3px solid var(--accent)">
-      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:0.78rem;color:var(--text-muted)">
-        <span>${h.date}</span><span style="color:var(--accent);font-weight:600">${h.type}</span>
-      </div>
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:0.78rem;color:var(--text-muted)"><span>${h.date}</span><span style="color:var(--accent);font-weight:600">${h.type}</span></div>
       <p style="font-size:0.86rem;color:var(--text-secondary);margin-top:4px">${escapeHtml(h.note)}</p>
       <p style="font-size:0.73rem;color:var(--text-muted);margin-top:3px">Technician: ${escapeHtml(h.technician)}</p>
     </div>`).join('');
   openModal(`
-    <h2>${r.name}</h2>
-    <p class="modal-subtitle">Maintenance History — ${r.equipmentId}</p>
+    <h2>${r.name}</h2><p class="modal-subtitle">Maintenance History — ${r.equipmentId}</p>
     <div class="modal__section"><h4><i data-lucide="calendar"></i> Last Inspection</h4><p>${r.lastInspection}</p></div>
     <div class="modal__section"><h4><i data-lucide="calendar-clock"></i> Next Inspection</h4><p>${r.nextInspection}</p></div>
     <div class="modal__section"><h4><i data-lucide="alert-triangle"></i> Current Fault</h4><p>${escapeHtml(r.fault)}</p></div>
@@ -1261,46 +955,29 @@ function performSearch(){
   const cat = $('searchCategory').value;
   const loc = $('searchLocation').value;
   if (!q && cat === 'all' && loc === 'all'){ $('searchResults').hidden = true; $('searchResults').innerHTML = ''; return; }
-
   const matches = (obj, fields) => fields.some(f => String(obj[f] || '').toLowerCase().includes(q));
   const locMatch = obj => loc === 'all' || (obj.location || '').toLowerCase().includes(loc.toLowerCase());
-
   const mM = (cat === 'all' || cat === 'machine') ? machines.filter(m => (!q || matches(m, ['name','purpose','category','lab','location'])) && locMatch(m)) : [];
   const mC = (cat === 'all' || cat === 'component') ? components.filter(c => (!q || matches(c, ['name','purpose','type','category','lab','location'])) && locMatch(c)) : [];
   const mL = (cat === 'all' || cat === 'lab') ? labs.filter(l => (!q || matches(l, ['name','description','location'])) && locMatch(l)) : [];
   const mE = (cat === 'all' || cat === 'experiment') ? experiments.filter(e => (!q || matches(e, ['name','subject','machine','lab','location'])) && locMatch(e)) : [];
   const mQ = (cat === 'all' || cat === 'equipment') ? equipmentInventory.filter(e => (!q || matches(e, ['id','name','lab','location','condition','status'])) && locMatch(e)) : [];
-
   const total = mM.length + mC.length + mL.length + mE.length + mQ.length;
   if (total === 0){ $('searchResults').innerHTML = `<div class="no-results">No results found.</div>`; $('searchResults').hidden = false; return; }
-
   let html = '';
   if (mM.length) html += `<div class="search-results__group"><h4>Machines (${mM.length})</h4>${mM.map(m => `<div class="search-result-item" onclick="openMachineModal('${m.id}'); document.getElementById('searchResults').hidden=true"><span>${m.name}</span><span>${m.location}</span></div>`).join('')}</div>`;
   if (mC.length) html += `<div class="search-results__group"><h4>Components (${mC.length})</h4>${mC.map(c => `<div class="search-result-item" onclick="openComponentModal('${c.id}'); document.getElementById('searchResults').hidden=true"><span>${c.name}</span><span>${c.location}</span></div>`).join('')}</div>`;
   if (mL.length) html += `<div class="search-results__group"><h4>Laboratories (${mL.length})</h4>${mL.map(l => `<div class="search-result-item" onclick="openLabModal('${l.id}'); document.getElementById('searchResults').hidden=true"><span>${l.name}</span><span>${l.location}</span></div>`).join('')}</div>`;
   if (mE.length) html += `<div class="search-results__group"><h4>Experiments (${mE.length})</h4>${mE.map(e => `<div class="search-result-item" onclick="openExperimentModal('${e.id}'); document.getElementById('searchResults').hidden=true"><span>${e.name}</span><span>${e.location}</span></div>`).join('')}</div>`;
   if (mQ.length) html += `<div class="search-results__group"><h4>Equipment (${mQ.length})</h4>${mQ.map(e => `<div class="search-result-item" onclick="openEquipmentModal('${e.id}'); document.getElementById('searchResults').hidden=true"><span>${e.name} (${e.id})</span><span>${e.location}</span></div>`).join('')}</div>`;
-
   $('searchResults').innerHTML = html;
   $('searchResults').hidden = false;
 }
 
 /* ==================== QR ==================== */
 function buildUrl(anchor){ return location.href.split('#')[0] + '#' + anchor; }
-
-function setQr(type, id){
-  $('qrTypeSelect').value = type;
-  populateQrItems();
-  $('qrItemSelect').value = id;
-  generateQr();
-}
-
-function populateQrItems(){
-  const type = $('qrTypeSelect').value;
-  const list = type === 'machine' ? machines : components;
-  $('qrItemSelect').innerHTML = list.map(i => `<option value="${i.id}">${i.name}</option>`).join('');
-}
-
+function setQr(type, id){ $('qrTypeSelect').value = type; populateQrItems(); $('qrItemSelect').value = id; generateQr(); }
+function populateQrItems(){ const type = $('qrTypeSelect').value; const list = type === 'machine' ? machines : components; $('qrItemSelect').innerHTML = list.map(i => `<option value="${i.id}">${i.name}</option>`).join(''); }
 function generateQr(){
   const type = $('qrTypeSelect').value;
   const id = $('qrItemSelect').value;
@@ -1310,11 +987,7 @@ function generateQr(){
   const url = buildUrl(anchor);
   const wrap = $('qrCanvasWrap');
   wrap.innerHTML = '';
-
-  if (typeof qrcode !== 'function'){
-    wrap.innerHTML = '<div style="color:#0f172a;font-size:0.8rem;padding:20px;text-align:center">QR library loading…</div>';
-    return;
-  }
+  if (typeof qrcode !== 'function'){ wrap.innerHTML = '<div style="color:#0f172a;font-size:0.8rem;padding:20px;text-align:center">QR library loading…</div>'; return; }
   try {
     const qr = qrcode(0, 'M');
     qr.addData(url);
@@ -1325,9 +998,7 @@ function generateQr(){
     img.style.height = '200px';
     img.style.borderRadius = '8px';
     img.alt = 'QR code for ' + item.name;
-  } catch(err){
-    wrap.innerHTML = '<div style="color:#0f172a;padding:20px">QR error</div>';
-  }
+  } catch(err){ wrap.innerHTML = '<div style="color:#0f172a;padding:20px">QR error</div>'; }
   $('qrTargetLabel').textContent = item.name + ' — ' + item.location;
 }
 
@@ -1387,21 +1058,24 @@ function closeLogoutModal(){
   document.body.style.overflow = '';
 }
 
+/* Helper: reset gate form to Sign In tab */
+function resetGateToLogin(){
+  document.querySelectorAll('[data-gate-tab]').forEach(t => t.classList.remove('active'));
+  document.querySelector('[data-gate-tab="login"]').classList.add('active');
+  $('gateNameField').style.display = 'none';
+  $('gateSubmit').textContent = 'Sign In';
+  $('gateHint').innerHTML = 'Demo account — <strong>demo@pccoe.edu</strong> / <strong>demo123</strong><br>Or create your own account — you can sign in with it anytime on this browser.';
+}
+
 /* ==================== INIT ==================== */
 document.addEventListener('DOMContentLoaded', () => {
   seedDemoUser();
-
-  // Loader
   setTimeout(() => $('loader').classList.add('hidden'), 700);
 
-  // Handle logo fallback
+  // Logo fallback
   const logoFallback = `data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="14" fill="#1e3a8a"/><text x="50" y="58" font-family="Arial" font-size="30" font-weight="bold" fill="#fff" text-anchor="middle">PC</text></svg>')}`;
-  ['gateLogo','headerLogo'].forEach(id => {
-    const img = $(id);
-    if (img) img.onerror = () => { img.src = logoFallback; };
-  });
+  ['gateLogo','headerLogo'].forEach(id => { const img = $(id); if (img) img.onerror = () => { img.src = logoFallback; }; });
 
-  // Render everything
   renderDashboard();
   renderMachines();
   renderComponents();
@@ -1411,13 +1085,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderMaintenance();
   if (window.lucide) window.lucide.createIcons();
 
-  // Reveal
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
+  const obs = new IntersectionObserver(entries => { entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); }); }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // Counters
   const counterObs = new IntersectionObserver(entries => {
     entries.forEach(en => {
       if (en.isIntersecting){
@@ -1436,7 +1106,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.4 });
   document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
 
-  // Search
   $('searchInput').addEventListener('input', performSearch);
   $('searchCategory').addEventListener('change', performSearch);
   $('searchLocation').addEventListener('change', performSearch);
@@ -1445,7 +1114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => { $('searchInput').value = btn.dataset.search; performSearch(); });
   });
 
-  // Component filter
   document.querySelectorAll('#componentFilters .filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('#componentFilters .filter-btn').forEach(b => b.classList.remove('active'));
@@ -1455,7 +1123,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Equipment filter
   document.querySelectorAll('#equipmentFilters .filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('#equipmentFilters .filter-btn').forEach(b => b.classList.remove('active'));
@@ -1465,7 +1132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Modal close
   $('modalClose').addEventListener('click', closeModal);
   $('modalOverlay').addEventListener('click', closeModal);
   $('logoutClose').addEventListener('click', closeLogoutModal);
@@ -1477,19 +1143,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // User pill → logout modal
   $('userPill').addEventListener('click', openLogoutModal);
 
-  // Logout
+  /* ---- LOGOUT: reset to Sign In tab so user can sign back in cleanly ---- */
   $('logoutBtn').addEventListener('click', () => {
     saveSession(null);
     closeLogoutModal();
     lockSite();
     $('gateForm').reset();
-    $('gateEmail').focus();
+    resetGateToLogin();
+    setTimeout(() => $('gateEmail').focus(), 100);
+    showToast('You have been signed out.');
   });
 
-  // Gate tabs
+  /* ---- Gate tabs ---- */
   document.querySelectorAll('[data-gate-tab]').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('[data-gate-tab]').forEach(t => t.classList.remove('active'));
@@ -1497,10 +1164,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const isSignup = tab.dataset.gateTab === 'signup';
       $('gateNameField').style.display = isSignup ? 'block' : 'none';
       $('gateSubmit').textContent = isSignup ? 'Create Account' : 'Sign In';
+      if (isSignup){
+        $('gateHint').innerHTML = 'Create your account once — you can sign in with the same email and password anytime on this browser.';
+      } else {
+        $('gateHint').innerHTML = 'Demo account — <strong>demo@pccoe.edu</strong> / <strong>demo123</strong><br>Or create your own account — you can sign in with it anytime on this browser.';
+      }
     });
   });
 
-  // Gate form submit
+  /* ---- Gate form submit ---- */
   $('gateForm').addEventListener('submit', e => {
     e.preventDefault();
     const mode = document.querySelector('[data-gate-tab].active').dataset.gateTab;
@@ -1510,29 +1182,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const users = getUsers();
 
     if (mode === 'signup'){
-      if (!name){ alert('Please enter your full name.'); return; }
-      if (users[email]){ alert('An account with this email already exists. Please sign in.'); return; }
+      if (!name){ showToast('Please enter your full name.'); $('gateName').focus(); return; }
+      if (!email || !email.includes('@')){ showToast('Please enter a valid email address.'); $('gateEmail').focus(); return; }
+      if (password.length < 6){ showToast('Password must be at least 6 characters.'); $('gatePassword').focus(); return; }
+      if (users[email]){
+        // Auto-switch to Sign In tab and keep the email prefilled
+        resetGateToLogin();
+        $('gateEmail').value = email;
+        $('gatePassword').value = '';
+        $('gatePassword').focus();
+        showToast('Account already exists. Please sign in with your password.');
+        return;
+      }
+      // Create new account
       users[email] = { name, email, password };
       saveUsers(users);
       saveSession({ name, email });
-    } else {
-      if (!users[email] || users[email].password !== password){
-        alert('Invalid email or password. Try demo@pccoe.edu / demo123');
-        return;
-      }
-      saveSession({ name: users[email].name, email });
+      unlockSite();
+      $('gateForm').reset();
+      handleHash();
+      showToast(`Welcome, ${name.split(' ')[0]}! Account created — you can sign in with this email anytime.`);
+      return;
     }
 
+    // Sign In mode
+    if (!users[email]){
+      showToast('No account found with this email. Please create an account first.');
+      // Auto-switch to Sign Up tab
+      document.querySelectorAll('[data-gate-tab]').forEach(t => t.classList.remove('active'));
+      document.querySelector('[data-gate-tab="signup"]').classList.add('active');
+      $('gateNameField').style.display = 'block';
+      $('gateSubmit').textContent = 'Create Account';
+      $('gateHint').innerHTML = 'Create your account once — you can sign in with the same email and password anytime on this browser.';
+      $('gateName').focus();
+      return;
+    }
+    if (users[email].password !== password){
+      showToast('Incorrect password. Please try again.');
+      $('gatePassword').value = '';
+      $('gatePassword').focus();
+      return;
+    }
+    // Success
+    saveSession({ name: users[email].name, email });
     unlockSite();
     $('gateForm').reset();
     handleHash();
+    showToast(`Welcome back, ${users[email].name.split(' ')[0]}!`);
   });
 
-  // Auto unlock if session exists
+  /* ---- Auto-unlock if session exists ---- */
   if (getSession()) unlockSite();
-  else { $('gateEmail').focus(); }
+  else { resetGateToLogin(); $('gateEmail').focus(); }
 
-  // Navbar
+  /* ---- Navbar ---- */
   $('hamburger').addEventListener('click', () => {
     $('navLinks').classList.toggle('open');
     $('hamburger').classList.toggle('open');
@@ -1548,7 +1251,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => $('searchInput').focus(), 500);
   });
 
-  // Active nav link on scroll
   const sections = document.querySelectorAll('section[id]');
   window.addEventListener('scroll', () => {
     let current = '';
@@ -1558,7 +1260,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Auto-open modal from hash
   function handleHash(){
     const h = location.hash.replace('#','');
     if (!h) return;
@@ -1569,7 +1270,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (location.hash) setTimeout(handleHash, 300);
   window.addEventListener('hashchange', handleHash);
 
-  // Close search results on outside click
   document.addEventListener('click', e => {
     if (!$('searchResults').hidden){
       const box = document.querySelector('.search-box');
@@ -1577,7 +1277,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // QR init
   populateQrItems();
   $('qrTypeSelect').addEventListener('change', () => { populateQrItems(); generateQr(); });
   $('qrItemSelect').addEventListener('change', generateQr);
@@ -1591,7 +1290,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.lucide) window.lucide.createIcons();
 });
 
-// Expose for inline handlers
 window.openMachineModal = openMachineModal;
 window.openComponentModal = openComponentModal;
 window.openLabModal = openLabModal;
